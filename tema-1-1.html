@@ -11,11 +11,11 @@
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
 <nav aria-label="Contingut"><h4>Contingut del tema</h4>
-<a href="#s1">1. Sistema informàtic i SO</a><a href="#s2">2. Objectius i funcions</a><a href="#s3">3. Estructura d'un SO</a><a href="#s4">4. Classificació</a><a href="#s5">5. Evolució històrica</a><a href="#s6">6. Lliure o propietari</a><a href="#s7">7. L'administrador</a><a href="#s8">Resum i repàs</a></nav>
+<a href="#s1">1. Sistema informàtic i SO</a><a href="#s2">2. Arquitectura Von Neumann</a><a href="#s2b">2b. Memòria i busos</a><a href="#s2c">2c. Dispositius d'E/S</a><a href="#s3">3. Objectius i funcions del SO</a><a href="#s3b">3b. Estructura per capes</a><a href="#s4">4. Classificació dels SO</a><a href="#s5">5. Evolució històrica</a><a href="#s6">6. Software i llicències</a><a href="#s7">7. L'administrador</a><a href="#s8">Glossari i repàs</a></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.1</div>
 <h1>Tema 1.1: Conceptes bàsics sobre sistemes operatius</h1>
-<p class="lead">Criteris d'avaluació 1.1 a 1.3 · Activitat A1 · 3 h. En acabar sabreu explicar què és un sistema operatiu, què fa, de quines parts consta i com es classifica.</p>
+<p class="lead">Criteris d'avaluació 1.c–1.g · Activitats A1 i Pt 1.1 · 3 h. En acabar sabreu explicar què és un sistema informàtic i operatiu, com funciona per dins (Von Neumann, memòria, busos, E/S), quines funcions té, com es classifica i com són les seves llicències.</p>
 
 <h2 id="s1">1. El sistema informàtic i el sistema operatiu</h2>
 <p>Un <b>sistema informàtic</b> té tres elements: el <b>maquinari</b> (HW, els components físics), el <b>programari</b> (SW, els programes) i els <b>usuaris</b>, que també en formen part perquè són qui l'utilitza.</p>
@@ -28,7 +28,60 @@
 <div class="box info"><b>Idea clau</b>Les aplicacions <b>no parlen directament amb el maquinari</b>: demanen el servei al SO. Per això el mateix Firefox funciona amb discs, targetes de xarxa i pantalles molt diferents.</div>
 <div class="ex"><h4>Exercici 1 · Qui és qui?</h4><span class="tag">Bàsic · 5 min</span><p>Classifica com a maquinari, programari o usuari: un SSD, Windows 11, el teu company de taula, LibreOffice, el ratolí, un controlador (driver).</p><details><summary>Veure solució</summary>Maquinari: SSD, ratolí. Programari: Windows 11, LibreOffice, driver. Usuari: el company. El driver és programari que ensenya al SO com parlar amb un dispositiu.</details></div>
 
-<h2 id="s2">2. Objectius i funcions</h2>
+<h2 id="s2">2. Arquitectura Von Neumann</h2>
+<p>El 1945 el matemàtic <b>John von Neumann</b> va descriure un model d'ordinador que separa la <b>memòria</b> de la <b>unitat de processament</b>, comunicades per <b>busos</b>. Amb petites variants, és l'esquema que segueixen pràcticament tots els ordinadors actuals.</p>
+<div class="tw"><table><tr><th>Registre</th><th>Nom</th><th>Funció</th></tr>
+<tr><td>PC</td><td>Program Counter</td><td>Adreça de la <b>propera</b> instrucció a executar.</td></tr>
+<tr><td>IR</td><td>Instruction Register</td><td>La instrucció que s'executa ara mateix.</td></tr>
+<tr><td>MAR</td><td>Memory Address Register</td><td>Adreça de memòria a la qual s'accedeix.</td></tr>
+<tr><td>MDR</td><td>Memory Data Register</td><td>Dada llegida o escrita en aquella adreça.</td></tr>
+<tr><td>ACC</td><td>Acumulador</td><td>Resultat de l'operació que fa la ALU.</td></tr></table></div>
+<div class="box info"><b>Analogia</b>Pensa en un videojoc arcade: el <b>PC</b> és el número de nivell que toca jugar; l'<b>IR</b>, la missió que estàs fent ara; el <b>MAR</b>, l'adreça del caseller amb la vida extra; el <b>MDR</b>, la vida que acabes d'agafar; l'<b>ACC</b>, el marcador de punts, que canvia a cada acció.</div>
+<h3>El cicle d'instrucció: Fetch–Decode–Execute</h3>
+<div class="tw"><table><tr><th>Fase</th><th>Què passa</th></tr>
+<tr><td><b>1. Fetch</b></td><td>La UC llegeix l'adreça del PC, la copia al MAR; la memòria retorna la instrucció al MDR i es copia a l'IR. El PC avança.</td></tr>
+<tr><td><b>2. Decode</b></td><td>La UC interpreta l'IR: quina operació cal fer i quins operands necessita.</td></tr>
+<tr><td><b>3. Execute</b></td><td>Es llegeixen dades si cal (MAR→MDR→ACC) i la ALU fa l'operació; el resultat queda a l'ACC.</td></tr>
+<tr><td><b>4. Write-back</b></td><td>Si cal desar el resultat, la UC envia l'adreça destí al MAR i el valor al MDR, i ordena escriure a memòria.</td></tr></table></div>
+<div class="box ok"><b>Analogia del repartidor</b>Fetch: agafa el tiquet de la taula 5. Decode: llegeix que volen una margarita gran. Execute: la prepara (ALU) i la porta (l'ACC en guarda el resultat). Write-back: marca la comanda com a servida. Es repeteix milers de milions de vegades per segon.</div>
+<div class="ex"><h4>Exercici 2 · Segueix el cicle</h4><span class="tag">Bàsic · 6 min</span><p>Ordena aquests passos d'una suma <code>A = B + C</code>: (a) la ALU suma els dos valors, (b) el PC apunta a la instrucció, (c) la UC descodifica que és una suma, (d) el resultat es desa a memòria.</p><details><summary>Solució</summary>b (Fetch) → c (Decode) → a (Execute) → d (Write-back).</details></div>
+
+<h2 id="s2b">2b. Memòria, processador i busos</h2>
+<p>La <b>CPU</b> conté la <b>UC</b> (interpreta instruccions i coordina) i la <b>ALU</b> (fa càlculs i comparacions), i treballa a una velocitat mesurada en GHz.</p>
+<div class="tw"><table><tr><th>Any</th><th>Processador</th><th>Velocitat</th><th>Per què compta</th></tr>
+<tr><td>1971</td><td>Intel 4004</td><td>108 KHz</td><td>Primer microprocessador comercial.</td></tr>
+<tr><td>1978</td><td>Intel 8086</td><td>5–10 MHz</td><td>Origen de l'arquitectura x86, encara vigent.</td></tr>
+<tr><td>1981</td><td>Intel 8088</td><td>8 MHz</td><td>El del primer IBM PC (~1.565 $ l'any 1981).</td></tr>
+<tr><td>2006</td><td>Core 2 Duo</td><td>1,8–3 GHz</td><td>Comença l'era multinucli.</td></tr>
+<tr><td>Avui</td><td>Core Ultra / Ryzen</td><td>≥ 5 GHz</td><td>Desenes de nuclis i IA integrada (NPU).</td></tr></table></div>
+<h3>Jerarquia de memòria</h3>
+<p>Com més ràpida és una memòria, més cara i més petita sol ser; per això s'organitzen en capes:</p>
+<div class="tw"><table><tr><th>Tipus</th><th>Volàtil?</th><th>Velocitat</th><th>Capacitat típica</th></tr>
+<tr><td>Registres CPU</td><td>Sí</td><td>&lt; 1 ns</td><td>Bytes</td></tr>
+<tr><td>Caché L1/L2/L3</td><td>Sí</td><td>1–10 ns</td><td>KB–MB</td></tr>
+<tr><td>RAM</td><td>Sí</td><td>50–100 ns</td><td>8–64 GB</td></tr>
+<tr><td>ROM / BIOS-UEFI</td><td>No</td><td>~100 ns</td><td>MB (firmware d'arrencada)</td></tr>
+<tr><td>SSD NVMe</td><td>No</td><td>~0,1 ms</td><td>256 GB–4 TB</td></tr>
+<tr><td>HDD</td><td>No</td><td>5–10 ms</td><td>1–20 TB</td></tr>
+<tr><td>Memòria virtual (swap)</td><td>—</td><td>≈ HDD/SSD</td><td>Configurable</td></tr></table></div>
+<div class="box info"><b>Analogia</b>Els registres són el bolígraf que tens a la mà; la caché, l'estoig obert; la RAM, la motxilla; el SSD, l'armari de l'habitació; el HDD, el traster del soterrani; el núvol, la biblioteca municipal.</div>
+<h3>Busos</h3>
+<div class="tw"><table><tr><th>Bus</th><th>Transporta</th><th>Nota</th></tr>
+<tr><td>De dades</td><td>Bits de dades i instruccions</td><td>Bidireccional; la seva amplada (8/16/32/64 bits) marca quantes dades viatgen per cicle.</td></tr>
+<tr><td>D'adreces</td><td>Adreces de memòria</td><td>Unidireccional (CPU→memòria); la seva amplada marca la memòria màxima adreçable.</td></tr>
+<tr><td>De control</td><td>Senyals (lectura/escriptura, interrupcions…)</td><td>Bidireccional; coordina tots els components.</td></tr>
+<tr><td>D'expansió (PCIe, USB, SATA)</td><td>Dades + control</td><td>Connecten perifèrics i targetes.</td></tr></table></div>
+<div class="box ok"><b>Analogia del metro</b>El bus de dades és el vagó amb els passatgers; el d'adreces, el rètol amb la destinació; el de control, els semàfors que diuen quan el tren surt o s'atura.</div>
+
+<h2 id="s2c">2c. Dispositius d'entrada i sortida</h2>
+<div class="tw"><table><tr><th>Tipus</th><th>Funció</th><th>Exemples</th></tr>
+<tr><td>Entrada</td><td>Porten informació de l'exterior a la CPU.</td><td>Teclat, ratolí, escàner, micròfon, webcam</td></tr>
+<tr><td>Sortida</td><td>Mostren el resultat del processament.</td><td>Monitor, impressora, altaveus, projector</td></tr>
+<tr><td>Mixtos (E/S)</td><td>Fan les dues coses.</td><td>Pantalla tàctil, targeta de xarxa, mòdem</td></tr>
+<tr><td>Emmagatzematge</td><td>Guarden dades de manera permanent.</td><td>HDD, SSD, pendrive, targeta SD</td></tr></table></div>
+<div class="ex"><h4>Exercici 3 · Classifica</h4><span class="tag">Bàsic · 5 min</span><p>Un youtuber grava amb càmera i micròfon, edita al monitor i desa el vídeo en un disc extern. Classifica cada element.</p><details><summary>Solució</summary>Càmera i micròfon: entrada. Monitor: sortida. Disc extern: emmagatzematge (i mixt, perquè també s'hi llegeix i escriu).</details></div>
+
+<h2 id="s3">3. Objectius i funcions del SO</h2>
 <p>Un SO té <b>dos grans objectius</b>: (1) gestionar el maquinari de manera <b>eficient</b> i (2) <b>facilitar</b> l'ús de l'ordinador a l'usuari. Per aconseguir-los s'encarrega de:</p>
 <div class="tw"><table><tr><th>Funció</th><th>Què fa</th><th>Exemple quotidià</th></tr>
 <tr><td>Gestió del processador</td><td>Decideix quin procés fa servir la CPU i durant quant temps.</td><td>Escoltes música mentre escrius un document.</td></tr>
@@ -40,12 +93,15 @@
 <tr><td>Xarxa</td><td>Permet comunicar-se amb altres equips.</td><td>Connectar-se al Wi-Fi de l'aula.</td></tr></table></div>
 <div class="box imp"><b>Important</b>Aquestes funcions són el fil del bloc següent (A3): memòria, processos, E/S i arxius tindran cadascuna el seu tema. Quedeu-vos ara amb la <b>idea general</b>.</div>
 
-<h2 id="s3">3. Estructura d'un sistema operatiu</h2>
-<p>Tot SO es pot dividir en tres parts:</p>
-<div class="tw"><table><tr><th>Part</th><th>Què és</th><th>Exemple</th></tr>
-<tr><td><b>Nucli (kernel)</b></td><td>El cor. Es carrega a la RAM en arrencar i és l'únic que actua directament sobre el maquinari, amagant-ne la complexitat.</td><td>Linux, NT (Windows)</td></tr>
-<tr><td><b>Utilitats de baix nivell</b></td><td>Programes que s'executen damunt del nucli, però no en formen part.</td><td>Gestor de fitxers, formatador de discs</td></tr>
-<tr><td><b>Interfície d'usuari</b></td><td>Manera de comunicar-nos amb el SO: línia d'ordres (CLI) o gràfica (GUI).</td><td>Terminal / escriptori</td></tr></table></div>
+<h2 id="s3b">3b. Estructura del SO per capes</h2>
+<p>El SO no és un bloc únic: s'organitza en capes, on cada una ofereix serveis a la de sobre i usa les de sota.</p>
+<div class="tw"><table><tr><th>Capa</th><th>Component</th><th>Funció</th></tr>
+<tr><td>1 (baix)</td><td>Kernel (nucli)</td><td>Accedeix directament al maquinari; gestiona processos, memòria i E/S en mode privilegiat. No és accessible directament per l'usuari.</td></tr>
+<tr><td>2</td><td>Drivers</td><td>Permeten al nucli parlar amb dispositius concrets (gràfica, so, xarxa). Cada fabricant proporciona els seus.</td></tr>
+<tr><td>3</td><td>Serveis del sistema</td><td>Processos en segon pla (dimonis): xarxa, impressió, seguretat, rellotge…</td></tr>
+<tr><td>4</td><td>API / crides al sistema</td><td>Funcions que criden els programes per demanar serveis al SO sense tocar directament el maquinari.</td></tr>
+<tr><td>5 (alt)</td><td>Interfície d'usuari</td><td>GUI o CLI/terminal: el que veu i toca l'usuari. Tradueix les seves accions en crides al sistema.</td></tr></table></div>
+<div class="box info"><b>Analogia</b>El cuiner (kernel) treballa amb els ingredients (maquinari) a la cuina. El cambrer (API) porta les comandes entre la cuina i els clients. El menú (GUI) és el que veu el client. El client no necessita saber com funciona la cuina.</div>
 <h3>Una mateixa tasca, dues interfícies</h3>
 <p>Veure el contingut d'una carpeta amb la línia d'ordres:</p>
 <pre><code># Linux (Bash)
@@ -54,8 +110,8 @@ ls -l /home
 :: Windows (cmd)
 dir C:\Users</code></pre>
 <p>A l'escriptori faries doble clic a la carpeta. El resultat és el mateix; la CLI és més ràpida i <b>automatitzable</b> (es pot guardar en un guió), i la GUI és més intuïtiva.</p>
-<div class="box info"><b>Nucli, SO i distribució</b>«Linux» és en rigor només el <b>nucli</b>. Una distribució (Ubuntu, Debian…) és el nucli més utilitats, interfície i programes. Per això parlem de <i>sistema GNU/Linux</i>.</div>
-<div class="ex"><h4>Exercici 2 · On viu cada cosa?</h4><span class="tag">Bàsic · 5 min</span><p>Situa en nucli, utilitat o interfície: gestionar la RAM, el Terminal, l'escriptori GNOME, un programa que formata pendrives.</p><details><summary>Veure solució</summary>Nucli: gestionar la RAM. Interfície: Terminal i escriptori GNOME. Utilitat: el formatador.</details></div>
+<div class="box info"><b>Nucli, SO i distribució</b>«Linux» és en rigor només el <b>nucli</b>. Una distribució (Ubuntu, Debian…) és el nucli més utilitats, drivers, serveis i interfície. Per això parlem de <i>sistema GNU/Linux</i>.</div>
+<div class="ex"><h4>Exercici 4 · On viu cada cosa?</h4><span class="tag">Bàsic · 5 min</span><p>Situa en nucli, driver, servei o interfície: gestionar la RAM, el Terminal, la impressió en segon pla, el controlador de la targeta gràfica.</p><details><summary>Veure solució</summary>Nucli: gestionar la RAM. Interfície: el Terminal. Servei: la impressió en segon pla. Driver: el controlador de la targeta gràfica.</details></div>
 
 <h2 id="s4">4. Classificació dels sistemes operatius</h2>
 <p>No hi ha una classificació única; s'usen diversos criteris:</p>
@@ -78,21 +134,39 @@ dir C:\Users</code></pre>
 <tr><td>Avui</td><td>Xarxa i mòbils</td><td>Sistemes multiusuari, multitasca, connectats; Android i iOS.</td></tr></table></div>
 <div class="box ok"><b>Per recordar</b>Tecnologia → generació: <b>tubs → transistors → circuits integrats → microprocessador</b>. El SO apareix realment amb els lots i madura amb la multiprogramació.</div>
 
-<h2 id="s6">6. Programari lliure i propietari</h2>
-<div class="tw"><table><tr><th></th><th>Lliure</th><th>Propietari</th></tr>
-<tr><td>Codi font</td><td>Accessible i modificable</td><td>Tancat</td></tr><tr><td>Llicència</td><td>GPL i similars: es pot copiar, estudiar, modificar i redistribuir</td><td>Termes del fabricant (EULA)</td></tr><tr><td>Exemples</td><td>Ubuntu, Debian, Fedora</td><td>Windows, macOS</td></tr></table></div>
-<div class="box imp"><b>Lliure no vol dir gratuït</b>La GPL parla de <i>llibertats</i>, no de preu: es pot cobrar per programari lliure, i hi ha programari gratuït que no és lliure.</div>
+<h2 id="s6">6. Software i llicències</h2>
+<p>El software es classifica per la seva funció:</p>
+<div class="tw"><table><tr><th>Tipus</th><th>Fa</th><th>Exemples</th></tr>
+<tr><td>De sistema (base)</td><td>Gestiona els recursos i dona serveis als altres programes: SO, drivers, firmware.</td><td>Windows 11, Linux, BIOS/UEFI</td></tr>
+<tr><td>D'aplicació</td><td>Tasques per a l'usuari final.</td><td>Word, Chrome, un joc</td></tr>
+<tr><td>De programació</td><td>Eines per crear altres programes.</td><td>VS Code, el JDK, un compilador</td></tr></table></div>
+<p>Una <b>llicència</b> és el contracte que fixa com es pot usar, copiar, modificar i distribuir un programa:</p>
+<div class="tw"><table><tr><th>Llicència</th><th>Característiques</th><th>Exemples</th></tr>
+<tr><td>Codi tancat (propietari)</td><td>Codi font no accessible; cal pagar-ne l'ús; no es pot modificar ni redistribuir.</td><td>Windows, Photoshop</td></tr>
+<tr><td>Codi obert permissiu</td><td>Codi accessible; es pot modificar i redistribuir, fins i tot en un producte tancat.</td><td>MIT, Apache, BSD (React, jQuery)</td></tr>
+<tr><td>Codi obert copyleft</td><td>Codi accessible, però qualsevol versió modificada s'ha de distribuir amb la mateixa llicència.</td><td>GPL (kernel Linux, VLC)</td></tr>
+<tr><td>Freeware</td><td>Gratuït per usar, però sense accés al codi; l'autor manté els drets.</td><td>7-Zip, Audacity</td></tr>
+<tr><td>Shareware</td><td>Gratuït i limitat (temps o funcions); cal pagar per la versió completa.</td><td>WinRAR (30 dies)</td></tr>
+<tr><td>Domini públic</td><td>Sense restriccions; l'autor hi ha renunciat als drets.</td><td>SQLite</td></tr></table></div>
+<div class="box ok"><b>Analogia musical</b>El codi tancat és com comprar un àlbum: el pots escoltar, no copiar-lo. El freeware és Spotify Free: gratis, però amb tots els drets per al creador. El codi obert permissiu diu «usa'm, modifica'm, fins i tot ven'm, no cal res a canvi». El copyleft hi afegeix una condició: «si publiques la teva versió, també ha de ser lliure». El domini públic és com el <i>Cumpleaños feliz</i>: ningú en té els drets.</div>
+<div class="box imp"><b>Lliure no vol dir gratuït</b>La GPL parla de <i>llibertats</i> (estudiar, modificar, redistribuir), no de preu: es pot cobrar per programari lliure, i hi ha programari gratuït (freeware) que no és lliure perquè no en dona el codi.</div>
+<div class="box info"><b>Què regula una llicència?</b>Pot limitar el nombre de còpies, la vigència, si es pot cedir a tercers o en quins equips s'instal·la. <b>No regula</b> les interferències electromagnètiques del maquinari ni el tipus de xarxa on es connecta l'equip.</div>
+<div class="ex"><h4>Exercici 5 · Quina llicència?</h4><span class="tag">Mitjà · 8 min</span><p>Un programa és gratuït, el codi és públic al GitHub i qualsevol pot modificar-lo i vendre'l lliurement, sense condicions. Quina llicència és, del tipus de les de la taula?</p><details><summary>Solució</summary>Codi obert permissiu (o domini públic si l'autor hi renuncia del tot als drets).</details></div>
 
 <h2 id="s7">7. L'administrador de sistemes</h2>
 <p>És la persona que posa en marxa i manté el sistema. Tasques típiques: gestionar usuaris i permisos, fer <b>còpies de seguretat</b>, instal·lar i actualitzar programari, monitoritzar recursos, mantenir la seguretat i la xarxa, documentar i donar suport. No cal saber-ho tot: cal saber <b>on buscar</b> (manuals, <code>man</code>, F1, Internet).</p>
 <div class="box info"><b>Ètica</b>Professionalitat, reconèixer errors i límits, respectar la privacitat i confidencialitat, conèixer les lleis, informar els usuaris dels canvis i formar-se contínuament.</div>
 <div class="ex"><h4>Exercici 4 · Cas pràctic</h4><span class="tag">Mitjà · 10 min</span><p>Un company demana la contrasenya d'un altre usuari «per mirar una cosa». Què hauries de fer, aplicant l'ètica de l'administrador?</p><details><summary>Veure solució</summary>No accedir a informació privada sense necessitat i autorització; canalitzar la petició amb el responsable i deixar-ne constància.</details></div>
 
-<h2 id="s8">Resum i repàs</h2>
+<h2 id="s8">Glossari i repàs</h2>
+<div class="tw"><table><tr><th>Terme</th><th>Definició breu</th></tr>
+<tr><td>ALU</td><td>Unitat Aritmeticològica; fa els càlculs i comparacions dins la CPU.</td></tr><tr><td>API</td><td>Interfície que permet als programes demanar serveis al SO.</td></tr><tr><td>CLI / GUI</td><td>Interfície de text (terminal) / interfície gràfica (finestres, icones).</td></tr><tr><td>Driver</td><td>Programa que permet al SO parlar amb un dispositiu concret.</td></tr><tr><td>Firmware</td><td>Software bàsic a la ROM que arrenca l'ordinador (BIOS/UEFI).</td></tr><tr><td>Kernel</td><td>Nucli del SO; l'únic que toca directament el maquinari.</td></tr><tr><td>PC (registre)</td><td>Program Counter: adreça de la propera instrucció.</td></tr><tr><td>UC</td><td>Unitat de Control; interpreta instruccions i coordina la CPU.</td></tr></table></div>
+<h3>Resum i repàs</h3>
 <ul><li>SO = programari base que gestiona recursos i ofereix entorn d'execució.</li><li>Funcions: CPU, memòria, E/S, arxius, errors, seguretat, xarxa.</li><li>Estructura: nucli + utilitats + interfície (CLI/GUI).</li><li>Es classifica per usuaris, tasques, processadors i temps de resposta.</li><li>Lliure ≠ gratuït.</li></ul>
 <div class="ex"><h4>Autoavaluació</h4><span class="tag">Bàsic · 5 min</span><p>1) Quina part del SO toca el maquinari? 2) Pot un SO monoprocessador ser multitasca? 3) Diferència entre Linux i Ubuntu?</p><details><summary>Solucions</summary>1) El nucli. 2) Sí, per temps compartit. 3) Linux és el nucli; Ubuntu és una distribució completa.</details></div>
 <div class="pn"><a href="index.html">← Índex</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><a href="tema-1-2.html">Tema 1.2 →</a></div>
 </main></div>
 <script src="assets/tema.js" defer></script>
+<footer class="credit"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.9L12 16.5l-1.9-5.6L4.5 9l5.6-1.5L12 2z"/></svg>Pàgina elaborada pel professorat del mòdul amb l'ajuda d'un assistent d'IA (Claude, Anthropic) a partir dels materials del curs. Revisa sempre la informació amb el professor/a.</footer>
 </body>
 </html>
