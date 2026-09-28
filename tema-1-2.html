@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Materials del mòdul MP0222 Sistemes Operatius Monolloc (CFGM SMX)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tema 1.2: Sistemes de numeració i codificació de la informació | MP0222</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="top">
+<header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
+<div class="wrap">
+<nav aria-label="Contingut"><h4>Contingut del tema</h4>
+<a href="#s1">1. Codificar informació</a><a href="#s2">2. Sistemes posicionals</a><a href="#s3">3. Conversions</a><a href="#s4">4. Suma, resta, ×, ÷</a><a href="#s5">5. Negatius: Ca1 i Ca2</a><a href="#s6">6. Magnituds</a><a href="#s7">7. Text: ASCII</a><a href="#s8">Conversor i repàs</a></nav>
+<main id="main">
+<div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
+<h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
+<p class="lead">Criteris 1.1 i 1.2 · Activitat A2 · 12 h. En acabar sabreu passar nombres entre decimal, binari, octal i hexadecimal (també amb decimals), fer les quatre operacions en binari, representar negatius amb Ca2 i calcular mides d'informació.</p>
+
+<h2 id="s1">1. Per què codifiquem?</h2>
+<p>Un ordinador només distingeix dos estats físics (hi passa corrent o no, un condensador carregat o no). Els representem amb <b>0 i 1</b>: un <b>bit</b>. Tot el que guarda (nombres, text, imatges, so) s'ha de convertir a bits: això és <b>codificar</b>.</p>
+<div class="tw"><table><tr><th>Informació</th><th>Com es codifica</th></tr><tr><td>Text</td><td>Cada caràcter té un número (ASCII, Unicode).</td></tr><tr><td>Imatge</td><td>Quadrícula de píxels; cada píxel, uns números de color.</td></tr><tr><td>So</td><td>Mostreig: mesures del senyal molts cops per segon.</td></tr></table></div>
+
+<h2 id="s2">2. Sistemes de numeració posicionals</h2>
+<p>En un sistema posicional, el valor d'un dígit depèn del <b>símbol</b> i de la <b>posició</b>: cada posició val una potència de la <b>base</b> (quants símbols diferents hi ha).</p>
+<div class="tw"><table><tr><th>Sistema</th><th>Base</th><th>Símbols</th><th>Ús</th></tr>
+<tr><td>Decimal</td><td>10</td><td>0–9</td><td>Vida quotidiana</td></tr><tr><td>Binari</td><td>2</td><td>0, 1</td><td>Maquinari</td></tr><tr><td>Octal</td><td>8</td><td>0–7</td><td>Permisos Linux (<code>chmod 755</code>)</td></tr><tr><td>Hexadecimal</td><td>16</td><td>0–9, A–F</td><td>Colors, adreces MAC, memòria</td></tr></table></div>
+<p>En decimal: <code>234 = 2·10² + 3·10¹ + 4·10⁰ = 200 + 30 + 4</code>. La mateixa idea serveix per a qualsevol base.</p>
+<div class="box info"><b>Notació</b>Per no confondre <code>101</code> decimal amb binari, escrivim la base com a subíndex: 101₂ = 5₁₀. En hexadecimal, A=10, B=11, C=12, D=13, E=14, F=15.</div>
+
+<h2 id="s3">3. Conversions entre sistemes</h2>
+<p>Hi ha dues famílies de mètodes: <b>aritmètics</b> (pesos i divisions) i <b>via binari</b> (agrupar bits). Tria sempre el més curt; per comprovar, torna al decimal.</p>
+<div class="box def"><b>Mapa de conversions</b>Decimal → qualsevol base <i>b</i>: <b>dividir entre <i>b</i></b> i llegir els residus de baix a dalt. Qualsevol base → decimal: <b>sumar dígit·<i>b</i><sup>posició</sup></b>. Entre binari, octal i hexadecimal: <b>agrupar</b> bits (3 per a octal, 4 per a hexadecimal).</div>
+
+<h3>3.1 Decimal → binari (dividint entre 2)</h3>
+<pre><code>45 : 2 = 22 r 1 ↑
+22 : 2 = 11 r 0 |
+11 : 2 =  5 r 1 | llegim
+ 5 : 2 =  2 r 1 | cap amunt
+ 2 : 2 =  1 r 0 |
+ 1 : 2 =  0 r 1 |
+45₁₀ = 101101₂        (32+8+4+1 = 45)</code></pre>
+<div class="box ok"><b>Truc</b>Resta la potència de 2 més gran que càpiga: 45 = 32+13, 13 = 8+4+1 → 1 a les posicions 32, 8, 4 i 1: 101101.</div>
+
+<h3>3.2 Decimal → octal</h3>
+<p><b>Mètode A: dividint entre 8.</b></p>
+<pre><code>1000 : 8 = 125 r 0 ↑
+ 125 : 8 =  15 r 5 |
+  15 : 8 =   1 r 7 |
+   1 : 8 =   0 r 1 |
+1000₁₀ = 1750₈</code></pre>
+<p><b>Mètode B: passant a binari i fent paquets de 3</b> (de dreta a esquerra).</p>
+<pre><code>1000₁₀ = 1111101000₂ → 001 | 111 | 101 | 000 → 1 7 5 0 → 1750₈</code></pre>
+
+<h3>3.3 Decimal → hexadecimal</h3>
+<p><b>Mètode A: dividint entre 16</b> (els residus 10–15 s'escriuen A–F).</p>
+<pre><code>1000 : 16 = 62 r 8 ↑
+  62 : 16 =  3 r 14 = E |
+   3 : 16 =  0 r 3 |
+1000₁₀ = 3E8₁₆</code></pre>
+<p><b>Mètode B: via binari, paquets de 4.</b></p>
+<pre><code>1000₁₀ = 1111101000₂ → 0011 | 1110 | 1000 → 3 E 8 → 3E8₁₆</code></pre>
+
+<h3>3.4 Binari → decimal, octal i hexadecimal</h3>
+<pre><code>Decimal:     101101₂ = 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1 = 45
+Octal:       101 101       → 5 5   → 55₈
+Hexadecimal: 0010 1101     → 2 D   → 2D₁₆   (afegim zeros a l'esquerra)</code></pre>
+
+<h3>3.5 Octal → decimal, binari i hexadecimal</h3>
+<pre><code>Decimal:     275₈ = 2·64 + 7·8 + 5·1 = 189
+Binari:      cada xifra en 3 bits: 2=010, 7=111, 5=101 → 010111101₂
+Hexadecimal: passem per binari i agrupem de 4: 0 1011 1101 → 0000 1011 1101 → BD₁₆</code></pre>
+
+<h3>3.6 Hexadecimal → decimal, binari i octal</h3>
+<pre><code>Decimal:  3E8₁₆ = 3·256 + 14·16 + 8·1 = 768 + 224 + 8 = 1000
+Binari:   cada xifra en 4 bits: 3=0011, E=1110, 8=1000 → 001111101000₂
+Octal:    reagrupem de 3: 001 111 101 000 → 1750₈</code></pre>
+<div class="box imp"><b>Cal passar per binari?</b>Octal ↔ hexadecimal no té drecera directa: la via més segura és <b>octal → binari → hexadecimal</b> (i a l'inrevés). Passar per decimal funciona, però és més lent.</div>
+
+<h3>3.7 Decimal → binari amb decimals</h3>
+<p>Es converteixen per separat: la <b>part entera</b> dividint entre 2, la <b>part fraccionària</b> <b>multiplicant per 2</b>: la part entera de cada resultat és el bit següent, i es continua amb la part decimal fins arribar a 0 (o fins a la precisió desitjada).</p>
+<pre><code>13,625₁₀
+Part entera:   13 → 1101₂
+Part decimal:  0,625 · 2 = 1,25  → 1
+               0,25  · 2 = 0,5   → 0
+               0,5   · 2 = 1,0   → 1   (fraccionari = 0, parem)
+13,625₁₀ = 1101,101₂
+Comprovació: 8+4+1 + 1/2 + 1/8 = 13 + 0,5 + 0,125 = 13,625</code></pre>
+<p>Binari amb decimals → decimal: els bits després de la coma valen 2⁻¹, 2⁻², 2⁻³… (0,5; 0,25; 0,125…).</p>
+<div class="box info"><b>No tots els decimals són exactes</b>0,1₁₀ = 0,000110011001…₂ (periòdic). Per això un ordinador no pot guardar 0,1 amb exactitat i <code>0.1 + 0.2</code> no dóna exactament 0.3 en molts llenguatges.</div>
+<div class="ex"><h4>Exercici 1 · Conversions</h4><span class="tag">Mitjà · 15 min</span><p>Converteix: (a) 100₁₀ → binari, octal i hexadecimal; (b) 10110110₂ → decimal, octal i hexadecimal; (c) 7A₁₆ → binari i octal; (d) 5,75₁₀ → binari.</p><details><summary>Solució</summary>(a) 1100100₂ = 144₈ = 64₁₆. (b) 182₁₀ = 266₈ = B6₁₆. (c) 01111010₂ = 172₈. (d) 101,11₂.</details></div>
+
+<h2 id="s4">4. Operacions aritmètiques en binari</h2>
+<h3>4.1 Suma</h3>
+<p>Casos: <code>0+0=0</code>, <code>0+1=1</code>, <code>1+1=10</code> (escric 0, em porto 1), <code>1+1+1=11</code> (escric 1, em porto 1).</p>
+<pre><code>   1 1 1      (acarreaments)
+   1 0 1 1    = 11
+ + 0 1 1 0    =  6
+ ---------
+ 1 0 0 0 1    = 17</code></pre>
+<h3>4.2 Resta</h3>
+<p>Casos: <code>0−0=0</code>, <code>1−0=1</code>, <code>1−1=0</code> i <code>0−1</code>: <b>demano 1 emprestat</b> (10−1=1) i el dígit següent es redueix en 1.</p>
+<pre><code>   1 1 0 1    = 13
+ − 0 1 0 1    =  5
+ ---------
+   1 0 0 0    =  8</code></pre>
+<h3>4.3 Multiplicació</h3>
+<p>Com en decimal, però cada producte parcial és 0 o el multiplicand desplaçat. Després se sumen.</p>
+<pre><code>      1 0 1    = 5
+    ×   1 1    = 3
+    -------
+      1 0 1
+    1 0 1 ·    (desplaçat una posició)
+    -------
+    1 1 1 1    = 15</code></pre>
+<h3>4.4 Divisió</h3>
+<p>Com la divisió llarga: es compara el divisor amb els bits del dividend; si hi cap, el bit del quocient és 1 i es resta; si no, 0. Després es «baixa» el bit següent.</p>
+<pre><code>1101 : 11        (13 : 3)
+1) Prenc 11: 11 cap 1 vegada  → quocient 1, resta 11 − 11 = 00
+2) Baixo el 0: 00 &lt; 11        → quocient 10
+3) Baixo el 1: 001 &lt; 11       → quocient 100, residu 1
+Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
+<div class="ex"><h4>Exercici 2 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
+
+<h2 id="s5">5. Nombres negatius: signe-magnitud, Ca1 i Ca2</h2>
+<p>Amb <i>n</i> bits cal decidir com escriure el signe. Exemple amb <b>−5 en 8 bits</b> (5 = 00000101):</p>
+<div class="tw"><table><tr><th>Representació</th><th>Com es fa</th><th>−5</th><th>Rang (8 bits)</th></tr>
+<tr><td>Signe-magnitud (SM)</td><td>Primer bit = signe (1 = negatiu); la resta, el valor.</td><td>10000101</td><td>−127 … +127 (dos zeros)</td></tr>
+<tr><td>Complement a 1 (Ca1)</td><td>Invertir tots els bits.</td><td>11111010</td><td>−127 … +127 (dos zeros)</td></tr>
+<tr><td><b>Complement a 2 (Ca2)</b></td><td>Invertir tots els bits i <b>sumar 1</b>.</td><td>11111011</td><td>−128 … +127 (un sol zero)</td></tr></table></div>
+<p>El <b>Ca2</b> és el que usen els processadors, perquè permet <b>restar sumant</b>: A − B = A + Ca2(B), descartant l'últim acarreament.</p>
+<pre><code>13 − 5 en 8 bits:
+  00001101   (13)
++ 11111011   (−5 en Ca2)
+----------
+1 00001000   → descartem l'acarreament → 00001000 = 8</code></pre>
+<div class="box info"><b>Com llegir un Ca2</b>Si el primer bit és 1, el nombre és negatiu: aplica de nou «invertir i sumar 1» per obtenir el valor absolut. 11111011 → 00000100 + 1 = 00000101 = 5, doncs és −5.</div>
+<div class="box imp"><b>Desbordament (overflow)</b>Si el resultat no cap en <i>n</i> bits, el resultat és erroni: 01111111 (127) + 00000001 = 10000000, que en Ca2 és −128.</div>
+<div class="ex"><h4>Exercici 3 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
+
+<h2 id="s6">6. Magnituds d'informació</h2>
+<p>1 <b>byte</b> = 8 bits. Amb <i>n</i> bits es poden representar <b>2ⁿ</b> valors diferents: amb 8 bits, de 0 a 255.</p>
+<div class="tw"><table><tr><th>Binari (IEC)</th><th>Valor</th><th>Decimal (SI)</th><th>Valor</th></tr>
+<tr><td>1 KiB</td><td>1.024 B</td><td>1 kB</td><td>1.000 B</td></tr><tr><td>1 MiB</td><td>1.024 KiB</td><td>1 MB</td><td>1.000 kB</td></tr><tr><td>1 GiB</td><td>1.024 MiB</td><td>1 GB</td><td>1.000 MB</td></tr><tr><td>1 TiB</td><td>1.024 GiB</td><td>1 TB</td><td>1.000 GB</td></tr></table></div>
+<div class="box info"><b>Per què un disc de 500 GB en mostra 465?</b>El fabricant compta en potències de 10 (500·10⁹ B), però el sistema operatiu divideix per 2³⁰: 500·10⁹ / 1.073.741.824 ≈ 465,7 GiB. No et falta espai: són unitats diferents.</div>
+<div class="ex"><h4>Exercici 4</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
+
+<h2 id="s7">7. Text: ASCII</h2>
+<p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
+<div class="ex"><h4>Exercici 5</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
+
+<h2 id="s8">Conversor per comprovar</h2>
+<div class="box def"><b>Eina</b>Escriu un nombre decimal i veuràs la resta de bases. Serveix per <i>comprovar</i> els teus càlculs, no per substituir-los!
+<p><input id="n" type="number" min="0" value="45" style="font:16px system-ui;padding:6px;width:120px"></p>
+<pre id="o"></pre></div>
+<h3>Resum</h3>
+<ul><li>Cada posició val una potència de la base.</li><li>Cap a decimal: sumar pesos. Des de decimal: dividir entre la base (enters) o multiplicar per 2 (fracció).</li><li>Hex i octal: agrupar bits de 4 en 4 i de 3 en 3; entre ells, passar per binari.</li><li>Ca2 = invertir + 1; permet restar sumant.</li><li>n bits = 2ⁿ valors; KiB = 1.024 B, kB = 1.000 B.</li></ul>
+<div class="pn"><a href="tema-1-1.html">← Tema 1.1</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 1.3 →</span></div>
+<script src="assets/tema.js" defer></script>
+</main></div>
+<script>
+(function(){var r=document.documentElement,b=document.getElementById('th');
+try{var s=localStorage.getItem('th');if(s)r.setAttribute('data-theme',s)}catch(e){}
+b.onclick=function(){var d=r.getAttribute('data-theme')==='dark'||(!r.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme:dark)').matches);var n=d?'light':'dark';r.setAttribute('data-theme',n);try{localStorage.setItem('th',n)}catch(e){}}})();
+</script>
+</body>
+</html>

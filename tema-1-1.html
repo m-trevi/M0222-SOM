@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Materials del mòdul MP0222 Sistemes Operatius Monolloc (CFGM SMX)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tema 1.1: Conceptes bàsics sobre sistemes operatius | MP0222</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="top">
+<header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
+<div class="wrap">
+<nav aria-label="Contingut"><h4>Contingut del tema</h4>
+<a href="#s1">1. Sistema informàtic i SO</a><a href="#s2">2. Objectius i funcions</a><a href="#s3">3. Estructura d'un SO</a><a href="#s4">4. Classificació</a><a href="#s5">5. Evolució històrica</a><a href="#s6">6. Lliure o propietari</a><a href="#s7">7. L'administrador</a><a href="#s8">Resum i repàs</a></nav>
+<main id="main">
+<div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.1</div>
+<h1>Tema 1.1: Conceptes bàsics sobre sistemes operatius</h1>
+<p class="lead">Criteris d'avaluació 1.1 a 1.3 · Activitat A1 · 3 h. En acabar sabreu explicar què és un sistema operatiu, què fa, de quines parts consta i com es classifica.</p>
+
+<h2 id="s1">1. El sistema informàtic i el sistema operatiu</h2>
+<p>Un <b>sistema informàtic</b> té tres elements: el <b>maquinari</b> (HW, els components físics), el <b>programari</b> (SW, els programes) i els <b>usuaris</b>, que també en formen part perquè són qui l'utilitza.</p>
+<div class="box def"><b>Definició</b>El <b>sistema operatiu</b> (SO) és el programari base de l'ordinador: un programa que controla l'ús dels recursos i ofereix l'entorn perquè l'usuari pugui executar altres programes.</div>
+<p>Pensa en un <b>restaurant</b>: la cuina és el maquinari, els clients són les aplicacions i l'usuari, i el SO és el <b>cambrer i cap de sala</b>. Rep les comandes, decideix en quin ordre van a la cuina, reparteix les taules (recursos) i evita que dos clients s'assegin al mateix lloc.</p>
+<svg viewBox="0 0 560 250" role="img" aria-label="Capes: usuari, aplicacions, sistema operatiu, maquinari" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="15">
+<g stroke="currentColor" stroke-width="1.5" fill="none" style="color:var(--mut)">
+<rect x="60" y="10" width="440" height="48" rx="8" fill="var(--def)"/><rect x="60" y="68" width="440" height="48" rx="8" fill="var(--info)"/><rect x="60" y="126" width="440" height="48" rx="8" fill="var(--ok)"/><rect x="60" y="184" width="440" height="48" rx="8" fill="var(--imp)"/></g>
+<g fill="var(--fg)" text-anchor="middle"><text x="280" y="40">Usuari</text><text x="280" y="98">Aplicacions (navegador, ofimàtica, jocs…)</text><text x="280" y="156" font-weight="700">Sistema operatiu</text><text x="280" y="214">Maquinari (CPU, RAM, disc, perifèrics)</text></g></svg>
+<div class="box info"><b>Idea clau</b>Les aplicacions <b>no parlen directament amb el maquinari</b>: demanen el servei al SO. Per això el mateix Firefox funciona amb discs, targetes de xarxa i pantalles molt diferents.</div>
+<div class="ex"><h4>Exercici 1 · Qui és qui?</h4><span class="tag">Bàsic · 5 min</span><p>Classifica com a maquinari, programari o usuari: un SSD, Windows 11, el teu company de taula, LibreOffice, el ratolí, un controlador (driver).</p><details><summary>Veure solució</summary>Maquinari: SSD, ratolí. Programari: Windows 11, LibreOffice, driver. Usuari: el company. El driver és programari que ensenya al SO com parlar amb un dispositiu.</details></div>
+
+<h2 id="s2">2. Objectius i funcions</h2>
+<p>Un SO té <b>dos grans objectius</b>: (1) gestionar el maquinari de manera <b>eficient</b> i (2) <b>facilitar</b> l'ús de l'ordinador a l'usuari. Per aconseguir-los s'encarrega de:</p>
+<div class="tw"><table><tr><th>Funció</th><th>Què fa</th><th>Exemple quotidià</th></tr>
+<tr><td>Gestió del processador</td><td>Decideix quin procés fa servir la CPU i durant quant temps.</td><td>Escoltes música mentre escrius un document.</td></tr>
+<tr><td>Gestió de la memòria</td><td>Reparteix la RAM i evita que un programa toqui la d'un altre.</td><td>Obres 20 pestanyes i cap trepitja les altres.</td></tr>
+<tr><td>Gestió d'E/S</td><td>Controla teclat, pantalla, impressora, xarxa… mitjançant drivers.</td><td>Connectes un pendrive i apareix una unitat.</td></tr>
+<tr><td>Sistema d'arxius</td><td>Organitza dades en fitxers i directoris amb noms i permisos.</td><td>Desar <code>informe.odt</code> a Documents.</td></tr>
+<tr><td>Errors</td><td>Detecta i tracta fallades sense caure tot el sistema.</td><td>Un programa es penja i la resta segueix.</td></tr>
+<tr><td>Seguretat i protecció</td><td>Autentica usuaris i controla qui accedeix a què.</td><td>Cal contrasenya per entrar al compte.</td></tr>
+<tr><td>Xarxa</td><td>Permet comunicar-se amb altres equips.</td><td>Connectar-se al Wi-Fi de l'aula.</td></tr></table></div>
+<div class="box imp"><b>Important</b>Aquestes funcions són el fil del bloc següent (A3): memòria, processos, E/S i arxius tindran cadascuna el seu tema. Quedeu-vos ara amb la <b>idea general</b>.</div>
+
+<h2 id="s3">3. Estructura d'un sistema operatiu</h2>
+<p>Tot SO es pot dividir en tres parts:</p>
+<div class="tw"><table><tr><th>Part</th><th>Què és</th><th>Exemple</th></tr>
+<tr><td><b>Nucli (kernel)</b></td><td>El cor. Es carrega a la RAM en arrencar i és l'únic que actua directament sobre el maquinari, amagant-ne la complexitat.</td><td>Linux, NT (Windows)</td></tr>
+<tr><td><b>Utilitats de baix nivell</b></td><td>Programes que s'executen damunt del nucli, però no en formen part.</td><td>Gestor de fitxers, formatador de discs</td></tr>
+<tr><td><b>Interfície d'usuari</b></td><td>Manera de comunicar-nos amb el SO: línia d'ordres (CLI) o gràfica (GUI).</td><td>Terminal / escriptori</td></tr></table></div>
+<h3>Una mateixa tasca, dues interfícies</h3>
+<p>Veure el contingut d'una carpeta amb la línia d'ordres:</p>
+<pre><code># Linux (Bash)
+ls -l /home
+
+:: Windows (cmd)
+dir C:\Users</code></pre>
+<p>A l'escriptori faries doble clic a la carpeta. El resultat és el mateix; la CLI és més ràpida i <b>automatitzable</b> (es pot guardar en un guió), i la GUI és més intuïtiva.</p>
+<div class="box info"><b>Nucli, SO i distribució</b>«Linux» és en rigor només el <b>nucli</b>. Una distribució (Ubuntu, Debian…) és el nucli més utilitats, interfície i programes. Per això parlem de <i>sistema GNU/Linux</i>.</div>
+<div class="ex"><h4>Exercici 2 · On viu cada cosa?</h4><span class="tag">Bàsic · 5 min</span><p>Situa en nucli, utilitat o interfície: gestionar la RAM, el Terminal, l'escriptori GNOME, un programa que formata pendrives.</p><details><summary>Veure solució</summary>Nucli: gestionar la RAM. Interfície: Terminal i escriptori GNOME. Utilitat: el formatador.</details></div>
+
+<h2 id="s4">4. Classificació dels sistemes operatius</h2>
+<p>No hi ha una classificació única; s'usen diversos criteris:</p>
+<div class="tw"><table><tr><th>Criteri</th><th>Tipus</th><th>Exemples</th></tr>
+<tr><td rowspan="2">Nombre d'usuaris</td><td>Monousuari: un usuari alhora</td><td>MS-DOS, Windows 9x</td></tr><tr><td>Multiusuari: diversos a la vegada</td><td>Linux, UNIX, Windows Server</td></tr>
+<tr><td rowspan="2">Nombre de processos (tasques)</td><td>Monotasca: un programa alhora</td><td>MS-DOS</td></tr><tr><td>Multitasca: diversos programes «alhora»</td><td>Windows actual, Linux, macOS</td></tr>
+<tr><td rowspan="2">Nombre de processadors</td><td>Monoprocessador: una CPU</td><td>Windows 95/98</td></tr><tr><td>Multiprocessador: diverses CPU o nuclis</td><td>Linux, Windows Server</td></tr>
+<tr><td>Temps de resposta</td><td>Temps real (respostes garantides en un límit), per lots, interactius</td><td>Control industrial, mainframes</td></tr></table></div>
+<div class="box imp"><b>Matís important</b>És habitual llegir que la multitasca «només és possible amb més d'un processador». <b>No és cert.</b> Amb una sola CPU el SO reparteix el temps entre els processos tan de pressa (mil·lisegons) que sembla simultani: és el <i>temps compartit</i>. Amb diversos processadors o nuclis, l'execució és <b>realment</b> paral·lela. Multitasca i multiprocessador són criteris independents.</div>
+<div class="ex"><h4>Exercici 3 · Classifica</h4><span class="tag">Mitjà · 8 min</span><p>Un servidor Ubuntu amb 8 nuclis on treballen 30 alumnes per SSH: classifica'l segons els tres primers criteris. Justifica-ho.</p><details><summary>Pistes i solució</summary>Multiusuari (30 persones), multitasca (molts processos), multiprocessador (8 nuclis).</details></div>
+
+<h2 id="s5">5. Evolució històrica</h2>
+<p>L'evolució dels SO va lligada a la del maquinari.</p>
+<div class="tw"><table><tr><th>Etapa</th><th>Tecnologia</th><th>Què passava</th></tr>
+<tr><td>1835</td><td>Mecànica</td><td>Babbage dissenya la màquina analítica; Ada Lovelace escriu els primers programes. Encara no hi ha SO.</td></tr>
+<tr><td>Anys 40</td><td>Tubs de buit</td><td>Programació en llenguatge màquina; ENIAC. Sense SO.</td></tr>
+<tr><td>Anys 50</td><td>Transistors</td><td><b>Processament per lots (batch)</b> amb targetes perforades; mainframes.</td></tr>
+<tr><td>Anys 60</td><td>Circuits integrats</td><td>IBM 360 i OS/360; <b>multiprogramació</b>, spooling. El 1969 neix <b>UNIX</b>.</td></tr>
+<tr><td>Anys 80</td><td>Microprocessador</td><td>PC: MS-DOS amb interfície de text; després les GUI (Xerox PARC, Macintosh, Windows).</td></tr>
+<tr><td>Avui</td><td>Xarxa i mòbils</td><td>Sistemes multiusuari, multitasca, connectats; Android i iOS.</td></tr></table></div>
+<div class="box ok"><b>Per recordar</b>Tecnologia → generació: <b>tubs → transistors → circuits integrats → microprocessador</b>. El SO apareix realment amb els lots i madura amb la multiprogramació.</div>
+
+<h2 id="s6">6. Programari lliure i propietari</h2>
+<div class="tw"><table><tr><th></th><th>Lliure</th><th>Propietari</th></tr>
+<tr><td>Codi font</td><td>Accessible i modificable</td><td>Tancat</td></tr><tr><td>Llicència</td><td>GPL i similars: es pot copiar, estudiar, modificar i redistribuir</td><td>Termes del fabricant (EULA)</td></tr><tr><td>Exemples</td><td>Ubuntu, Debian, Fedora</td><td>Windows, macOS</td></tr></table></div>
+<div class="box imp"><b>Lliure no vol dir gratuït</b>La GPL parla de <i>llibertats</i>, no de preu: es pot cobrar per programari lliure, i hi ha programari gratuït que no és lliure.</div>
+
+<h2 id="s7">7. L'administrador de sistemes</h2>
+<p>És la persona que posa en marxa i manté el sistema. Tasques típiques: gestionar usuaris i permisos, fer <b>còpies de seguretat</b>, instal·lar i actualitzar programari, monitoritzar recursos, mantenir la seguretat i la xarxa, documentar i donar suport. No cal saber-ho tot: cal saber <b>on buscar</b> (manuals, <code>man</code>, F1, Internet).</p>
+<div class="box info"><b>Ètica</b>Professionalitat, reconèixer errors i límits, respectar la privacitat i confidencialitat, conèixer les lleis, informar els usuaris dels canvis i formar-se contínuament.</div>
+<div class="ex"><h4>Exercici 4 · Cas pràctic</h4><span class="tag">Mitjà · 10 min</span><p>Un company demana la contrasenya d'un altre usuari «per mirar una cosa». Què hauries de fer, aplicant l'ètica de l'administrador?</p><details><summary>Veure solució</summary>No accedir a informació privada sense necessitat i autorització; canalitzar la petició amb el responsable i deixar-ne constància.</details></div>
+
+<h2 id="s8">Resum i repàs</h2>
+<ul><li>SO = programari base que gestiona recursos i ofereix entorn d'execució.</li><li>Funcions: CPU, memòria, E/S, arxius, errors, seguretat, xarxa.</li><li>Estructura: nucli + utilitats + interfície (CLI/GUI).</li><li>Es classifica per usuaris, tasques, processadors i temps de resposta.</li><li>Lliure ≠ gratuït.</li></ul>
+<div class="ex"><h4>Autoavaluació</h4><span class="tag">Bàsic · 5 min</span><p>1) Quina part del SO toca el maquinari? 2) Pot un SO monoprocessador ser multitasca? 3) Diferència entre Linux i Ubuntu?</p><details><summary>Solucions</summary>1) El nucli. 2) Sí, per temps compartit. 3) Linux és el nucli; Ubuntu és una distribució completa.</details></div>
+<div class="pn"><a href="index.html">← Índex</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><a href="tema-1-2.html">Tema 1.2 →</a></div>
+</main></div>
+<script src="assets/tema.js" defer></script>
+</body>
+</html>
