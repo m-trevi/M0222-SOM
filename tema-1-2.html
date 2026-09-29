@@ -178,6 +178,19 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 <div class="box def"><b>Eina</b>Escriu un nombre decimal i veuràs la resta de bases. Serveix per <i>comprovar</i> els teus càlculs, no per substituir-los!
 <p><input id="n" type="number" min="0" value="45" style="font:16px system-ui;padding:6px;width:120px"></p>
 <pre id="o"></pre></div>
+<script>
+(function(){
+var i=document.getElementById('n'),o=document.getElementById('o');
+function u(){
+  var v=Math.floor(Number(i.value));
+  if(!(v>=0)||v>9007199254740991){o.textContent='Introdueix un enter ≥ 0';return}
+  o.textContent='Decimal:     '+v+'\nBinari:      '+v.toString(2)+'\nOctal:       '+v.toString(8)+'\nHexadecimal: '+v.toString(16).toUpperCase();
+}
+i.addEventListener('input',u);
+u();
+})();
+</script>
+
 <h3>Resum</h3>
 <ul><li>Cada posició val una potència de la base.</li><li>Cap a decimal: sumar pesos. Des de decimal: dividir entre la base (enters) o multiplicar per 2 (fracció).</li><li>Hex i octal: agrupar bits de 4 en 4 i de 3 en 3; entre ells, passar per binari.</li><li>Ca2 = invertir + 1; permet restar sumant.</li><li>n bits = 2ⁿ valors; KiB = 1.024 B, kB = 1.000 B.</li></ul>
 <h2 id="s9">Vídeos i recursos</h2>
@@ -208,7 +221,6 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 </div>
 
 <div class="pn"><a href="tema-1-1.html">← Tema 1.1</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 1.3 →</span></div>
-<script src="assets/tema.js" defer></script>
 </main></div>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('th');
