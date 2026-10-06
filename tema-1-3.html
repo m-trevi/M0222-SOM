@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Materials del mòdul MP0222 Sistemes Operatius Monolloc (CFGM SMX)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tema 1.3: Fitxers, memòria i gestió de processos | MP0222</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="top">
+<header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
+<div class="wrap">
+<nav aria-label="Contingut"><h4>Contingut del tema</h4>
+<a href="#s1">1. Sistemes de fitxers</a><a href="#s2">2. FAT32, NTFS i altres</a><a href="#s3">3. Journaling</a><a href="#s4">4. Particions: MBR i GPT</a><a href="#s5">5. Memòria volàtil i no volàtil</a><a href="#s6">6. Memòria virtual (swap)</a><a href="#s6b">6b. Paginació i segmentació</a><a href="#s7">7. Gestió d'entrada/sortida</a><a href="#s8">8. Programa i procés</a><a href="#s9">9. Estats d'un procés</a><a href="#s10">10. Canvi de context</a><a href="#s11">11. Planificació: FCFS, SJF i RR</a><a href="#s12">12. Gestor de tasques</a><a href="#s12b">Resum visual</a><a href="#s13">Glossari i repàs</a></nav>
+<main id="main">
+<div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.3</div>
+<h1>Tema 1.3: Fitxers, memòria i gestió de processos</h1>
+<p class="lead">Criteris d'avaluació 1.3–1.10 · Activitats A3 i Pt 3.1–3.5 · 15 h. En acabar sabreu com organitza el SO els fitxers en un disc, com gestiona la memòria (inclosa la virtual), com controla els dispositius d'entrada/sortida i com decideix quin procés s'executa en cada moment.</p>
+
+<h2 id="s1">1. Sistemes de fitxers</h2>
+<p>Un <b>sistema de fitxers</b> és la part del SO que organitza, desa i recupera dades en un disc. Sense ell, el SO només veuria una seqüència de bits sense cap estructura.</p>
+<div class="tw"><table><tr><th>Funció</th><th>Què fa</th></tr>
+<tr><td>Organització</td><td>Estructura les dades en arxius i directoris (carpetes).</td></tr>
+<tr><td>Control d'accés</td><td>Decideix qui pot llegir, escriure o executar cada arxiu (permisos).</td></tr>
+<tr><td>Gestió de l'espai</td><td>Sap quin espai del disc és lliure i quin està ocupat.</td></tr>
+<tr><td>Integritat</td><td>Protegeix les dades davant errors o talls de llum.</td></tr></table></div>
+<div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#ef4444" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M28 14c-4-4-10-5-18-4v32c8-1 14 0 18 4V14z"/><path d="M28 14c4-4 10-5 18-4v32c-8-1-14 0-18 4V14z"/></svg>Analogia de la biblioteca</b>Un disc dur ple d'arxius sense sistema de fitxers és com una biblioteca amb milers de llibres escampats sense cap ordre: trobar-ne un seria impossible. El sistema de fitxers és el catàleg: diu on és cada arxiu, qui hi pot accedir i quant espai ocupa. El disc és la biblioteca; els arxius, els llibres.</div>
+
+<h2 id="s2">2. Els sistemes de fitxers principals</h2>
+<div class="tw"><table><tr><th>Sistema</th><th>SO principal</th><th>Mida màx. de fitxer</th><th>Journaling</th><th>Permisos</th></tr>
+<tr><td><b>FAT32</b></td><td>Windows (antic), consoles, càmeres</td><td>4 GB</td><td>No</td><td>No</td></tr>
+<tr><td><b>NTFS</b></td><td>Windows (actual)</td><td>16 TB</td><td>Sí</td><td>Sí (ACL)</td></tr>
+<tr><td><b>exFAT</b></td><td>Windows, macOS, Linux</td><td>16 EB</td><td>No</td><td>No</td></tr>
+<tr><td><b>ext4</b></td><td>Linux (Ubuntu, Mint…)</td><td>16 TB</td><td>Sí</td><td>Sí (estil Unix)</td></tr>
+<tr><td><b>APFS</b></td><td>macOS, iOS</td><td>8 EB</td><td>Sí</td><td>Sí</td></tr></table></div>
+<div class="box imp"><b>Quin faig servir?</b> FAT32 és compatible amb gairebé qualsevol dispositiu (targetes SD, consoles) però limita cada arxiu a 4 GB i no té seguretat. NTFS és el format recomanat per al disc intern de Windows. exFAT és el pont habitual per a pendrives grans que s'han de llegir des de diversos sistemes operatius.</div>
+<div class="ex"><h4>Exercici 1 · Tria el sistema de fitxers</h4><span class="tag">Bàsic · 6 min</span><p>Vols gravar una pel·lícula de 8 GB en un pendrive que faràs servir tant al PC (Windows) com a la Smart TV (que no llegeix NTFS). Quin sistema de fitxers tries i per què?</p><details><summary>Solució</summary>exFAT: admet fitxers de més de 4 GB (a diferència de FAT32) i el llegeixen tant Windows com la majoria de televisors i reproductors, cosa que NTFS no sempre garanteix.</details></div>
+
+<h2 id="s3">3. Journaling</h2>
+<p>El <b>journaling</b> és una tècnica de seguretat: el sistema de fitxers apunta en un «diari» (journal) tots els canvis que farà <b>abans</b> de fer-los. Si hi ha un tall de llum o un error a mitja escriptura, el SO llegeix el journal i pot:</p>
+<div class="tw"><table><tr><th>Acció</th><th>Què fa</th></tr>
+<tr><td><b>Roll forward</b></td><td>Completa l'operació que havia quedat a mitges.</td></tr>
+<tr><td><b>Roll back</b></td><td>La cancel·la i deixa el disc tal com estava abans.</td></tr></table></div>
+<div class="box ok"><b>Analogia del videojoc</b>Quan un videojoc fa un autoguardat, escriu el punt de control <b>abans</b> que el joc continuï. Si el joc es penja o marxa la llum, en reiniciar tornes a aquell punt. El journal fa el mateix amb el disc: si una escriptura queda a mitges, el sistema sap exactament on s'ha quedat i es pot reparar sol sense perdre dades.</div>
+<div class="tw"><table><tr><th>Característica</th><th>FAT32</th><th>NTFS</th></tr>
+<tr><td>Journaling</td><td>No</td><td>Sí</td></tr>
+<tr><td>Permisos d'accés</td><td>No</td><td>Sí (per usuari/grup)</td></tr>
+<tr><td>Xifrat (EFS)</td><td>No</td><td>Sí</td></tr>
+<tr><td>Compressió transparent</td><td>No</td><td>Sí</td></tr>
+<tr><td>Recuperació d'errors</td><td>Manual (chkdsk, lenta)</td><td>Automàtica (journal)</td></tr></table></div>
+
+<h2 id="s4">4. Particions i taules de partició</h2>
+<p>Una <b>partició</b> és una divisió lògica d'un disc físic. Cada partició pot tenir el seu propi sistema de fitxers i es mostra com una unitat independent (<code>C:</code>, <code>D:</code>, <code>/dev/sda1</code>…).</p>
+<div class="tw"><table><tr><th>Tipus</th><th>Màx. particions</th><th>Màx. mida de disc</th><th>Ús recomanat</th></tr>
+<tr><td><b>MBR</b> (Master Boot Record)</td><td>4 primàries (o 3+1 estesa)</td><td>2 TB</td><td>Discos antics, compatibilitat màxima</td></tr>
+<tr><td><b>GPT</b> (GUID Partition Table)</td><td>128 (a Windows)</td><td>9,4 ZB</td><td>Discos moderns, arrencada UEFI, &gt;2 TB</td></tr></table></div>
+<div class="box info"><b>Per què cal saber-ho?</b> Si el disc supera els 2 TB o l'ordinador arrenca amb UEFI (la majoria des de ~2012), cal GPT. Un disc MBR de més de 2 TB simplement no pot fer servir l'espai que sobrepassa aquest límit.</div>
+<p>Dins d'un disc MBR, les particions poden ser de tres tipus:</p>
+<div class="tw"><table><tr><th>Tipus</th><th>Descripció</th></tr>
+<tr><td>Primària</td><td>Pot contenir un SO arrencable. MBR només n'admet 4 (o 3 si n'hi ha una d'estesa).</td></tr>
+<tr><td>Estesa</td><td>Una partició primària especial que fa de «contenidor» per a més particions lògiques.</td></tr>
+<tr><td>Lògica</td><td>Viu dins la partició estesa; no pot arrencar un SO, només emmagatzemar dades.</td></tr></table></div>
+<div class="box info"><b>Eines per gestionar-les</b> Windows inclou l'<b>Administrador de discos</b> i la comanda <code>diskpart</code>; a Linux, <b>GParted</b> ofereix el mateix de forma gràfica, també multiplataforma.</div>
+<div class="ex"><h4>Exercici 2 · MBR o GPT?</h4><span class="tag">Bàsic · 5 min</span><p>Vols instal·lar un SSD de 4 TB en un ordinador modern amb UEFI. Quina taula de particions fas servir?</p><details><summary>Solució</summary>GPT: MBR no pot adreçar més de 2 TB, i GPT és l'opció estàndard en equips amb UEFI.</details></div>
+
+<h2 id="s5">5. Memòria volàtil i no volàtil</h2>
+<p>Com ja vau veure al Tema 1.1, la memòria s'organitza en una jerarquia: com més amunt, més ràpida i cara, i menys capacitat té.</p>
+<div class="box info"><b>Analogia de l'estudiant</b>Registres de la CPU: el bolígraf a la mà. Caché L1/L2: l'estoig obert. RAM: la motxilla. SSD: l'armari de l'habitació. HDD: el traster del soterrani. Núvol: la biblioteca municipal — il·limitada, però cal desplaçar-s'hi (connexió a internet).</div>
+<div class="tw"><table><tr><th>Tipus</th><th>Descripció</th><th>Exemples</th></tr>
+<tr><td><b>Volàtil</b></td><td>Perd les dades quan s'apaga el corrent. Molt ràpida.</td><td>RAM, registres, caché</td></tr>
+<tr><td><b>No volàtil</b></td><td>Manté les dades sense corrent. Més lenta que la RAM.</td><td>SSD, HDD, USB, ROM/BIOS</td></tr></table></div>
+
+<h2 id="s6">6. Memòria virtual i fitxer de paginació</h2>
+<p>La <b>memòria virtual</b> és una tècnica del SO que fa servir una part del disc com si fos RAM quan la RAM física s'omple. A Windows aquest espai es diu <b>fitxer de paginació</b> (<code>pagefile.sys</code>); a Linux, <b>swap</b>.</p>
+<div class="tw"><table><tr><th>Pas</th><th>Què passa</th></tr>
+<tr><td>1</td><td>El SO divideix la memòria en <b>pàgines</b> (normalment de 4 KB).</td></tr>
+<tr><td>2</td><td>Quan la RAM s'omple, mou al disc les pàgines menys usades (<b>swap out</b>).</td></tr>
+<tr><td>3</td><td>Quan un procés torna a necessitar-les, les recupera a la RAM (<b>swap in</b>).</td></tr></table></div>
+<div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#ec4899" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><circle cx="28" cy="28" r="5"/><line x1="28" y1="8" x2="28" y2="18"/></svg>Analogia del mòbil</b>Quan el mòbil no té prou RAM per mantenir totes les apps obertes, «congela» les del fons i en desa l'estat a l'emmagatzematge intern. Quan hi tornes, triga uns segons a reactivar-se. Això és exactament el swap: lent, però evita haver de tancar-les del tot.</div>
+<div class="tw"><table><tr><th>Aspecte</th><th>Memòria virtual (swap)</th><th>RAM física</th></tr>
+<tr><td>Velocitat</td><td>Molt més lenta (disc)</td><td>Ràpida</td></tr>
+<tr><td>Capacitat</td><td>Gran, limitada pel disc</td><td>Limitada pel cost</td></tr>
+<tr><td>Volatilitat</td><td>No volàtil</td><td>Volàtil</td></tr>
+<tr><td>Quan s'usa</td><td>Quan la RAM s'omple</td><td>Sempre, en ús normal</td></tr></table></div>
+<div class="box imp"><b>Per què no interessa el fitxer de paginació al mateix disc que el SO?</b> Si el SO i el swap comparteixen disc, competeixen pel mateix accés d'entrada/sortida: quan el sistema fa swap intensiu, alentiria també la lectura dels programes que s'estan executant. Per això, si hi ha diversos discos, és preferible posar el fitxer de paginació en un de diferent al del sistema.</div>
+<p>Al <b>Monitor de recursos</b> de Windows trobareu aquests conceptes:</p>
+<div class="tw"><table><tr><th>Concepte</th><th>Significat</th></tr>
+<tr><td>En ús (In use)</td><td>RAM ocupada ara mateix per processos actius.</td></tr>
+<tr><td>Disponible (Available)</td><td>RAM lliure, es pot assignar de seguida a nous processos.</td></tr>
+<tr><td>En espera (Standby)</td><td>RAM amb dades de processos inactius; es pot alliberar si cal.</td></tr>
+<tr><td>Fitxer de paginació (ús)</td><td>Quanta memòria virtual s'està fent servir al disc en aquest moment.</td></tr></table></div>
+<div class="ex"><h4>Exercici 3 · Diagnòstic</h4><span class="tag">Mitjà · 8 min</span><p>Un ordinador amb 8 GB de RAM va molt lent quan tens el navegador, l'editor de vídeo i un joc oberts alhora, i el disc (un HDD, no SSD) no para de fer soroll. Quina n'és la causa més probable?</p><details><summary>Solució</summary>La RAM s'ha omplert i el SO fa swapping constant contra el HDD, que és molt més lent que la RAM; això explica tant la lentitud com el soroll del disc treballant.</details></div>
+
+<h2 id="s6b">6b. Paginació i segmentació</h2>
+<p>Quan varis processos comparteixen la RAM, el SO necessita un mètode per col·locar-los sense que es trepitgin. Cada procés treballa amb <b>adreces lògiques</b> (les que genera, començant sempre com si tingués tota la memòria per a ell); el SO les tradueix a <b>adreces físiques</b> (la posició real a la RAM) mitjançant un component del processador anomenat <b>MMU</b> (Memory Management Unit).</p>
+<div class="tw"><table><tr><th>Mètode</th><th>Com divideix la memòria</th><th>Problema que evita</th></tr>
+<tr><td><b>Partició contínua</b></td><td>Cada procés ocupa un bloc seguit de RAM.</td><td>Senzill, però genera <b>fragmentació externa</b>: queden forats lliures massa petits per a cap procés nou.</td></tr>
+<tr><td><b>Paginació</b></td><td>Divideix la memòria en <b>pàgines</b> de mida fixa (normalment 4 KB) que no cal que siguin contigües.</td><td>Elimina la fragmentació externa; és la base del swap del Tema 1.3.</td></tr>
+<tr><td><b>Segmentació</b></td><td>Divideix el programa en <b>segments</b> de mida variable amb sentit lògic (codi, dades, pila).</td><td>Reflecteix l'estructura real del programa, encara que pot patir fragmentació externa.</td></tr></table></div>
+<div class="box ok"><b>Analogia del trasllat</b>La partició contínua és com voler aparcar un autobús escolar sencer en un sol forat: si no hi cap, no entra, encara que hi hagi prou espai repartit en diversos forats petits. La paginació és com aparcar-hi cotxes individuals (totes les places iguals): n'hi caben molts més, encara que no estiguin junts. La segmentació és com reservar zones de mida diferent per a cada ús (una per a bicicletes, una altra per a camions).</div>
+<div class="ex"><h4>Exercici 4 · Paginació o segmentació?</h4><span class="tag">Bàsic · 5 min</span><p>Un SO divideix cada procés en blocs iguals de 4 KB, independents del seu contingut. De quin mètode es tracta?</p><details><summary>Solució</summary>Paginació: mida fixa i sense relació amb l'estructura lògica del programa és la seva característica distintiva, a diferència de la segmentació (mida variable, amb sentit lògic).</details></div>
+
+<h2 id="s7">7. Gestió d'entrada/sortida (E/S)</h2>
+<p>El SO també ha de controlar tots els <b>dispositius perifèrics</b> (teclat, disc, pantalla, xarxa…) i oferir als programes una manera uniforme d'utilitzar-los, sense que calgui conèixer els detalls tècnics de cada un.</p>
+<div class="tw"><table><tr><th>Funció del SO en E/S</th><th>Què aconsegueix</th></tr>
+<tr><td>Enviar ordres als dispositius</td><td>Els programes demanen «llegeix» o «escriu» sense saber-ne el protocol intern.</td></tr>
+<tr><td>Detectar interrupcions</td><td>Sap quan un dispositiu ha acabat una operació o necessita atenció.</td></tr>
+<tr><td>Controlar els errors</td><td>Gestiona fallades (paper encallat, disc no trobat) sense aturar tot el sistema.</td></tr>
+<tr><td>Oferir una interfície uniforme</td><td>El mateix <code>obrir arxiu</code> funciona igual en un SSD, un disc de xarxa o un pendrive.</td></tr></table></div>
+<div class="tw"><table><tr><th>Component</th><th>Què fa</th></tr>
+<tr><td><b>Controlador (driver)</b></td><td>Programari específic per a un dispositiu concret; tradueix les ordres genèriques del SO al llenguatge d'aquell perifèric.</td></tr>
+<tr><td><b>Controlador de dispositiu (maquinari)</b></td><td>Electrònica del perifèric amb registres propis que el SO llegeix i escriu per operar-lo.</td></tr>
+<tr><td><b>Gestor d'interrupcions</b></td><td>Rutina que s'executa quan un dispositiu avisa que ha acabat o necessita atenció.</td></tr>
+<tr><td><b>DMA (accés directe a memòria)</b></td><td>Permet a un dispositiu llegir o escriure directament a la RAM sense fer passar cada byte per la CPU — allibera el processador per a altres tasques.</td></tr></table></div>
+<div class="box info"><b>Analogia del restaurant</b> El <b>driver</b> és com un cambrer especialitzat que sap exactament com tractar amb «la cuina japonesa» (un dispositiu concret), encara que el client (el programa) només digui «vull sushi» en llenguatge genèric. La <b>interrupció</b> és la campaneta que sona quan un plat ja és fora; sense ella, el cambrer hauria d'anar a mirar la cuina cada pocs segons (això es diu <i>polling</i>, i és molt menys eficient). El <b>DMA</b> és com deixar que el proveïdor porti els ingredients directament al rebost sense que el cambrer n'hagi de fer cap viatge.</div>
+<div class="ex"><h4>Exercici 5 · Driver o controlador?</h4><span class="tag">Bàsic · 5 min</span><p>Acabes d'instal·lar una impressora nova i Windows et demana «instal·lar programari del fabricant» abans que funcioni. De quin dels dos components parlem?</p><details><summary>Solució</summary>Del driver: el programari específic que tradueix les ordres genèriques d'impressió al llenguatge concret d'aquell model.</details></div>
+
+<h2 id="s8">8. Programa i procés</h2>
+<div class="tw"><table><tr><th>Concepte</th><th>Definició</th><th>Exemple</th></tr>
+<tr><td><b>Programa</b></td><td>Conjunt d'instruccions desades al disc. És estàtic: no s'executa sol.</td><td><code>chrome.exe</code> al SSD</td></tr>
+<tr><td><b>Procés</b></td><td>Una instància en execució d'un programa. Té un identificador (PID), memòria assignada i un estat.</td><td>El Chrome obert, consumint RAM</td></tr></table></div>
+<p>Cada procés té el seu <b>PC (Program Counter)</b>: el registre de la CPU amb l'adreça de la <b>propera</b> instrucció a executar (el mateix PC que vau veure al Tema 1.1). Quan el SO canvia de procés, ha de desar aquest valor perquè el procés pugui continuar exactament on s'havia quedat.</p>
+<p>Per controlar cada procés, el SO en manté una fitxa interna: el <b>PCB</b> (Process Control Block, o Bloc de Control de Procés). Hi desa, entre altres coses:</p>
+<div class="tw"><table><tr><th>Camp del PCB</th><th>Conté</th></tr>
+<tr><td>PID</td><td>Identificador únic del procés.</td></tr>
+<tr><td>Estat</td><td>Nou, preparat, executant, bloquejat o acabat.</td></tr>
+<tr><td>Prioritat</td><td>Assignada automàticament pel SO (normal, alta, baixa…).</td></tr>
+<tr><td>Ubicació en memòria</td><td>Adreces d'inici del codi, les dades i la pila del procés.</td></tr>
+<tr><td>Recursos utilitzats</td><td>Arxius oberts, dispositius assignats, temps de CPU consumit…</td></tr></table></div>
+<div class="box info"><b>El procés nul</b> Quan no hi ha cap procés preparat per executar-se, la CPU no es queda «apagada»: executa un <b>procés nul</b> (o tasca ociosa), un bucle buit que no fa res útil, només per tenir alguna cosa a fer fins que arribi feina real. És el que explica per què un ordinador en repòs encara marca algun ús de CPU.</div>
+<div class="ex"><h4>Exercici 6 · Programa o procés?</h4><span class="tag">Bàsic · 4 min</span><p>Tens el Word instal·lat però tancat, i el Spotify obert reproduint música. Digues què és cadascun: programa o procés.</p><details><summary>Solució</summary>Word tancat: programa (només instruccions al disc, no s'executa). Spotify obert: procés (instància en execució, amb PID i memòria assignada).</details></div>
+
+<h2 id="s9">9. Estats d'un procés</h2>
+<p>Durant la seva vida, un procés passa per diversos estats. El nucli d'un SO en distingeix cinc:</p>
+<div class="tw"><table><tr><th>Estat</th><th>Descripció</th><th>Transicions</th></tr>
+<tr><td><b>Nou (New)</b></td><td>El procés s'acaba de crear; encara no és a la cua de preparats.</td><td>→ Preparat (admès pel SO)</td></tr>
+<tr><td><b>Preparat (Ready)</b></td><td>Vol executar-se, però la CPU no està disponible; espera a la cua.</td><td>→ Executant (el planificador l'agafa)</td></tr>
+<tr><td><b>Executant (Running)</b></td><td>La CPU processa les seves instruccions en aquest instant. Només un procés per nucli.</td><td>→ Preparat (s'acaba el quàntum) / → Bloquejat (espera E/S)</td></tr>
+<tr><td><b>Bloquejat (Blocked/Waiting)</b></td><td>Espera un esdeveniment extern: llegir el disc, la xarxa, l'usuari.</td><td>→ Preparat (quan arriba l'esdeveniment)</td></tr>
+<tr><td><b>Acabat (Terminated)</b></td><td>Ha finalitzat (o s'ha aturat) i el SO n'allibera els recursos.</td><td>— (estat final)</td></tr></table></div>
+<svg viewBox="0 0 620 260" role="img" aria-label="Diagrama dels cinc estats d'un procés: nou, preparat, executant, bloquejat i acabat" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="14">
+<defs><marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--mut)"/></marker></defs>
+<g fill="none" stroke="var(--mut)" stroke-width="1.5">
+<rect x="10" y="90" width="90" height="46" rx="8" fill="var(--def)"/>
+<rect x="160" y="90" width="100" height="46" rx="8" fill="var(--info)"/>
+<rect x="360" y="90" width="100" height="46" rx="8" fill="var(--ok)"/>
+<rect x="520" y="90" width="90" height="46" rx="8" fill="var(--imp)"/>
+<rect x="360" y="190" width="100" height="46" rx="8" fill="#eee0f5"/>
+</g>
+<g fill="var(--fg)" text-anchor="middle" font-weight="700">
+<text x="55" y="118">Nou</text><text x="210" y="118">Preparat</text><text x="410" y="118">Executant</text><text x="565" y="118">Acabat</text><text x="410" y="218">Bloquejat</text></g>
+<g stroke="var(--mut)" stroke-width="1.5" marker-end="url(#arw)">
+<line x1="100" y1="113" x2="158" y2="113"/>
+<line x1="260" y1="107" x2="358" y2="107"/>
+<line x1="358" y1="122" x2="262" y2="122"/>
+<line x1="460" y1="113" x2="518" y2="113"/>
+<line x1="410" y1="136" x2="410" y2="188"/>
+<path d="M360,210 C300,210 260,170 258,140" />
+</g>
+<g fill="var(--mut)" font-size="12">
+<text x="115" y="105">admès</text><text x="270" y="100">planificador</text><text x="270" y="140">quàntum esgotat</text><text x="470" y="105">sortir</text><text x="425" y="165">espera E/S</text><text x="280" y="185">esdeveniment</text></g>
+</svg>
+<div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="6"/><circle cx="28" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><line x1="18" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="38" y2="28"/></svg>Analogia de Spotify</b><b>Executant</b>: la cançó que sona ara (només una per dispositiu). <b>Preparat</b>: la cua de reproducció — a punt per sonar, esperant el seu torn. <b>Bloquejat</b>: has posat en pausa per agafar una trucada — la cançó no avança, però tampoc ha acabat; quan penges, torna a la cua i segueix.</div>
+<div class="ex"><h4>Exercici 7 · Segueix el procés</h4><span class="tag">Mitjà · 6 min</span><p>Un procés es crea, s'admet, s'executa, demana llegir un fitxer del disc, espera la resposta, torna a executar-se i acaba. Escriu la seqüència d'estats.</p><details><summary>Solució</summary>Nou → Preparat → Executant → Bloquejat → Preparat → Executant → Acabat.</details></div>
+
+<h3>Les vuit transicions possibles</h3>
+<div class="tw"><table><tr><th>Transició</th><th>Quan passa</th></tr>
+<tr><td>— → Nou</td><td>Es crea un procés nou per executar un programa.</td></tr>
+<tr><td>Nou → Preparat</td><td>El sistema ja té recursos per acceptar-lo.</td></tr>
+<tr><td>Preparat → Executant</td><td>El planificador el tria entre els preparats.</td></tr>
+<tr><td>Executant → Acabat</td><td>El procés finalitza, s'abandona o es cancel·la.</td></tr>
+<tr><td>Executant → Preparat</td><td>S'esgota el seu temps de CPU o cedeix pas a un de més prioritat.</td></tr>
+<tr><td>Executant → Bloquejat</td><td>Sol·licita alguna cosa per la qual ha d'esperar (E/S, per exemple).</td></tr>
+<tr><td>Bloquejat → Preparat</td><td>Es produeix l'esdeveniment que esperava.</td></tr>
+<tr><td>Preparat/Bloquejat → Acabat</td><td>Transicions excepcionals (cancel·lació forçada).</td></tr></table></div>
+<p>Els processos preparats s'organitzen en una <b>cua de processos</b>, gestionada com una llista <b>FIFO</b> (First In, First Out): el primer que entra n'és el primer que surt.</p>
+<pre><code>Entrada cua →  [P5][P4][P3][P2][P1]  → Sortida cua (següent a executar)</code></pre>
+<h3>Sincronització de processos</h3>
+<p>Quan diversos processos necessiten accedir a les mateixes dades alhora (<b>multiprogramació</b>), el SO ha de garantir que no interfereixin entre ells. El tram de codi on això pot passar s'anomena <b>secció crítica</b>; la <b>sincronització</b> és el mecanisme que impedeix que dos processos hi entrin alhora i es trepitgin les dades.</p>
+<div class="box imp"><b>Multiprogramació contra temps compartit</b> Són dos objectius diferents del planificador: la <b>multiprogramació</b> busca tenir sempre algun procés executant-se per no desaprofitar la CPU; el <b>temps compartit</b> busca repartir la CPU entre tots perquè cap no la monopolitzi. Round Robin (secció següent) és l'eina típica per aconseguir temps compartit.</div>
+
+<h2 id="s10">10. Canvi de context</h2>
+<p>Un <b>canvi de context</b> és l'operació amb què el nucli atura un procés i en posa un altre en execució:</p>
+<div class="tw"><table><tr><th>Pas</th><th>Què fa el nucli</th></tr>
+<tr><td>1</td><td>Desa l'estat del procés sortint (registres, PC, punter de pila) al seu <b>PCB</b> (Process Control Block).</td></tr>
+<tr><td>2</td><td>El planificador selecciona el proper procés.</td></tr>
+<tr><td>3</td><td>Restaura l'estat del procés entrant des del seu PCB.</td></tr>
+<tr><td>4</td><td>Cedeix el control de la CPU al nou procés.</td></tr></table></div>
+<div class="box imp"><b>Té un cost</b>Un canvi de context triga uns microsegons: no és feina «gratuïta». Com menys canvis de context calguin, millor rendiment global del sistema — un dels motius pels quals el quàntum de Round Robin (secció següent) no pot ser massa petit.</div>
+
+<h2 id="s11">11. Algorismes de planificació: FCFS, SJF i Round Robin</h2>
+<p>El <b>planificador</b> (scheduler) decideix quin procés preparat passa a executar-se. Dues estratègies bàsiques:</p>
+<h3>FCFS — First Come, First Served (no apropiatiu)</h3>
+<p>El primer procés que arriba és el primer que s'executa, i no s'interromp fins que acaba.</p>
+<div class="tw"><table><tr><th>Fórmula</th><th>Càlcul</th></tr>
+<tr><td>Inici</td><td>màx(moment d'arribada, instant en què la CPU queda lliure)</td></tr>
+<tr><td>Terminació (Term.)</td><td>Inici + Durada</td></tr>
+<tr><td>Temps de resposta (TR)</td><td>Terminació − Arribada</td></tr>
+<tr><td>Temps d'espera (TE)</td><td>TR − Durada</td></tr></table></div>
+<p><b>Exemple:</b> processos A(arriba 0, dura 4), B(arriba 1, dura 6), C(arriba 2, dura 3), D(arriba 5, dura 2).</p>
+<div class="tw"><table><tr><th>Procés</th><th>Arr.</th><th>Dur.</th><th>Inici</th><th>Term.</th><th>TR</th><th>TE</th></tr>
+<tr><td>A</td><td>0</td><td>4</td><td>0</td><td>4</td><td>4</td><td>0</td></tr>
+<tr><td>B</td><td>1</td><td>6</td><td>4</td><td>10</td><td>9</td><td>3</td></tr>
+<tr><td>C</td><td>2</td><td>3</td><td>10</td><td>13</td><td>11</td><td>8</td></tr>
+<tr><td>D</td><td>5</td><td>2</td><td>13</td><td>15</td><td>10</td><td>8</td></tr></table></div>
+<pre><code>Gantt FCFS:  |--A--|-----B-----|--C--|-D-|
+             0     4          10    13  15
+TE mitjà = (0+3+8+8) / 4 = 4,75 unitats</code></pre>
+
+<h3>SJF — Shortest Job First (no apropiatiu)</h3>
+<p>Entra a la CPU el procés <b>amb la durada més curta</b> entre els que ja han arribat. Minimitza el temps d'espera mitjà, però no interromp un procés que ja ha començat.</p>
+<p><b>Mateix exemple</b> amb processos P1(arr.0, dur.7), P2(arr.2, dur.4), P3(arr.4, dur.1), P4(arr.5, dur.4):</p>
+<pre><code>Gantt SJF:  |-----P1-----|P3|----P2----|----P4----|
+            0             7  8         12         16</code></pre>
+<p>TE(P1)=0 · TE(P3)=7−4=3 · TE(P2)=8−2=6 · TE(P4)=12−5=7 → TE mitjà = (0+6+3+7)/4 = <b>4</b> unitats.</p>
+<div class="box info"><b>Per què P3 i no P2 a continuació de P1?</b> A t=7, quan P1 acaba, ja han arribat P2 (dur.4), P3 (dur.1) i P4 (dur.4). SJF tria sempre la durada més curta disponible en aquell instant: P3.</div>
+
+<h3>SJF expulsiu — SRTF (Shortest Remaining Time First)</h3>
+<p>És la versió apropiativa de SJF: si arriba un procés amb <b>menys temps restant</b> que el que s'està executant, l'expulsa immediatament.</p>
+<pre><code>Gantt SRTF:  |P1|--P2--|P3|P2|-----P4-----|-----P1-----|
+             0  2      4  5 7            11            16</code></pre>
+<p>TE(P1) = 0 + (11−2) = 9 · TE(P2) = (2−2) + (5−4) = 1 · TE(P3) = (4−4) = 0 · TE(P4) = (7−5) = 2 → TE mitjà = (9+1+0+2)/4 = <b>3</b> unitats.</p>
+<div class="box ok"><b>Com llegir-ho</b> A t=0 només hi ha P1 (arrencada). A t=2 arriba P2 amb 4 unitats, menys que els 5 que li resten a P1: l'expulsa. A t=4 arriba P3 amb només 1 unitat, menys que les 2 que li resten a P2: l'expulsa també. P3 acaba de seguida (t=5) i P2 reprèn les 2 unitats que li quedaven. A t=7 arriba P4 (4 unitats) i P1 encara en té 5 pendents, així que P4 passa primer. Finalment P1 completa les 5 unitats que li quedaven.</div>
+<div class="box imp"><b>SRTF guanya sempre en temps d'espera mitjà</b> (3 davant 4 de SJF i 4,75 de FCFS en aquest exemple), però a canvi fa molts més canvis de context — cadascun amb un cost real, com vèieu a la secció anterior.</div>
+
+<h3>Round Robin (RR) — apropiatiu amb quàntum</h3>
+<p>Cada procés rep un interval fix (<b>quàntum</b>, Q). Si no ha acabat quan s'esgota, torna al final de la cua de preparats.</p>
+<div class="tw"><table><tr><th>Pas</th><th>Mecànica</th></tr>
+<tr><td>1</td><td>Mantén una cua de preparats ordenada per arribada.</td></tr>
+<tr><td>2</td><td>Executa el primer de la cua durant Q unitats (o fins que acabi, si li'n cal menys).</td></tr>
+<tr><td>3</td><td>Si no ha acabat, el torna al final de la cua (i abans hi afegeix qui hagi arribat durant el tram).</td></tr>
+<tr><td>4</td><td>Repeteix fins que tots han acabat.</td></tr></table></div>
+<p><b>Mateix exemple amb quàntum=3</b> (exercici real de classe; si un procés arriba just quan un altre s'expulsa, l'entrant s'afegeix primer a la cua):</p>
+<pre><code>Gantt RR (Q=3):  |--P1--|--P2--|--P1--|P3|--P4--|P2|-P1-|
+                 0      3      6      9 10      13 14   15</code></pre>
+<div class="tw"><table><tr><th>Procés</th><th>Arr.</th><th>Dur.</th><th>Term.</th><th>TE</th></tr>
+<tr><td>P1</td><td>0</td><td>7</td><td>15</td><td>(0−0)+(6−3)+(14−9) = 8</td></tr>
+<tr><td>P2</td><td>2</td><td>4</td><td>14</td><td>(3−2)+(13−6) = 8</td></tr>
+<tr><td>P3</td><td>4</td><td>1</td><td>10</td><td>(9−4) = 5</td></tr>
+<tr><td>P4</td><td>5</td><td>3</td><td>13</td><td>(10−5) = 5</td></tr></table></div>
+<p>TE mitjà = (8+8+5+5)/4 = <b>6,5</b> unitats.</p>
+<div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#f59e0b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="18" r="8"/><path d="M12 48c0-10 7-16 16-16s16 6 16 16"/></svg>Analogia del recreatiu</b>Quatre amics amb una sola màquina arcade. Amb FCFS, el primer hi juga fins acabar la partida sencera; els altres esperen, potser molta estona. Amb Round Robin (Q=3 minuts), cadascú hi juga 3 minuts i cedeix la màquina al següent de la cua; si no ha acabat, torna al final. Ningú espera massa per començar, encara que la partida de cadascú trigui més a completar-se del tot.</div>
+<div class="tw"><table><tr><th>Criteri</th><th>FCFS</th><th>SJF / SRTF</th><th>Round Robin</th></tr>
+<tr><td>Tipus</td><td>No apropiatiu</td><td>No apropiatiu / apropiatiu</td><td>Apropiatiu</td></tr>
+<tr><td>Equitat</td><td>Baixa</td><td>Baixa (pot fer esperar molt els processos llargs)</td><td>Alta</td></tr>
+<tr><td>TE mitjà (el nostre exemple)</td><td>4,75</td><td>4 / 3</td><td>6,5</td></tr>
+<tr><td>Canvis de context</td><td>Pocs</td><td>Mitjans / molts</td><td>Molts</td></tr>
+<tr><td>Millor per a…</td><td>Processos batch llargs</td><td>Minimitzar l'espera mitjana</td><td>Sistemes interactius, escriptori</td></tr></table></div>
+<div class="box info"><b>Per què RR surt pitjor aquí?</b> Amb només 4 processos, repartir la CPU en trossos allarga la finalització dels processos llargs. RR sol guanyar quan hi ha molts processos barrejats (curts i llargs) i es valora la resposta ràpida per damunt del temps mitjà total — exactament el cas d'un escriptori amb desenes de programes oberts.</div>
+<div class="ex"><h4>Exercici 8 · Calcula FCFS</h4><span class="tag">Mitjà · 12 min</span><p>Processos E(arr.0, dur.3), F(arr.1, dur.5), G(arr.3, dur.2). Calcula Inici, Terminació, TR i TE de cadascun amb FCFS, i el TE mitjà.</p><details><summary>Solució</summary>E: inici0, term3, TR3, TE0. F: inici3, term8, TR7, TE2. G: inici8, term10, TR7, TE5. TE mitjà=(0+2+5)/3=2,33.</details></div>
+<div class="ex"><h4>Exercici 9 · SJF</h4><span class="tag">Mitjà · 10 min</span><p>Amb els mateixos processos E(arr.0,dur.3), F(arr.1,dur.5), G(arr.3,dur.2), aplica SJF no expulsiu. Dibuixa el Gantt i calcula el TE mitjà.</p><details><summary>Solució</summary>A t=0 només E (dur3): s'executa 0-3. A t=3 ja han arribat F(5) i G(2): entra G (més curt): 3-5. Després F: 5-10. TE(E)=0, TE(G)=3-3=0, TE(F)=5-1=4. TE mitjà=(0+0+4)/3=1,33 — millor que FCFS (2,33).</details></div>
+
+<h2 id="s12">12. Gestor de tasques de Windows</h2>
+<p>El <b>Gestor de tasques</b> (<code>Ctrl+Maj+Esc</code>) mostra els processos en execució i el seu consum de recursos:</p>
+<div class="tw"><table><tr><th>Columna</th><th>Significat</th></tr>
+<tr><td>PID</td><td>Identificador únic del procés (Process ID), assignat pel SO.</td></tr>
+<tr><td>CPU (%)</td><td>Percentatge d'ús del processador en aquest instant.</td></tr>
+<tr><td>Memòria (MB)</td><td>RAM assignada al procés.</td></tr>
+<tr><td>Estat</td><td>Normalment «En execució» o «Suspès» (en segon pla).</td></tr>
+<tr><td>Prioritat</td><td>Importància relativa per al planificador (Baixa, Normal, Alta, Temps real).</td></tr></table></div>
+<div class="box imp"><b>A Linux</b>L'equivalent és la comanda <code>top</code> o <code>htop</code> al terminal, que mostra PID, % CPU, % memòria i l'estat de cada procés en temps real.</div>
+
+<h2 id="s12b">Resum visual</h2>
+<div class="infografia">
+<div class="infocard" style="color:#3b82f6"><svg viewBox="0 0 56 56" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M8 18v26a3 3 0 0 0 3 3h34a3 3 0 0 0 3-3V21a3 3 0 0 0-3-3H28l-4-5H11a3 3 0 0 0-3 3z"/></svg><b style="color:var(--fg)">Sistemes de fitxers</b><span>FAT32, NTFS, ext4... organitzen el disc</span></div>
+<div class="infocard" style="color:#10b981"><svg viewBox="0 0 56 56" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 7h16l9 9v31a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/><path d="M32 7v9h9"/><line x1="19" y1="28" x2="37" y2="28"/><line x1="19" y1="35" x2="37" y2="35"/><line x1="19" y1="42" x2="30" y2="42"/></svg><b style="color:var(--fg)">Journaling i particions</b><span>Recuperació davant errors; MBR o GPT</span></div>
+<div class="infocard" style="color:#f59e0b"><svg viewBox="0 0 56 56" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><circle cx="28" cy="28" r="5"/><line x1="28" y1="8" x2="28" y2="18"/></svg><b style="color:var(--fg)">Memòria i swap</b><span>RAM volàtil + disc com a memòria virtual</span></div>
+<div class="infocard" style="color:#ef4444"><svg viewBox="0 0 56 56" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="22" width="30" height="20" rx="4"/><line x1="22" y1="22" x2="22" y2="13"/><line x1="34" y1="22" x2="34" y2="13"/><line x1="28" y1="42" x2="28" y2="50"/></svg><b style="color:var(--fg)">Gestió d'E/S</b><span>Drivers, interrupcions i DMA</span></div>
+<div class="infocard" style="color:#8b5cf6"><svg viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="6"/><circle cx="28" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><line x1="18" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="38" y2="28"/></svg><b style="color:var(--fg)">Estats dun procés</b><span>Nou, preparat, executant, bloquejat, acabat</span></div>
+<div class="infocard" style="color:#06b6d4"><svg viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><line x1="28" y1="28" x2="28" y2="15"/><line x1="28" y1="28" x2="37" y2="33"/></svg><b style="color:var(--fg)">Planificació</b><span>FCFS, SJF/SRTF i Round Robin</span></div>
+</div>
+
+<h2 id="s13">Glossari i repàs</h2>
+<div class="tw"><table><tr><th>Terme</th><th>Definició breu</th></tr>
+<tr><td>Journaling</td><td>Registrar els canvis abans de fer-los, per poder-los desfer o completar si hi ha un error.</td></tr>
+<tr><td>MBR / GPT</td><td>Dues maneres d'organitzar les particions d'un disc; GPT admet discos més grans.</td></tr>
+<tr><td>Swap / fitxer de paginació</td><td>Espai de disc que fa de RAM addicional quan aquesta s'omple.</td></tr>
+<tr><td>PCB</td><td>Process Control Block: on el nucli desa l'estat d'un procés en un canvi de context.</td></tr>
+<tr><td>MMU</td><td>Memory Management Unit: tradueix adreces lògiques (del procés) a físiques (RAM real).</td></tr>
+<tr><td>DMA</td><td>Accés directe a memòria: un dispositiu llegeix/escriu la RAM sense passar per la CPU.</td></tr>
+<tr><td>SRTF</td><td>Shortest Remaining Time First: versió expulsiva de SJF, segons el temps que li resta a cada procés.</td></tr>
+<tr><td>Secció crítica</td><td>Tram de codi on diversos processos accedeixen a dades compartides i cal sincronitzar-los.</td></tr>
+<tr><td>Quàntum</td><td>Temps fix que Round Robin dona a cada procés abans de passar al següent.</td></tr>
+<tr><td>PID</td><td>Identificador únic d'un procés.</td></tr></table></div>
+<ul>
+<li>El sistema de fitxers organitza, protegeix i controla l'accés a les dades del disc.</li>
+<li>El journaling permet recuperar-se d'un tall de llum sense perdre la integritat del disc.</li>
+<li>La memòria virtual (swap) allarga la RAM disponible a costa de velocitat.</li>
+<li>Un procés passa per cinc estats: nou, preparat, executant, bloquejat i acabat.</li>
+<li>FCFS és senzill però injust amb els processos curts; SJF/SRTF minimitzen l'espera mitjana; Round Robin reparteix la CPU per temps compartit a canvi de més canvis de context.</li>
+<li>El SO controla els dispositius d'E/S mitjançant drivers, interrupcions i, sovint, DMA.</li>
+<li>La paginació (mida fixa) i la segmentació (mida variable) eviten la fragmentació externa de la memòria contínua.</li>
+</ul>
+<div class="ex"><h4>Autoavaluació</h4><span class="tag">Bàsic · 5 min</span><p>1) Quina diferència hi ha entre roll forward i roll back? 2) Quin estat té un procés que espera que acabi de llegir un fitxer del disc? 3) Quina diferència hi ha entre SJF i SRTF? 4) Per a què serveix la MMU?</p><details><summary>Solucions</summary>1) Roll forward completa l'operació interrompuda; roll back la cancel·la i torna a l'estat anterior. 2) Bloquejat. 3) SJF no expulsa un procés en marxa; SRTF sí, si n'arriba un de més curt. 4) Tradueix les adreces lògiques que genera cada procés a les adreces físiques reals de la RAM.</details></div>
+
+<div class="pn"><a href="tema-1-2.html">← Tema 1.2</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 2 →</span></div>
+</main></div>
+<script src="assets/tema.js" defer></script>
+<footer class="credit"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.9L12 16.5l-1.9-5.6L4.5 9l5.6-1.5L12 2z"/></svg>Pàgina elaborada pel professorat del mòdul amb l'ajuda d'un assistent d'IA (Claude, Anthropic) a partir dels materials del curs. Revisa sempre la informació amb el professor/a.</footer>
+</body>
+</html>

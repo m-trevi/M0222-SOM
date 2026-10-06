@@ -11,7 +11,7 @@
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
 <nav aria-label="Contingut"><h4>Contingut del tema</h4>
-<a href="#s1">1. Codificar informació</a><a href="#s2">2. Sistemes posicionals</a><a href="#s3">3. Conversions</a><a href="#s4">4. Suma, resta, ×, ÷</a><a href="#s5">5. Negatius: Ca1 i Ca2</a><a href="#s6">6. Magnituds</a><a href="#s7">7. Text: ASCII</a><a href="#s8">Conversor i repàs</a><a href="#s9">Vídeos i recursos</a></nav>
+<a href="#s1">1. Codificar informació</a><a href="#s2">2. Sistemes posicionals</a><a href="#s3">3. Conversions</a><a href="#s4">4. Suma, resta, ×, ÷</a><a href="#s5">5. Negatius: Ca1 i Ca2</a><a href="#s6">6. Magnituds</a><a href="#s7">7. Text: ASCII</a><a href="#s8">Conversor i repàs</a><a href="#s9">Vídeos i recursos</a><a href="#s9b">Resum visual</a></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
 <h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
@@ -106,7 +106,7 @@ Comprovació: 8+4+1 + 1/2 + 1/8 = 13 + 0,5 + 0,125 = 13,625</code></pre>
 <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
 <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
 <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></table></div>
-<div class="box info"><b>Analogia del marcador</b>Pensa en un marcador que a cada posició només pot mostrar 0 o 1. Quan ja hi ha un 1 i toca sumar-hi 1 més, no pot escriure «2»: posa 0 i «passa» un 1 a la posició de l'esquerra — exactament com quan en decimal 9+1 dona 10.</div>
+<div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="6"/><circle cx="28" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><line x1="18" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="38" y2="28"/></svg>Analogia del marcador</b>Pensa en un marcador que a cada posició només pot mostrar 0 o 1. Quan ja hi ha un 1 i toca sumar-hi 1 més, no pot escriure «2»: posa 0 i «passa» un 1 a la posició de l'esquerra — exactament com quan en decimal 9+1 dona 10.</div>
 <pre><code>   1 1 1      (acarreaments)
    1 0 1 1    = 11
  + 0 1 1 0    =  6
@@ -139,7 +139,7 @@ Comprovació: 8+4+1 + 1/2 + 1/8 = 13 + 0,5 + 0,125 = 13,625</code></pre>
 Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 <div class="ex"><h4>Exercici 2 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
 
-<div class="ex"><h4>Exercici 4 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
+<div class="ex"><h4>Exercici 3 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
 (a) 111 = 7 (2+5). (b) 110010 = 50 (13+37). (c) 10110101 = 181 (91+90).<br>
 (d) 010 = 2 (7−5). (e) 00111 = 7 (17−10). (f) 00101110 = 46 (217−171).<br>
 (g) 1110101 = 117 (9×13). (h) 1101001 = 105 (21×5).<br>
@@ -160,19 +160,19 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 1 00001000   → descartem l'acarreament → 00001000 = 8</code></pre>
 <div class="box info"><b>Com llegir un Ca2</b>Si el primer bit és 1, el nombre és negatiu: aplica de nou «invertir i sumar 1» per obtenir el valor absolut. 11111011 → 00000100 + 1 = 00000101 = 5, doncs és −5.</div>
 <div class="box imp"><b>Desbordament (overflow)</b>Si el resultat no cap en <i>n</i> bits, el resultat és erroni: 01111111 (127) + 00000001 = 10000000, que en Ca2 és −128.</div>
-<div class="ex"><h4>Exercici 3 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
+<div class="ex"><h4>Exercici 4 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
 
 <h2 id="s6">6. Magnituds d'informació</h2>
 <p>1 <b>byte</b> = 8 bits. Amb <i>n</i> bits es poden representar <b>2ⁿ</b> valors diferents: amb 8 bits, de 0 a 255.</p>
 <div class="tw"><table><tr><th>Binari (IEC)</th><th>Valor</th><th>Decimal (SI)</th><th>Valor</th></tr>
 <tr><td>1 KiB</td><td>1.024 B</td><td>1 kB</td><td>1.000 B</td></tr><tr><td>1 MiB</td><td>1.024 KiB</td><td>1 MB</td><td>1.000 kB</td></tr><tr><td>1 GiB</td><td>1.024 MiB</td><td>1 GB</td><td>1.000 MB</td></tr><tr><td>1 TiB</td><td>1.024 GiB</td><td>1 TB</td><td>1.000 GB</td></tr><tr><td>1 PiB</td><td>1.024 TiB</td><td>1 PB</td><td>1.000 TB</td></tr></table></div>
-<div class="box ok"><b>Analogia del mòbil</b>Un bit és una pregunta amb resposta sí/no. Un byte és una lletra. Un KiB és un missatge llarg de WhatsApp. Un MiB, una foto. Un GiB, una sèrie sencera. Un TiB, uns 250.000 capítols. Quan el mòbil diu «queda poc espai», es refereix a l'emmagatzematge (l'equivalent al disc de l'ordinador).</div>
+<div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 12h22a3 3 0 0 1 3 3v8l4 4-4 4v8a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z"/><line x1="20" y1="40" x2="20" y2="46"/><line x1="27" y1="40" x2="27" y2="46"/><line x1="34" y1="40" x2="34" y2="46"/></svg>Analogia del mòbil</b>Un bit és una pregunta amb resposta sí/no. Un byte és una lletra. Un KiB és un missatge llarg de WhatsApp. Un MiB, una foto. Un GiB, una sèrie sencera. Un TiB, uns 250.000 capítols. Quan el mòbil diu «queda poc espai», es refereix a l'emmagatzematge (l'equivalent al disc de l'ordinador).</div>
 <div class="box info"><b>Per què un disc de 500 GB en mostra 465?</b>El fabricant compta en potències de 10 (500·10⁹ B), però el sistema operatiu divideix per 2³⁰: 500·10⁹ / 1.073.741.824 ≈ 465,7 GiB. No et falta espai: són unitats diferents.</div>
-<div class="ex"><h4>Exercici 4</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
+<div class="ex"><h4>Exercici 5 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
 
 <h2 id="s7">7. Text: ASCII</h2>
 <p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
-<div class="ex"><h4>Exercici 5</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
+<div class="ex"><h4>Exercici 6 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
 
 <h2 id="s8">Conversor per comprovar</h2>
 <div class="box def"><b>Eina</b>Escriu un nombre decimal i veuràs la resta de bases. Serveix per <i>comprovar</i> els teus càlculs, no per substituir-los!
@@ -190,6 +190,16 @@ i.addEventListener('input',u);
 u();
 })();
 </script>
+
+<h2 id="s9b">Resum visual</h2>
+<div class="infografia">
+<div class="infocard" style="color:#3b82f6"><svg viewBox="0 0 56 56" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="20" width="12" height="16" rx="2"/><rect x="36" y="20" width="12" height="16" rx="2"/><line x1="26" y1="20" x2="26" y2="36"/><line x1="30" y1="20" x2="30" y2="36"/></svg><b style="color:var(--fg)">Codificar</b><span>Tot es guarda com a 0 i 1: el bit</span></div>
+<div class="infocard" style="color:#10b981"><svg viewBox="0 0 56 56" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="46" x2="10" y2="10"/><line x1="10" y1="46" x2="48" y2="46"/><rect x="16" y="30" width="7" height="16"/><rect x="27" y="20" width="7" height="26"/><rect x="38" y="12" width="7" height="34"/></svg><b style="color:var(--fg)">Sistemes de numeració</b><span>Decimal, binari, octal, hexadecimal</span></div>
+<div class="infocard" style="color:#f59e0b"><svg viewBox="0 0 56 56" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M44 20a16 16 0 1 0 2 10"/><path d="M38 12l8 8-8 2z"/></svg><b style="color:var(--fg)">Conversions</b><span>Dividir, multiplicar per pesos, agrupar bits</span></div>
+<div class="infocard" style="color:#ef4444"><svg viewBox="0 0 56 56" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="28" y1="8" x2="28" y2="44"/><line x1="12" y1="18" x2="44" y2="18"/><path d="M8 18l-4 12a6 6 0 0 0 12 0z"/><path d="M48 18l-4 12a6 6 0 0 0 12 0z"/><line x1="18" y1="48" x2="38" y2="48"/></svg><b style="color:var(--fg)">Operacions</b><span>Suma, resta, multiplicació i divisió en binari</span></div>
+<div class="infocard" style="color:#8b5cf6"><svg viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="14" y="26" width="28" height="22" rx="3"/><path d="M19 26v-7a9 9 0 0 1 18 0v7"/><circle cx="28" cy="36" r="3"/></svg><b style="color:var(--fg)">Negatius: Ca2</b><span>Invertir i sumar 1; permet restar sumant</span></div>
+<div class="infocard" style="color:#06b6d4"><svg viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 12h22a3 3 0 0 1 3 3v8l4 4-4 4v8a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z"/><line x1="20" y1="40" x2="20" y2="46"/><line x1="27" y1="40" x2="27" y2="46"/><line x1="34" y1="40" x2="34" y2="46"/></svg><b style="color:var(--fg)">Magnituds</b><span>Bit, byte, KiB, MiB, GiB... i ASCII</span></div>
+</div>
 
 <h3>Resum</h3>
 <ul><li>Cada posició val una potència de la base.</li><li>Cap a decimal: sumar pesos. Des de decimal: dividir entre la base (enters) o multiplicar per 2 (fracció).</li><li>Hex i octal: agrupar bits de 4 en 4 i de 3 en 3; entre ells, passar per binari.</li><li>Ca2 = invertir + 1; permet restar sumant.</li><li>n bits = 2ⁿ valors; KiB = 1.024 B, kB = 1.000 B.</li></ul>
@@ -220,7 +230,7 @@ u();
 <a href="https://www.youtube.com/watch?v=asWF0UZ1XpI" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Complement a 1 i complement a 2</b><small>Com representar nombres negatius</small></span></a>
 </div>
 
-<div class="pn"><a href="tema-1-1.html">← Tema 1.1</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 1.3 →</span></div>
+<div class="pn"><a href="tema-1-1.html">← Tema 1.1</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><a href="tema-1-3.html">Tema 1.3 →</a></div>
 </main></div>
 <script>
 (function(){var r=document.documentElement,b=document.getElementById('th');
