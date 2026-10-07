@@ -10,8 +10,7 @@
 <body id="top">
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
-<nav aria-label="Contingut"><h4>Contingut del tema</h4>
-<a href="#s1">1. Codificar informació</a><a href="#s2">2. Sistemes posicionals</a><a href="#s3">3. Conversions</a><a href="#s4">4. Suma, resta, ×, ÷</a><a href="#s5">5. Negatius: Ca1 i Ca2</a><a href="#s6">6. Magnituds</a><a href="#s7">7. Text: ASCII</a><a href="#s8">Conversor i repàs</a><a href="#s9">Vídeos i recursos</a><a href="#s9b">Resum visual</a></nav>
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li class="active"><a href="tema-1-2.html">1.2 Sistemes de numeració</a><ul class="nav-sub"><li><a href="tema-1-2.html#s1">1. Codificar informació</a></li><li><a href="tema-1-2.html#s2">2. Sistemes posicionals</a></li><li><a href="tema-1-2.html#s3">3. Conversions</a></li><li><a href="tema-1-2.html#s4">4. Suma, resta, ×, ÷</a></li><li><a href="tema-1-2.html#s5">5. Negatius: Ca1 i Ca2</a></li><li><a href="tema-1-2.html#s6">6. Magnituds</a></li><li><a href="tema-1-2.html#s7">7. Text: ASCII</a></li><li><a href="tema-1-2.html#s8">Conversors i repàs</a></li><li><a href="tema-1-2.html#s9">Vídeos i recursos</a></li><li><a href="tema-1-2.html#s9b">Resum visual</a></li></ul></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-future">Tema 2 · Màquines virtuals <em>(aviat)</em></div><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
 <h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
@@ -174,20 +173,46 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 <p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
 <div class="ex"><h4>Exercici 6 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
 
-<h2 id="s8">Conversor per comprovar</h2>
-<div class="box def"><b>Eina</b>Escriu un nombre decimal i veuràs la resta de bases. Serveix per <i>comprovar</i> els teus càlculs, no per substituir-los!
-<p><input id="n" type="number" min="0" value="45" style="font:16px system-ui;padding:6px;width:120px"></p>
-<pre id="o"></pre></div>
+<h2 id="s8">Conversors per comprovar</h2>
+<p>Escriu un nombre en qualsevol de les quatre bases i en veuràs l'equivalent a les altres tres. Serveixen per <i>comprovar</i> els teus càlculs, no per substituir-los!</p>
+<div class="conv-grid">
+
+<div class="box def conv-card"><b>De decimal</b>
+<p><input id="cN-dec" class="conv-input" type="text" inputmode="numeric" value="45" aria-label="Nombre en decimal"></p>
+<pre id="cO-dec" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>De binari</b>
+<p><input id="cN-bin" class="conv-input" type="text" inputmode="numeric" value="101101" aria-label="Nombre en binari"></p>
+<pre id="cO-bin" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>D'octal</b>
+<p><input id="cN-oct" class="conv-input" type="text" inputmode="numeric" value="55" aria-label="Nombre en octal"></p>
+<pre id="cO-oct" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>D'hexadecimal</b>
+<p><input id="cN-hex" class="conv-input" type="text" value="2D" aria-label="Nombre en hexadecimal"></p>
+<pre id="cO-hex" class="conv-out"></pre></div>
+
+</div>
 <script>
 (function(){
-var i=document.getElementById('n'),o=document.getElementById('o');
-function u(){
-  var v=Math.floor(Number(i.value));
-  if(!(v>=0)||v>9007199254740991){o.textContent='Introdueix un enter ≥ 0';return}
-  o.textContent='Decimal:     '+v+'\nBinari:      '+v.toString(2)+'\nOctal:       '+v.toString(8)+'\nHexadecimal: '+v.toString(16).toUpperCase();
+function mk(base, pattern, id){
+  var inp=document.getElementById('cN-'+id), out=document.getElementById('cO-'+id);
+  function u(){
+    var raw=inp.value.trim().toUpperCase();
+    if(raw===''){out.textContent='Escriu un valor';return}
+    if(!pattern.test(raw)){out.textContent='Només dígits vàlids en base '+base+' (0'+(base>10?'-9,A-'+String.fromCharCode(55+base-1):'-'+(base-1))+')';return}
+    var v=parseInt(raw,base);
+    if(!isFinite(v)||v<0||v>Number.MAX_SAFE_INTEGER){out.textContent='Valor massa gran';return}
+    out.textContent='Decimal:     '+v.toString(10)+'\nBinari:      '+v.toString(2)+'\nOctal:       '+v.toString(8)+'\nHexadecimal: '+v.toString(16).toUpperCase();
+  }
+  inp.addEventListener('input',u);
+  u();
 }
-i.addEventListener('input',u);
-u();
+mk(10, /^[0-9]+$/, 'dec');
+mk(2,  /^[01]+$/, 'bin');
+mk(8,  /^[0-7]+$/, 'oct');
+mk(16, /^[0-9A-F]+$/, 'hex');
 })();
 </script>
 

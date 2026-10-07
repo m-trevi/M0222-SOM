@@ -7,7 +7,7 @@ header{border-bottom:3px solid var(--ac);padding:14px 20px;display:flex;justify-
 header b{font-size:15px}header small{color:var(--mut)}
 button{font:14px system-ui,sans-serif;border:1px solid var(--bd);background:var(--card);color:var(--fg);border-radius:6px;padding:6px 12px;cursor:pointer}
 .wrap{display:flex;gap:32px;max-width:1080px;margin:0 auto;padding:24px 20px}
-nav{position:sticky;top:16px;align-self:flex-start;min-width:210px;font:14px/1.4 system-ui,sans-serif}
+nav{position:sticky;top:16px;align-self:flex-start;min-width:230px;max-width:230px;font:14px/1.4 system-ui,sans-serif;max-height:calc(100vh - 32px);overflow-y:auto;padding-right:4px}
 nav a{display:block;padding:5px 0;color:var(--mut);text-decoration:none}nav a:hover{color:var(--ac)}
 nav h4{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 main{min-width:0;flex:1}
@@ -56,3 +56,22 @@ footer.credit svg{vertical-align:-3px;margin-right:4px}
 
 .hero{display:block;width:100%;max-width:1080px;margin:0 auto 10px;border-radius:12px;overflow:hidden}
 .hero img{display:block;width:100%;height:auto}
+
+.nav-home{display:block;color:var(--ac);text-decoration:none;font-weight:700;margin-bottom:16px;font-size:13px}
+.nav-home:hover{text-decoration:underline}
+.nav-tema-title{font-weight:700;color:var(--fg);margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.nav-tree{list-style:none;margin:0 0 18px;padding:0}
+.nav-tree>li{margin-bottom:1px}
+.nav-tree>li>a{display:block;padding:6px 8px;border-radius:6px;color:var(--mut);text-decoration:none;font-weight:600;font-size:13.5px}
+.nav-tree>li.active>a{background:var(--info);color:var(--ac)}
+.nav-tree>li>a:hover{color:var(--ac)}
+.nav-sub{list-style:none;margin:2px 0 6px 8px;padding:0;border-left:2px solid var(--bd)}
+.nav-sub li a{display:block;padding:3px 6px 3px 10px;color:var(--mut);text-decoration:none;font-size:12.5px;line-height:1.3}
+.nav-sub li a:hover{color:var(--ac)}
+.nav-tema-future{color:var(--mut);opacity:.55;font-size:12.5px;padding:5px 8px;font-style:italic}
+
+/* Conversors de bases */
+.conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:1em 0}
+.conv-card{margin:0}
+.conv-input{font:16px ui-monospace,Menlo,Consolas,monospace;padding:7px 10px;width:100%;max-width:220px;border:1px solid var(--bd);border-radius:6px;background:var(--card);color:var(--fg);box-sizing:border-box}
+.conv-out{font-size:13.5px;margin-top:8px}
