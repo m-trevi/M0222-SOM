@@ -15,6 +15,25 @@
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
 <h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
 <p class="lead">Criteris 1.1 i 1.2 · Activitat A2 · 12 h. En acabar sabreu passar nombres entre decimal, binari, octal i hexadecimal (també amb decimals), fer les quatre operacions en binari, representar negatius amb Ca2 i calcular mides d'informació.</p>
+<div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 14h70l14 14v78a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="var(--code)" stroke="var(--ac)" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="34" y="14" width="44" height="26" rx="2" fill="var(--ac)" stroke="var(--ac)" stroke-width="3"/>
+<rect x="56" y="19" width="12" height="16" rx="1.5" fill="var(--code)"/>
+<rect x="38" y="19" width="7" height="7" rx="1" fill="var(--code)"/>
+<rect x="22" y="48" width="76" height="52" rx="4" fill="var(--card)" stroke="var(--ac)" stroke-width="2.5"/>
+<circle cx="45" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<circle cx="75" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<line x1="54" y1="70" x2="66" y2="70" stroke="var(--ac)" stroke-width="3"/>
+<line x1="36" y1="68" x2="30" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="84" y1="68" x2="90" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="45" cy="70" r="2.2" fill="var(--ac)"/>
+<circle cx="75" cy="70" r="2.2" fill="var(--ac)"/>
+<path d="M38 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M68 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 84q10 7 20 0" fill="none" stroke="var(--ac)" stroke-width="4" stroke-linecap="round"/>
+<path d="M54 90q6 5 12 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+</svg><p><b>En Disquet diu:</b> Per dins jo només soc una pila de 0 i 1 magnetitzats en un plàstic rodó. Si enteneu bé aquest tema, enteneu exactament com es guarda qualsevol informació a dins meu... i a dins de qualsevol SSD modern!</p></div>
+
 
 <h2 id="s1">1. Per què codifiquem?</h2>
 <p>Un ordinador només distingeix dos estats físics (hi passa corrent o no, un condensador carregat o no). Els representem amb <b>0 i 1</b>: un <b>bit</b>. Tot el que guarda (nombres, text, imatges, so) s'ha de convertir a bits: això és <b>codificar</b>.</p>
@@ -112,33 +131,60 @@ Comprovació: 8+4+1 + 1/2 + 1/8 = 13 + 0,5 + 0,125 = 13,625</code></pre>
  ---------
  1 0 0 0 1    = 17</code></pre>
 <h3>4.2 Resta</h3>
-<p>Casos: <code>0−0=0</code>, <code>1−0=1</code>, <code>1−1=0</code> i <code>0−1</code>: <b>demano 1 emprestat</b> (10−1=1) i el dígit següent es redueix en 1.</p>
+<div class="tw"><table><tr><th>A</th><th>B</th><th>Manllevo entra</th><th>Resultat</th><th>Manllevo surt</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr></table></div>
+<div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#f59e0b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="18" r="8"/><path d="M12 48c0-10 7-16 16-16s16 6 16 16"/></svg>Analogia del préstec</b>Si el dígit de dalt és un 0 i n'has de restar un 1, no en tens prou: li'n <b>manlleves 1 al veí de l'esquerra</b> (el 0 es converteix en un «10» binari, és a dir, un 2). El veí es queda amb un de menys, i si ell també és un 0, ha de manllevar-ne un altre al seu veí, i així successivament — com demanar calderilla quan ni tu ni el del costat en teniu, i cal preguntar més enllà.</div>
+<p><b>Exemple senzill</b> (un sol manlleu):</p>
 <pre><code>   1 1 0 1    = 13
  − 0 1 0 1    =  5
  ---------
    1 0 0 0    =  8</code></pre>
+<p><b>Exemple amb manlleus en cadena</b> — quan el veí també és un 0, el manlleu es propaga:</p>
+<pre><code>  1000    = 8
+− 0001    = 1
+------
+Posició 0: 0−1 → no hi arribo, manllevo: (1)0−1=1, i deixo un deute a la posició 1
+Posició 1: 0−0−deute(1) → tampoc hi arribo, manllevo: (1)0−1=1, deute a la posició 2
+Posició 2: 0−0−deute(1) → igual: (1)0−1=1, deute a la posició 3
+Posició 3: 1−0−deute(1) = 0, ja no cal manllevar més
+------
+  0111    = 7   (comprovació: 8−1=7 ✓)</code></pre>
 <div class="box imp"><b>Mateix nombre de bits</b>Per sumar o restar, tots dos operands han de tenir <b>els mateixos bits</b>. Si un és més curt, omple'l amb zeros per l'esquerra: <code>101</code> amb 6 bits és <code>000101</code>. No es pot sumar directament un valor de 4 bits amb un de 8.</div>
 <h3>4.3 Multiplicació</h3>
-<p>Com en decimal, però cada producte parcial és 0 o el multiplicand desplaçat. Després se sumen.</p>
-<pre><code>      1 0 1    = 5
-    ×   1 1    = 3
+<p>Es multiplica exactament com en decimal: es fa un <b>producte parcial per cada bit</b> del multiplicador (de dreta a esquerra) i després se sumen tots. Com que cada bit només pot ser 0 o 1, cada producte parcial és o bé <b>tot zeros</b>, o bé <b>el multiplicand desplaçat</b> cap a l'esquerra tantes posicions com indiqui el bit.</p>
+<p><b>Pas a pas</b>, 101₂ (5) × 11₂ (3):</p>
+<pre><code>      1 0 1    = 5  (multiplicand)
+    ×   1 1    = 3  (multiplicador)
     -------
-      1 0 1
-    1 0 1 ·    (desplaçat una posició)
+1) Bit 1 (unitats) del multiplicador = 1 → copio el multiplicand:        1 0 1
+2) Bit 2 (següent) del multiplicador = 1 → el multiplicand desplaçat:  1 0 1 ·
     -------
-    1 1 1 1    = 15</code></pre>
-<div class="box ok"><b>Drecera: multiplicar per 2</b>Multiplicar per 2 en binari és tan senzill com afegir un 0 a la dreta (desplaçar un bit), igual que multiplicar per 10 en decimal. 101₂ (5) desplaçat és 1010₂ (10).</div>
+3) Sumo els productes parcials:                                       1 1 1 1    = 15</code></pre>
+<div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#10b981" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M44 20a16 16 0 1 0 2 10"/><path d="M38 12l8 8-8 2z"/></svg>Drecera: multiplicar per 2</b>Multiplicar per 2 en binari és tan senzill com afegir un 0 a la dreta (desplaçar un bit), igual que multiplicar per 10 en decimal. 101₂ (5) desplaçat és 1010₂ (10).</div>
+<p><b>Exemple amb un bit a 0</b> — quan un bit del multiplicador és 0, el producte parcial és una fila de zeros (no s'ha de sumar res, però cal deixar-hi el buit per quadrar els desplaçaments):</p>
+<pre><code>       1 0 1 1    = 11  (multiplicand)
+     ×     1 0 1    =  5  (multiplicador)
+     ---------
+ 1) Bit 1 = 1 →  multiplicand:                1 0 1 1
+ 2) Bit 2 = 0 →  fila de zeros, desplaçada:   0 0 0 0 ·
+ 3) Bit 3 = 1 →  multiplicand, desplaçat:    1 0 1 1 · ·
+     ---------
+ 4) Sumo les tres files:                   1 1 0 1 1 1    = 55</code></pre>
+<div class="ex"><h4>Exercici 2 · Multiplica</h4><span class="tag">Mitjà · 8 min</span><p>Calcula 110₂ × 101₂ pas a pas (producte parcial per cada bit) i comprova el resultat en decimal.</p><details><summary>Solució</summary>110₂=6, 101₂=5. Productes parcials: bit1=1→110; bit2=0→0000·; bit3=1→110··. Suma: 11110₂ = 30 = 6×5 ✓.</details></div>
 
 <h3>4.4 Divisió</h3>
-<p>Com la divisió llarga: es compara el divisor amb els bits del dividend; si hi cap, el bit del quocient és 1 i es resta; si no, 0. Després es «baixa» el bit següent.</p>
+<p>Com la divisió llarga de tota la vida: es compara el divisor amb els bits del dividend; si hi cap, el bit del quocient és 1 i es resta; si no, 0. Després es «baixa» el bit següent.</p>
+<div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><circle cx="28" cy="28" r="5"/><line x1="28" y1="8" x2="28" y2="18"/></svg>Analogia dels caramels</b>Reparteixes caramels en bosses: en cada pas mires si encara en tens prou per omplir una bossa sencera (hi caben 0 o 1 vegades, mai més, perquè en binari no hi ha «2»). Si en tens prou, poses un 1 al quocient i en treus els que acabes de repartir; si no, poses un 0 i «baixes» més caramels de la pila (el bit següent) abans de tornar-ho a provar.</div>
 <pre><code>1101 : 11        (13 : 3)
 1) Prenc 11: 11 cap 1 vegada  → quocient 1, resta 11 − 11 = 00
 2) Baixo el 0: 00 &lt; 11        → quocient 10
 3) Baixo el 1: 001 &lt; 11       → quocient 100, residu 1
 Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
-<div class="ex"><h4>Exercici 2 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
+<div class="ex"><h4>Exercici 3 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
 
-<div class="ex"><h4>Exercici 3 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
+<div class="ex"><h4>Exercici 4 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
 (a) 111 = 7 (2+5). (b) 110010 = 50 (13+37). (c) 10110101 = 181 (91+90).<br>
 (d) 010 = 2 (7−5). (e) 00111 = 7 (17−10). (f) 00101110 = 46 (217−171).<br>
 (g) 1110101 = 117 (9×13). (h) 1101001 = 105 (21×5).<br>
@@ -159,7 +205,7 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 1 00001000   → descartem l'acarreament → 00001000 = 8</code></pre>
 <div class="box info"><b>Com llegir un Ca2</b>Si el primer bit és 1, el nombre és negatiu: aplica de nou «invertir i sumar 1» per obtenir el valor absolut. 11111011 → 00000100 + 1 = 00000101 = 5, doncs és −5.</div>
 <div class="box imp"><b>Desbordament (overflow)</b>Si el resultat no cap en <i>n</i> bits, el resultat és erroni: 01111111 (127) + 00000001 = 10000000, que en Ca2 és −128.</div>
-<div class="ex"><h4>Exercici 4 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
+<div class="ex"><h4>Exercici 5 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
 
 <h2 id="s6">6. Magnituds d'informació</h2>
 <p>1 <b>byte</b> = 8 bits. Amb <i>n</i> bits es poden representar <b>2ⁿ</b> valors diferents: amb 8 bits, de 0 a 255.</p>
@@ -167,11 +213,11 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 <tr><td>1 KiB</td><td>1.024 B</td><td>1 kB</td><td>1.000 B</td></tr><tr><td>1 MiB</td><td>1.024 KiB</td><td>1 MB</td><td>1.000 kB</td></tr><tr><td>1 GiB</td><td>1.024 MiB</td><td>1 GB</td><td>1.000 MB</td></tr><tr><td>1 TiB</td><td>1.024 GiB</td><td>1 TB</td><td>1.000 GB</td></tr><tr><td>1 PiB</td><td>1.024 TiB</td><td>1 PB</td><td>1.000 TB</td></tr></table></div>
 <div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 12h22a3 3 0 0 1 3 3v8l4 4-4 4v8a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z"/><line x1="20" y1="40" x2="20" y2="46"/><line x1="27" y1="40" x2="27" y2="46"/><line x1="34" y1="40" x2="34" y2="46"/></svg>Analogia del mòbil</b>Un bit és una pregunta amb resposta sí/no. Un byte és una lletra. Un KiB és un missatge llarg de WhatsApp. Un MiB, una foto. Un GiB, una sèrie sencera. Un TiB, uns 250.000 capítols. Quan el mòbil diu «queda poc espai», es refereix a l'emmagatzematge (l'equivalent al disc de l'ordinador).</div>
 <div class="box info"><b>Per què un disc de 500 GB en mostra 465?</b>El fabricant compta en potències de 10 (500·10⁹ B), però el sistema operatiu divideix per 2³⁰: 500·10⁹ / 1.073.741.824 ≈ 465,7 GiB. No et falta espai: són unitats diferents.</div>
-<div class="ex"><h4>Exercici 5 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
+<div class="ex"><h4>Exercici 6 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
 
 <h2 id="s7">7. Text: ASCII</h2>
 <p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
-<div class="ex"><h4>Exercici 6 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
+<div class="ex"><h4>Exercici 7 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
 
 <h2 id="s8">Conversors per comprovar</h2>
 <p>Escriu un nombre en qualsevol de les quatre bases i en veuràs l'equivalent a les altres tres. Serveixen per <i>comprovar</i> els teus càlculs, no per substituir-los!</p>
