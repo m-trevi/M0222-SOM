@@ -84,3 +84,16 @@ footer.credit svg{vertical-align:-3px;margin-right:4px}
 .mascota-tip svg{width:38px;height:38px;flex:none;margin-top:2px}
 .mascota-tip p{margin:0;font-size:14.5px}
 .mascota-tip b{color:var(--ac)}
+
+/* Calculadora binària interactiva */
+.calc-grid{display:flex;gap:16px;flex-wrap:wrap;margin:.9em 0}
+.calc-grid label{font:13px system-ui,sans-serif;color:var(--mut);display:flex;flex-direction:column;gap:4px}
+.calc-ops{display:flex;gap:8px;flex-wrap:wrap;margin:.7em 0}
+.calc-btn{font:14px system-ui,sans-serif;padding:6px 16px;border-radius:20px;border:1px solid var(--bd);background:var(--card);color:var(--fg);cursor:pointer}
+.calc-btn.active{background:var(--ac);color:#fff;border-color:var(--ac)}
+.calc-btn:hover:not(.active){border-color:var(--ac)}
+
+.videos-compact{margin:.9em 0;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.videos-compact a{padding:8px 12px}
+.videos-compact .yt{width:22px;height:22px}
+.videos-compact b{font-size:13.5px}

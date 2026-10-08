@@ -10,7 +10,7 @@
 <body id="top">
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
-<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li class="active"><a href="tema-1-2.html">1.2 Sistemes de numeració</a><ul class="nav-sub"><li><a href="tema-1-2.html#s1">1. Codificar informació</a></li><li><a href="tema-1-2.html#s2">2. Sistemes posicionals</a></li><li><a href="tema-1-2.html#s3">3. Conversions</a></li><li><a href="tema-1-2.html#s4">4. Suma, resta, ×, ÷</a></li><li><a href="tema-1-2.html#s5">5. Negatius: Ca1 i Ca2</a></li><li><a href="tema-1-2.html#s6">6. Magnituds</a></li><li><a href="tema-1-2.html#s7">7. Text: ASCII</a></li><li><a href="tema-1-2.html#s8">Conversors i repàs</a></li><li><a href="tema-1-2.html#s9">Vídeos i recursos</a></li><li><a href="tema-1-2.html#s9b">Resum visual</a></li></ul></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-future">Tema 2 · Màquines virtuals <em>(aviat)</em></div><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li class="active"><a href="tema-1-2.html">1.2 Sistemes de numeració</a><ul class="nav-sub"><li><a href="tema-1-2.html#s1">1. Codificar informació</a></li><li><a href="tema-1-2.html#s2">2. Sistemes posicionals</a></li><li><a href="tema-1-2.html#s3">3. Conversions</a></li><li><a href="tema-1-2.html#s3b">Conversors (eina)</a></li><li><a href="tema-1-2.html#s4">4. Suma, resta, ×, ÷</a></li><li><a href="tema-1-2.html#s4b">Calculadora pas a pas</a></li><li><a href="tema-1-2.html#s5">5. Negatius: Ca1 i Ca2</a></li><li><a href="tema-1-2.html#s6">6. Magnituds</a></li><li><a href="tema-1-2.html#s7">7. Text: ASCII</a></li><li><a href="tema-1-2.html#s9b">Resum visual</a></li></ul></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-future">Tema 2 · Màquines virtuals <em>(aviat)</em></div><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
 <h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
@@ -65,6 +65,7 @@
 45₁₀ = 101101₂        (32+8+4+1 = 45)</code></pre>
 <div class="box ok"><b>Truc</b>Resta la potència de 2 més gran que càpiga: 45 = 32+13, 13 = 8+4+1 → 1 a les posicions 32, 8, 4 i 1: 101101.</div>
 
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=9YfaZTB7S7k" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Decimal a Binari</b></span></a></div>
 <h3>3.2 Decimal → octal</h3>
 <p><b>Mètode A: dividint entre 8.</b></p>
 <pre><code>1000 : 8 = 125 r 0 ↑
@@ -75,6 +76,7 @@
 <p><b>Mètode B: passant a binari i fent paquets de 3</b> (de dreta a esquerra).</p>
 <pre><code>1000₁₀ = 1111101000₂ → 001 | 111 | 101 | 000 → 1 7 5 0 → 1750₈</code></pre>
 
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=bKbuHjDUMdY" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Decimal a Octal</b></span></a></div>
 <h3>3.3 Decimal → hexadecimal</h3>
 <p><b>Mètode A: dividint entre 16</b> (els residus 10–15 s'escriuen A–F).</p>
 <pre><code>1000 : 16 = 62 r 8 ↑
@@ -87,24 +89,69 @@
 <figure class="imgcard"><img src="assets/img/taula-conversio.png" alt="Taula amb els nombres 0 a 15 en decimal, hexadecimal, octal i binari" style="max-width:260px"><figcaption>Taula de referència 0–15 en les quatre bases. Material del mòdul.</figcaption></figure>
 <div class="box ok"><b>On ho fem servir? Els colors</b>A qualsevol editor d'imatge, un color es descriu amb tres valors R-G-B de 0 a 255. Internament es desen en hexadecimal, dos dígits per component: el blanc és <code>#FFFFFF</code> (255-255-255) i el negre, <code>#000000</code>. Sis xifres hex compacten el que en binari ocuparia 24 bits.</div>
 <figure class="imgcard"><img src="assets/img/conversio-des-de-binari.png" alt="Esquema pas a pas de la conversió de binari a decimal, octal i hexadecimal, amb l'exemple 1001011"><figcaption>De binari a decimal, octal i hexadecimal, amb l'exemple 1001011₂. Material del mòdul.</figcaption></figure>
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=e2Z1isg5BSU" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Decimal a Hexadecimal</b></span></a></div>
 <h3>3.4 Binari → decimal, octal i hexadecimal</h3>
-<pre><code>Decimal:     101101₂ = 1·32 + 0·16 + 1·8 + 1·4 + 0·2 + 1·1 = 45
-Octal:       101 101       → 5 5   → 55₈
-Hexadecimal: 0010 1101     → 2 D   → 2D₁₆   (afegim zeros a l'esquerra)</code></pre>
+<p>Fem servir l'exemple <b>1001011₂</b> per a les tres conversions.</p>
+<p><b>A decimal: sumar els pesos de les posicions a 1.</b></p>
+<pre><code>1001011₂
+= 1·2⁶ + 0·2⁵ + 0·2⁴ + 1·2³ + 0·2² + 1·2¹ + 1·2⁰
+= 64   +  0   +  0   +  8   +  0   +  2   +  1
+= 75₁₀</code></pre>
+<p><b>A octal: agrupar de 3 en 3 bits</b> (de dreta a esquerra, afegint zeros si cal).</p>
+<pre><code>1001011₂ → 001 | 001 | 011   (afegim un 0 a l'esquerra per completar el primer grup)
+             1     1     3
+1001011₂ = 113₈</code></pre>
+<p><b>A hexadecimal: agrupar de 4 en 4 bits.</b></p>
+<pre><code>1001011₂ → 0100 | 1011   (afegim un 0 a l'esquerra)
+              4      B
+1001011₂ = 4B₁₆</code></pre>
+<div class="box info"><b>Comprovació creuada</b>Els tres resultats han de representar el mateix valor: 75₁₀ = 113₈ (1·64+1·8+3=75 ✓) = 4B₁₆ (4·16+11=75 ✓).</div>
 
 <figure class="imgcard"><img src="assets/img/conversio-des-de-octal.png" alt="Esquema pas a pas de la conversió d'octal a decimal, binari i hexadecimal, amb l'exemple 172"><figcaption>D'octal a decimal, binari i hexadecimal, amb l'exemple 172₈. Material del mòdul.</figcaption></figure>
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=1x0XJTvcVQs" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Binari a Decimal</b></span></a><a href="https://www.youtube.com/watch?v=sSfLHK0B_us" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Binari a Octal</b></span></a><a href="https://www.youtube.com/watch?v=F2QmjYZmEMU" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Binari a Hexadecimal</b></span></a></div>
 <h3>3.5 Octal → decimal, binari i hexadecimal</h3>
-<pre><code>Decimal:     275₈ = 2·64 + 7·8 + 5·1 = 189
-Binari:      cada xifra en 3 bits: 2=010, 7=111, 5=101 → 010111101₂
-Hexadecimal: passem per binari i agrupem de 4: 0 1011 1101 → 0000 1011 1101 → BD₁₆</code></pre>
+<p>Fem servir l'exemple <b>275₈</b> per a les tres conversions.</p>
+<p><b>A decimal: multiplicar cada xifra pel seu pes (potència de 8).</b></p>
+<pre><code>275₈
+= 2·8² + 7·8¹ + 5·8⁰
+= 2·64 + 7·8  + 5·1
+= 128  + 56   + 5
+= 189₁₀</code></pre>
+<p><b>A binari: cada xifra octal són exactament 3 bits.</b></p>
+<pre><code>2 → 010
+7 → 111
+5 → 101
+275₈ = 010 111 101₂  = 010111101₂</code></pre>
+<p><b>A hexadecimal: no hi ha drecera directa</b>, cal passar pel binari que acabem de calcular i reagrupar de 4 en 4.</p>
+<pre><code>010111101₂ → 0 1011 1101   (9 bits: afegim zeros fins a múltiple de 4)
+           → 0000 1011 1101
+                0    B    D
+275₈ = BD₁₆</code></pre>
+<div class="box info"><b>Comprovació creuada</b>189₁₀ = BD₁₆ (11·16+13 = 176+13 = 189 ✓).</div>
 
 <figure class="imgcard"><img src="assets/img/conversio-des-de-hexadecimal.png" alt="Esquema pas a pas de la conversió d'hexadecimal a decimal, binari i octal, amb l'exemple 2A"><figcaption>D'hexadecimal a decimal, binari i octal, amb l'exemple 2A₁₆. Material del mòdul.</figcaption></figure>
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=UvEWW4JLles" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Octal a Decimal</b></span></a><a href="https://www.youtube.com/watch?v=67UhJtfRCZ0" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Octal a Binari</b></span></a><a href="https://www.youtube.com/watch?v=rzDLOrAoc1w" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Octal a Hexadecimal</b></span></a></div>
 <h3>3.6 Hexadecimal → decimal, binari i octal</h3>
-<pre><code>Decimal:  3E8₁₆ = 3·256 + 14·16 + 8·1 = 768 + 224 + 8 = 1000
-Binari:   cada xifra en 4 bits: 3=0011, E=1110, 8=1000 → 001111101000₂
-Octal:    reagrupem de 3: 001 111 101 000 → 1750₈</code></pre>
+<p>Fem servir l'exemple <b>3E8₁₆</b> per a les tres conversions.</p>
+<p><b>A decimal: multiplicar cada xifra pel seu pes (potència de 16).</b></p>
+<pre><code>3E8₁₆
+= 3·16² + 14·16¹ + 8·16⁰   (recorda: E = 14)
+= 3·256 + 14·16  + 8·1
+= 768   + 224    + 8
+= 1000₁₀</code></pre>
+<p><b>A binari: cada xifra hexadecimal són exactament 4 bits.</b></p>
+<pre><code>3 → 0011
+E → 1110
+8 → 1000
+3E8₁₆ = 0011 1110 1000₂  = 001111101000₂</code></pre>
+<p><b>A octal: passem pel binari que acabem de calcular i reagrupem de 3 en 3.</b></p>
+<pre><code>001111101000₂ → 001 | 111 | 101 | 000
+                  1     7     5     0
+3E8₁₆ = 1750₈</code></pre>
+<div class="box info"><b>Comprovació creuada</b>1000₁₀ = 1750₈ (1·512+7·64+5·8 = 512+448+40 = 1000 ✓).</div>
 <div class="box imp"><b>Cal passar per binari?</b>Octal ↔ hexadecimal no té drecera directa: la via més segura és <b>octal → binari → hexadecimal</b> (i a l'inrevés). Passar per decimal funciona, però és més lent.</div>
 
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=hKoijpEao8A" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Hexadecimal a Decimal</b></span></a><a href="https://www.youtube.com/watch?v=csNFAiQBzas" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Hexadecimal a Binari</b></span></a><a href="https://www.youtube.com/watch?v=eU5NjGvPfR8" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Hexadecimal a Octal</b></span></a></div>
 <h3>3.7 Decimal → binari amb decimals</h3>
 <p>Es converteixen per separat: la <b>part entera</b> dividint entre 2, la <b>part fraccionària</b> <b>multiplicant per 2</b>: la part entera de cada resultat és el bit següent, i es continua amb la part decimal fins arribar a 0 (o fins a la precisió desitjada).</p>
 <pre><code>13,625₁₀
@@ -114,11 +161,87 @@ Part decimal:  0,625 · 2 = 1,25  → 1
                0,5   · 2 = 1,0   → 1   (fraccionari = 0, parem)
 13,625₁₀ = 1101,101₂
 Comprovació: 8+4+1 + 1/2 + 1/8 = 13 + 0,5 + 0,125 = 13,625</code></pre>
-<p>Binari amb decimals → decimal: els bits després de la coma valen 2⁻¹, 2⁻², 2⁻³… (0,5; 0,25; 0,125…).</p>
 <div class="box info"><b>No tots els decimals són exactes</b>0,1₁₀ = 0,000110011001…₂ (periòdic). Per això un ordinador no pot guardar 0,1 amb exactitat i <code>0.1 + 0.2</code> no dóna exactament 0.3 en molts llenguatges.</div>
-<div class="ex"><h4>Exercici 1 · Conversions</h4><span class="tag">Mitjà · 15 min</span><p>Converteix: (a) 100₁₀ → binari, octal i hexadecimal; (b) 10110110₂ → decimal, octal i hexadecimal; (c) 7A₁₆ → binari i octal; (d) 5,75₁₀ → binari.</p><details><summary>Solució</summary>(a) 1100100₂ = 144₈ = 64₁₆. (b) 182₁₀ = 266₈ = B6₁₆. (c) 01111010₂ = 172₈. (d) 101,11₂.</details></div>
+
+<h3>3.8 Binari amb decimals → decimal</h3>
+<p>És el camí invers del punt anterior. Cada posició <b>després de la coma</b> val una potència negativa de 2: la primera 2⁻¹=0,5, la segona 2⁻²=0,25, la tercera 2⁻³=0,125... Sumem els pesos de les posicions que tenen un 1, exactament igual que amb la part entera.</p>
+<pre><code>1101,101₂
+
+Part entera:   1101₂ = 1·8 + 1·4 + 0·2 + 1·1 = 13
+Part decimal:  ,101₂ = 1·2⁻¹ + 0·2⁻² + 1·2⁻³
+                     = 1·0,5 + 0·0,25 + 1·0,125
+                     = 0,5 + 0 + 0,125
+                     = 0,625
+
+1101,101₂ = 13 + 0,625 = 13,625₁₀</code></pre>
+<div class="box ok"><b>Comprovació</b>És exactament el nombre amb què vam començar al punt 3.7 — les dues conversions són inverses l'una de l'altra, així que es poden fer servir per comprovar-se mútuament.</div>
+<div class="ex"><h4>Exercici 1 · Binari amb decimals a decimal</h4><span class="tag">Mitjà · 8 min</span><p>Converteix a decimal: (a) 101,01₂ (b) 11,111₂</p><details><summary>Solució</summary>(a) 101₂=5, ,01₂=0·0,5+1·0,25=0,25 → 5,25₁₀. (b) 11₂=3, ,111₂=0,5+0,25+0,125=0,875 → 3,875₁₀.</details></div>
+<div class="ex"><h4>Exercici 2 · Conversions</h4><span class="tag">Mitjà · 15 min</span><p>Converteix: (a) 100₁₀ → binari, octal i hexadecimal; (b) 10110110₂ → decimal, octal i hexadecimal; (c) 7A₁₆ → binari i octal; (d) 5,75₁₀ → binari.</p><details><summary>Solució</summary>(a) 1100100₂ = 144₈ = 64₁₆. (b) 182₁₀ = 266₈ = B6₁₆. (c) 01111010₂ = 172₈. (d) 101,11₂.</details></div>
+
+<h2 id="s3b">Conversors per comprovar</h2>
+<p>Escriu un nombre en qualsevol de les quatre bases i en veuràs l'equivalent a les altres tres. Serveixen per <i>comprovar</i> els teus càlculs, no per substituir-los!</p>
+<div class="box ok"><b>Per practicar en línia</b><a href="https://lacalculadoradealicia.es/" target="_blank" rel="noopener">La Calculadora de Alicia</a> fa les conversions pas a pas: útil per comprovar els exercicis, no per substituir-los.</div>
+<div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 14h70l14 14v78a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="var(--code)" stroke="var(--ac)" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="34" y="14" width="44" height="26" rx="2" fill="var(--ac)" stroke="var(--ac)" stroke-width="3"/>
+<rect x="56" y="19" width="12" height="16" rx="1.5" fill="var(--code)"/>
+<rect x="38" y="19" width="7" height="7" rx="1" fill="var(--code)"/>
+<rect x="22" y="48" width="76" height="52" rx="4" fill="var(--card)" stroke="var(--ac)" stroke-width="2.5"/>
+<circle cx="45" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<circle cx="75" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<line x1="54" y1="70" x2="66" y2="70" stroke="var(--ac)" stroke-width="3"/>
+<line x1="36" y1="68" x2="30" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="84" y1="68" x2="90" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="45" cy="70" r="2.2" fill="var(--ac)"/>
+<circle cx="75" cy="70" r="2.2" fill="var(--ac)"/>
+<path d="M38 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M68 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 84q10 7 20 0" fill="none" stroke="var(--ac)" stroke-width="4" stroke-linecap="round"/>
+<path d="M54 90q6 5 12 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+</svg><p><b>En Disquet diu:</b> Acabeu de fer una conversió a mà i no esteu seguríssims? Useu-me per comprovar-la, no per estalviar-vos-la. Jo he fet moltes conversions a la meva vida, però mai tantes com les que fareu vosaltres a l'examen!</p></div>
+<div class="conv-grid">
+
+<div class="box def conv-card"><b>De decimal</b>
+<p><input id="cN-dec" class="conv-input" type="text" inputmode="numeric" value="45" aria-label="Nombre en decimal"></p>
+<pre id="cO-dec" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>De binari</b>
+<p><input id="cN-bin" class="conv-input" type="text" inputmode="numeric" value="101101" aria-label="Nombre en binari"></p>
+<pre id="cO-bin" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>D'octal</b>
+<p><input id="cN-oct" class="conv-input" type="text" inputmode="numeric" value="55" aria-label="Nombre en octal"></p>
+<pre id="cO-oct" class="conv-out"></pre></div>
+
+<div class="box def conv-card"><b>D'hexadecimal</b>
+<p><input id="cN-hex" class="conv-input" type="text" value="2D" aria-label="Nombre en hexadecimal"></p>
+<pre id="cO-hex" class="conv-out"></pre></div>
+
+</div>
+<script>
+(function(){
+function mk(base, pattern, id){
+  var inp=document.getElementById('cN-'+id), out=document.getElementById('cO-'+id);
+  function u(){
+    var raw=inp.value.trim().toUpperCase();
+    if(raw===''){out.textContent='Escriu un valor';return}
+    if(!pattern.test(raw)){out.textContent='Només dígits vàlids en base '+base+' (0'+(base>10?'-9,A-'+String.fromCharCode(55+base-1):'-'+(base-1))+')';return}
+    var v=parseInt(raw,base);
+    if(!isFinite(v)||v<0||v>Number.MAX_SAFE_INTEGER){out.textContent='Valor massa gran';return}
+    out.textContent='Decimal:     '+v.toString(10)+'\nBinari:      '+v.toString(2)+'\nOctal:       '+v.toString(8)+'\nHexadecimal: '+v.toString(16).toUpperCase();
+  }
+  inp.addEventListener('input',u);
+  u();
+}
+mk(10, /^[0-9]+$/, 'dec');
+mk(2,  /^[01]+$/, 'bin');
+mk(8,  /^[0-7]+$/, 'oct');
+mk(16, /^[0-9A-F]+$/, 'hex');
+})();
+</script>
 
 <h2 id="s4">4. Operacions aritmètiques en binari</h2>
+<div class="videos videos-compact"><a href="https://youtu.be/uLulA91jt_A" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Suma, resta i multiplicació en binari</b><small>Explicació ràpida i senzilla de les tres operacions</small></span></a></div>
 <h3>4.1 Suma</h3>
 <div class="tw"><table><tr><th>A</th><th>B</th><th>Carry entra</th><th>Suma</th><th>Carry surt</th></tr>
 <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
@@ -172,8 +295,9 @@ Posició 3: 1−0−deute(1) = 0, ja no cal manllevar més
  3) Bit 3 = 1 →  multiplicand, desplaçat:    1 0 1 1 · ·
      ---------
  4) Sumo les tres files:                   1 1 0 1 1 1    = 55</code></pre>
-<div class="ex"><h4>Exercici 2 · Multiplica</h4><span class="tag">Mitjà · 8 min</span><p>Calcula 110₂ × 101₂ pas a pas (producte parcial per cada bit) i comprova el resultat en decimal.</p><details><summary>Solució</summary>110₂=6, 101₂=5. Productes parcials: bit1=1→110; bit2=0→0000·; bit3=1→110··. Suma: 11110₂ = 30 = 6×5 ✓.</details></div>
+<div class="ex"><h4>Exercici 3 · Multiplica</h4><span class="tag">Mitjà · 8 min</span><p>Calcula 110₂ × 101₂ pas a pas (producte parcial per cada bit) i comprova el resultat en decimal.</p><details><summary>Solució</summary>110₂=6, 101₂=5. Productes parcials: bit1=1→110; bit2=0→0000·; bit3=1→110··. Suma: 11110₂ = 30 = 6×5 ✓.</details></div>
 
+<div class="videos videos-compact"><a href="https://youtu.be/LQ2N5A6E4Pg" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Multiplicació en binari amb molts carries</b><small>Casos amb més acarreaments</small></span></a></div>
 <h3>4.4 Divisió</h3>
 <p>Com la divisió llarga de tota la vida: es compara el divisor amb els bits del dividend; si hi cap, el bit del quocient és 1 i es resta; si no, 0. Després es «baixa» el bit següent.</p>
 <div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><circle cx="28" cy="28" r="5"/><line x1="28" y1="8" x2="28" y2="18"/></svg>Analogia dels caramels</b>Reparteixes caramels en bosses: en cada pas mires si encara en tens prou per omplir una bossa sencera (hi caben 0 o 1 vegades, mai més, perquè en binari no hi ha «2»). Si en tens prou, poses un 1 al quocient i en treus els que acabes de repartir; si no, poses un 0 i «baixes» més caramels de la pila (el bit següent) abans de tornar-ho a provar.</div>
@@ -182,14 +306,190 @@ Posició 3: 1−0−deute(1) = 0, ja no cal manllevar més
 2) Baixo el 0: 00 &lt; 11        → quocient 10
 3) Baixo el 1: 001 &lt; 11       → quocient 100, residu 1
 Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
-<div class="ex"><h4>Exercici 3 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
+<div class="ex"><h4>Exercici 4 · Operacions</h4><span class="tag">Mitjà · 15 min</span><p>Calcula en binari: 1101 + 1011; 10110 − 1101; 110 × 101; 11110 : 101. Comprova en decimal.</p><details><summary>Solució</summary>11000 (13+11=24); 1001 (22−13=9); 11110 (6·5=30); quocient 110, residu 0 (30:5=6).</details></div>
 
-<div class="ex"><h4>Exercici 4 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
+<div class="ex"><h4>Exercici 5 · Bateria de pràctica</h4><span class="tag">Mitjà · 20 min</span><p>Calcula i comprova en decimal. <b>Suma:</b> (a) 010+101 (b) 001101+100101 (c) 1011011+1011010. <b>Resta:</b> (d) 111−101 (e) 10001−01010 (f) 11011001−10101011. <b>Multiplicació:</b> (g) 1001×1101 (h) 10101×101. <b>Divisió:</b> (i) 100010010 ÷ 1101.</p><details><summary>Solució</summary>
 (a) 111 = 7 (2+5). (b) 110010 = 50 (13+37). (c) 10110101 = 181 (91+90).<br>
 (d) 010 = 2 (7−5). (e) 00111 = 7 (17−10). (f) 00101110 = 46 (217−171).<br>
 (g) 1110101 = 117 (9×13). (h) 1101001 = 105 (21×5).<br>
 (i) quocient 10101 = 21, residu 1 (274 = 13×21 + 1).
 </details></div>
+
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=Ov5DdiIIr9U" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Divisió en binari</b><small>Pas a pas amb exemples</small></span></a></div>
+<h2 id="s4b">Calculadora binària pas a pas</h2>
+<div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 14h70l14 14v78a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="var(--code)" stroke="var(--ac)" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="34" y="14" width="44" height="26" rx="2" fill="var(--ac)" stroke="var(--ac)" stroke-width="3"/>
+<rect x="56" y="19" width="12" height="16" rx="1.5" fill="var(--code)"/>
+<rect x="38" y="19" width="7" height="7" rx="1" fill="var(--code)"/>
+<rect x="22" y="48" width="76" height="52" rx="4" fill="var(--card)" stroke="var(--ac)" stroke-width="2.5"/>
+<circle cx="45" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<circle cx="75" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<line x1="54" y1="70" x2="66" y2="70" stroke="var(--ac)" stroke-width="3"/>
+<line x1="36" y1="68" x2="30" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="84" y1="68" x2="90" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="45" cy="70" r="2.2" fill="var(--ac)"/>
+<circle cx="75" cy="70" r="2.2" fill="var(--ac)"/>
+<path d="M38 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M68 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 84q10 7 20 0" fill="none" stroke="var(--ac)" stroke-width="4" stroke-linecap="round"/>
+<path d="M54 90q6 5 12 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+</svg><p><b>En Disquet diu:</b> A dins meu no hi ha cap altra manera de sumar, restar, multiplicar o dividir que amb 1 i 0. Ni jo ni cap ordinador sabem fer «el 2» — per això cal carry, manlleu i tota la pesca que aquesta calculadora us ensenya pas a pas.</p></div>
+<div class="box def"><b>Eina</b> Escriu dos nombres en binari (només 0 i 1, fins a 10 xifres cada un), tria l'operació i veuràs el <i>procés</i> complet —no només el resultat—, amb el mateix mètode d'aquesta pàgina. Útil per comprovar els exercicis, no per substituir-los!
+<div class="calc-grid">
+<label>Nombre A <input id="bcA" class="conv-input" value="1011" inputmode="numeric" aria-label="Primer nombre en binari"></label>
+<label>Nombre B <input id="bcB" class="conv-input" value="0110" inputmode="numeric" aria-label="Segon nombre en binari"></label>
+</div>
+<div class="calc-ops" role="group" aria-label="Tria l'operació">
+<button type="button" class="calc-btn active" data-op="add">+ Suma</button>
+<button type="button" class="calc-btn" data-op="sub">− Resta</button>
+<button type="button" class="calc-btn" data-op="mul">× Multiplicació</button>
+<button type="button" class="calc-btn" data-op="div">÷ Divisió</button>
+</div>
+<pre id="bcOut" class="conv-out"></pre>
+</div>
+<script>
+(function(){
+var inA=document.getElementById('bcA'), inB=document.getElementById('bcB'), out=document.getElementById('bcOut');
+var btns=document.querySelectorAll('.calc-btn');
+var op='add';
+
+function toBits(s){ return s.split('').map(function(c){return parseInt(c,10);}); }
+function bitsToStr(bits){ return bits.join(''); }
+function spaced(bits){ return bits.join(' '); }
+function binVal(bits){ return parseInt(bitsToStr(bits)||'0',2); }
+
+function validate(){
+  var a=inA.value.trim(), b=inB.value.trim();
+  if(!/^[01]+$/.test(a) || !/^[01]+$/.test(b)){ return 'Escriu només 0 i 1 a totes dues caselles.'; }
+  if(a.length>10 || b.length>10){ return 'Fins a 10 xifres per nombre, per mantenir el pas a pas llegible.'; }
+  return null;
+}
+
+function doAdd(aBits,bBits){
+  var n=Math.max(aBits.length,bBits.length);
+  var a=Array(n-aBits.length).fill(0).concat(aBits);
+  var b=Array(n-bBits.length).fill(0).concat(bBits);
+  var carry=0, out=[], carries=[];
+  for(var i=n-1;i>=0;i--){
+    var s=a[i]+b[i]+carry;
+    out.unshift(s%2);
+    carries.unshift(carry);
+    carry=Math.floor(s/2);
+  }
+  if(carry){ out.unshift(carry); }
+  var res = out.join('');
+  var txt = '    A: '+spaced(a)+'   ('+binVal(a)+')\n'+
+            '    B: '+spaced(b)+'   ('+binVal(b)+')\n'+
+            'Carry: '+carries.join(' ')+'   (acarreament a cada posició, de dreta a esquerra)\n'+
+            Array(7+n*2).join('-')+'\n'+
+            'Suma:  '+spaced(out.slice(-n))+(carry?(' ← nou bit!'):'')+'\n\n'+
+            'Resultat: '+res+'₂  =  '+parseInt(res,2)+'₁₀';
+  return txt;
+}
+
+function doSub(aBits,bBits){
+  var n=Math.max(aBits.length,bBits.length);
+  var a=Array(n-aBits.length).fill(0).concat(aBits);
+  var b=Array(n-bBits.length).fill(0).concat(bBits);
+  if(binVal(a) < binVal(b)){
+    return 'A ('+binVal(a)+') és més petit que B ('+binVal(b)+'): el resultat seria negatiu.\n'+
+           'En binari sense signe no es pot representar; caldria el complement a 2 (secció 5 d\'aquest tema).\n'+
+           'Prova-ho canviant l\'ordre, o consulta la secció de Ca2.';
+  }
+  var borrow=0, out=[], borrows=[];
+  for(var i=n-1;i>=0;i--){
+    var d=a[i]-b[i]-borrow;
+    if(d<0){ d+=2; borrow=1; } else { borrow=0; }
+    out.unshift(d);
+    borrows.unshift(borrow);
+  }
+  var res=out.join('');
+  var txt = '      A: '+spaced(a)+'   ('+binVal(a)+')\n'+
+            '      B: '+spaced(b)+'   ('+binVal(b)+')\n'+
+            'Manlleu: '+borrows.join(' ')+'   (manlleu generat a cada posició)\n'+
+            Array(9+n*2).join('-')+'\n'+
+            'Resta:   '+spaced(out)+'\n\n'+
+            'Resultat: '+res+'₂  =  '+parseInt(res,2)+'₁₀';
+  return txt;
+}
+
+function doMul(aBits,bBits){
+  var n=aBits.length, m=bBits.length;
+  var rows=[], labels=[];
+  for(var j=m-1;j>=0;j--){
+    var shift=(m-1-j);
+    var bit=bBits[j];
+    var rowBits = bit? aBits.slice() : Array(n).fill(0);
+    var rowStr = rowBits.join('') + Array(shift+1).join('.');
+    rows.push(rowStr);
+    labels.push('Bit '+(m-j)+' del multiplicador = '+bit+(bit? ' → copio A, desplaçat '+shift:' → fila de zeros'));
+  }
+  var width=0;
+  rows.forEach(function(r){ if(r.length>width) width=r.length; });
+  var rowsPadded = rows.map(function(r){ return r.padStart(width,' '); });
+  var total=0;
+  rowsPadded.forEach(function(r){ total += parseInt(r.replace(/\./g,'0'),2); });
+  var resultBits = total.toString(2).padStart(width,'0');
+  var txt = '  A = '+bitsToStr(aBits)+'₂ ('+binVal(aBits)+')   B = '+bitsToStr(bBits)+'₂ ('+binVal(bBits)+')\n\n';
+  rowsPadded.forEach(function(r,idx){ txt += '  '+r+'    '+labels[idx]+'\n'; });
+  txt += '  '+Array(width+3).join('-')+'\n';
+  txt += '  '+resultBits+'\n\n';
+  txt += 'Resultat: '+resultBits+'₂  =  '+total+'₁₀';
+  return txt;
+}
+
+function doDiv(aBits,bBits){
+  var divisorVal = binVal(bBits);
+  if(divisorVal===0){ return 'No es pot dividir entre 0.'; }
+  var rem=0, qbits=[], lines=[];
+  for(var idx=0; idx<aBits.length; idx++){
+    var bit=aBits[idx];
+    var before = rem*2+bit;
+    if(before >= divisorVal){
+      rem = before - divisorVal;
+      qbits.push(1);
+      lines.push('Baixo un '+bit+': '+before.toString(2)+' ≥ '+divisorVal.toString(2)+' → quocient 1, residu '+rem.toString(2));
+    } else {
+      rem = before;
+      qbits.push(0);
+      lines.push('Baixo un '+bit+': '+before.toString(2)+' < '+divisorVal.toString(2)+' → quocient 0, residu '+rem.toString(2));
+    }
+  }
+  while(qbits.length>1 && qbits[0]===0){ qbits.shift(); }
+  var qStr=qbits.join('');
+  var txt = '  Dividend A = '+bitsToStr(aBits)+'₂ ('+binVal(aBits)+')   Divisor B = '+bitsToStr(bBits)+'₂ ('+divisorVal+')\n\n';
+  lines.forEach(function(l,i){ txt += '  '+(i+1)+') '+l+'\n'; });
+  txt += '\nQuocient = '+qStr+'₂ = '+parseInt(qStr,2)+'₁₀   Residu = '+rem+'₁₀\n';
+  txt += 'Comprovació: '+parseInt(qStr,2)+' × '+divisorVal+' + '+rem+' = '+(parseInt(qStr,2)*divisorVal+rem);
+  return txt;
+}
+
+function recompute(){
+  var err=validate();
+  if(err){ out.textContent=err; return; }
+  var aBits=toBits(inA.value.trim()), bBits=toBits(inB.value.trim());
+  try{
+    if(op==='add') out.textContent=doAdd(aBits,bBits);
+    else if(op==='sub') out.textContent=doSub(aBits,bBits);
+    else if(op==='mul') out.textContent=doMul(aBits,bBits);
+    else if(op==='div') out.textContent=doDiv(aBits,bBits);
+  }catch(e){ out.textContent='Hi ha hagut un error amb aquests valors. Prova\'n uns altres.'; }
+}
+
+btns.forEach(function(b){
+  b.addEventListener('click', function(){
+    btns.forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    op=b.getAttribute('data-op');
+    recompute();
+  });
+});
+inA.addEventListener('input', recompute);
+inB.addEventListener('input', recompute);
+recompute();
+})();
+</script>
 
 <h2 id="s5">5. Nombres negatius: signe-magnitud, Ca1 i Ca2</h2>
 <p>Amb <i>n</i> bits cal decidir com escriure el signe. Exemple amb <b>−5 en 8 bits</b> (5 = 00000101):</p>
@@ -205,62 +505,20 @@ Quocient = 100₂ (4), residu = 1     Comprovació: 4·3 + 1 = 13</code></pre>
 1 00001000   → descartem l'acarreament → 00001000 = 8</code></pre>
 <div class="box info"><b>Com llegir un Ca2</b>Si el primer bit és 1, el nombre és negatiu: aplica de nou «invertir i sumar 1» per obtenir el valor absolut. 11111011 → 00000100 + 1 = 00000101 = 5, doncs és −5.</div>
 <div class="box imp"><b>Desbordament (overflow)</b>Si el resultat no cap en <i>n</i> bits, el resultat és erroni: 01111111 (127) + 00000001 = 10000000, que en Ca2 és −128.</div>
-<div class="ex"><h4>Exercici 5 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
+<div class="ex"><h4>Exercici 6 · Ca2</h4><span class="tag">Mitjà · 10 min</span><p>En 8 bits: escriu −20 en SM, Ca1 i Ca2, i calcula 20 − 35 amb Ca2.</p><details><summary>Solució</summary>20 = 00010100. SM: 10010100. Ca1: 11101011. Ca2: 11101100. 35 = 00100011 → −35 = 11011101; 00010100 + 11011101 = 11110001 = −15 ✔.</details></div>
 
+<div class="videos videos-compact"><a href="https://www.youtube.com/watch?v=asWF0UZ1XpI" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Complement a 1 i complement a 2</b><small>Com representar nombres negatius</small></span></a><a href="http://www.youtube.com/watch?v=tNnxJVuS2Sk" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Vídeo: Suma, resta, multiplicació i divisió amb Ca2</b><small>Les quatre operacions combinades</small></span></a></div>
 <h2 id="s6">6. Magnituds d'informació</h2>
 <p>1 <b>byte</b> = 8 bits. Amb <i>n</i> bits es poden representar <b>2ⁿ</b> valors diferents: amb 8 bits, de 0 a 255.</p>
 <div class="tw"><table><tr><th>Binari (IEC)</th><th>Valor</th><th>Decimal (SI)</th><th>Valor</th></tr>
 <tr><td>1 KiB</td><td>1.024 B</td><td>1 kB</td><td>1.000 B</td></tr><tr><td>1 MiB</td><td>1.024 KiB</td><td>1 MB</td><td>1.000 kB</td></tr><tr><td>1 GiB</td><td>1.024 MiB</td><td>1 GB</td><td>1.000 MB</td></tr><tr><td>1 TiB</td><td>1.024 GiB</td><td>1 TB</td><td>1.000 GB</td></tr><tr><td>1 PiB</td><td>1.024 TiB</td><td>1 PB</td><td>1.000 TB</td></tr></table></div>
 <div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14 12h22a3 3 0 0 1 3 3v8l4 4-4 4v8a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V15a3 3 0 0 1 3-3z"/><line x1="20" y1="40" x2="20" y2="46"/><line x1="27" y1="40" x2="27" y2="46"/><line x1="34" y1="40" x2="34" y2="46"/></svg>Analogia del mòbil</b>Un bit és una pregunta amb resposta sí/no. Un byte és una lletra. Un KiB és un missatge llarg de WhatsApp. Un MiB, una foto. Un GiB, una sèrie sencera. Un TiB, uns 250.000 capítols. Quan el mòbil diu «queda poc espai», es refereix a l'emmagatzematge (l'equivalent al disc de l'ordinador).</div>
 <div class="box info"><b>Per què un disc de 500 GB en mostra 465?</b>El fabricant compta en potències de 10 (500·10⁹ B), però el sistema operatiu divideix per 2³⁰: 500·10⁹ / 1.073.741.824 ≈ 465,7 GiB. No et falta espai: són unitats diferents.</div>
-<div class="ex"><h4>Exercici 6 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
+<div class="ex"><h4>Exercici 7 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
 
 <h2 id="s7">7. Text: ASCII</h2>
 <p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
-<div class="ex"><h4>Exercici 7 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
-
-<h2 id="s8">Conversors per comprovar</h2>
-<p>Escriu un nombre en qualsevol de les quatre bases i en veuràs l'equivalent a les altres tres. Serveixen per <i>comprovar</i> els teus càlculs, no per substituir-los!</p>
-<div class="conv-grid">
-
-<div class="box def conv-card"><b>De decimal</b>
-<p><input id="cN-dec" class="conv-input" type="text" inputmode="numeric" value="45" aria-label="Nombre en decimal"></p>
-<pre id="cO-dec" class="conv-out"></pre></div>
-
-<div class="box def conv-card"><b>De binari</b>
-<p><input id="cN-bin" class="conv-input" type="text" inputmode="numeric" value="101101" aria-label="Nombre en binari"></p>
-<pre id="cO-bin" class="conv-out"></pre></div>
-
-<div class="box def conv-card"><b>D'octal</b>
-<p><input id="cN-oct" class="conv-input" type="text" inputmode="numeric" value="55" aria-label="Nombre en octal"></p>
-<pre id="cO-oct" class="conv-out"></pre></div>
-
-<div class="box def conv-card"><b>D'hexadecimal</b>
-<p><input id="cN-hex" class="conv-input" type="text" value="2D" aria-label="Nombre en hexadecimal"></p>
-<pre id="cO-hex" class="conv-out"></pre></div>
-
-</div>
-<script>
-(function(){
-function mk(base, pattern, id){
-  var inp=document.getElementById('cN-'+id), out=document.getElementById('cO-'+id);
-  function u(){
-    var raw=inp.value.trim().toUpperCase();
-    if(raw===''){out.textContent='Escriu un valor';return}
-    if(!pattern.test(raw)){out.textContent='Només dígits vàlids en base '+base+' (0'+(base>10?'-9,A-'+String.fromCharCode(55+base-1):'-'+(base-1))+')';return}
-    var v=parseInt(raw,base);
-    if(!isFinite(v)||v<0||v>Number.MAX_SAFE_INTEGER){out.textContent='Valor massa gran';return}
-    out.textContent='Decimal:     '+v.toString(10)+'\nBinari:      '+v.toString(2)+'\nOctal:       '+v.toString(8)+'\nHexadecimal: '+v.toString(16).toUpperCase();
-  }
-  inp.addEventListener('input',u);
-  u();
-}
-mk(10, /^[0-9]+$/, 'dec');
-mk(2,  /^[01]+$/, 'bin');
-mk(8,  /^[0-7]+$/, 'oct');
-mk(16, /^[0-9A-F]+$/, 'hex');
-})();
-</script>
+<div class="ex"><h4>Exercici 8 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
 
 <h2 id="s9b">Resum visual</h2>
 <div class="infografia">
@@ -274,33 +532,6 @@ mk(16, /^[0-9A-F]+$/, 'hex');
 
 <h3>Resum</h3>
 <ul><li>Cada posició val una potència de la base.</li><li>Cap a decimal: sumar pesos. Des de decimal: dividir entre la base (enters) o multiplicar per 2 (fracció).</li><li>Hex i octal: agrupar bits de 4 en 4 i de 3 en 3; entre ells, passar per binari.</li><li>Ca2 = invertir + 1; permet restar sumant.</li><li>n bits = 2ⁿ valors; KiB = 1.024 B, kB = 1.000 B.</li></ul>
-<h2 id="s9">Vídeos i recursos</h2>
-<p>Un vídeo curt per a cada conversió, i unes eines i vídeos per repassar les operacions. Tots són els recomanats des del Moodle del mòdul.</p>
-<h3>Conversions, una per una</h3>
-<div class="videos">
-<a href="https://www.youtube.com/watch?v=9YfaZTB7S7k" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Decimal a Binari</b></span></a>
-<a href="https://www.youtube.com/watch?v=1x0XJTvcVQs" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Binari a Decimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=bKbuHjDUMdY" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Decimal a Octal</b></span></a>
-<a href="https://www.youtube.com/watch?v=UvEWW4JLles" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Octal a Decimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=e2Z1isg5BSU" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Decimal a Hexadecimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=hKoijpEao8A" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Hexadecimal a Decimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=sSfLHK0B_us" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Binari a Octal</b></span></a>
-<a href="https://www.youtube.com/watch?v=67UhJtfRCZ0" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Octal a Binari</b></span></a>
-<a href="https://www.youtube.com/watch?v=F2QmjYZmEMU" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Binari a Hexadecimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=csNFAiQBzas" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Hexadecimal a Binari</b></span></a>
-<a href="https://www.youtube.com/watch?v=rzDLOrAoc1w" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Octal a Hexadecimal</b></span></a>
-<a href="https://www.youtube.com/watch?v=eU5NjGvPfR8" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Hexadecimal a Octal</b></span></a>
-</div>
-<div class="box ok"><b>Per practicar en línia</b><a href="https://lacalculadoradealicia.es/" target="_blank" rel="noopener">La Calculadora de Alicia</a> fa les conversions pas a pas: útil per comprovar els exercicis, no per substituir-los.</div>
-<h3>Operacions en binari</h3>
-<div class="videos">
-<a href="https://www.youtube.com/watch?v=Ov5DdiIIr9U" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Divisió en binari</b><small>Pas a pas amb exemples</small></span></a>
-<a href="https://youtu.be/uLulA91jt_A" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Suma, resta i multiplicació en binari</b><small>Explicació ràpida i senzilla</small></span></a>
-<a href="http://www.youtube.com/watch?v=tNnxJVuS2Sk" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Suma, resta, multiplicació i divisió amb Ca2</b><small>Les quatre operacions combinades amb complement a 2</small></span></a>
-<a href="https://youtu.be/LQ2N5A6E4Pg" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Multiplicació en binari amb molts carries</b><small>Casos amb més acarreaments</small></span></a>
-<a href="https://www.youtube.com/watch?v=asWF0UZ1XpI" target="_blank" rel="noopener"><svg class="yt" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2s-.2-1.6-.9-2.3c-.9-1-1.9-1-2.3-1.1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.3.3c-.4 0-1.4.1-2.3 1.1-.7.7-.9 2.3-.9 2.3S.2 8.1.2 10v1.9c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9 1 2 1 2.5 1.1 1.8.2 7.7.3 7.7.3s5.3 0 8.3-.3c.4 0 1.4-.1 2.3-1.1.7-.7.9-2.3.9-2.3s.2-1.9.2-3.8V10c0-1.9-.2-3.8-.2-3.8zM9.7 14.6V7.4l6.3 3.6-6.3 3.6z"/></svg><span><b>Complement a 1 i complement a 2</b><small>Com representar nombres negatius</small></span></a>
-</div>
-
 <div class="pn"><a href="tema-1-1.html">← Tema 1.1</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><a href="tema-1-3.html">Tema 1.3 →</a></div>
 </main></div>
 <script>
