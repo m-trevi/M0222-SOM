@@ -10,7 +10,7 @@
 <body id="top">
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
-<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li><a href="tema-1-2.html">1.2 Sistemes de numeració</a></li><li class="active"><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a><ul class="nav-sub"><li><a href="tema-1-3.html#s1">1. Sistemes de fitxers</a></li><li><a href="tema-1-3.html#s2">2. FAT32, NTFS i altres</a></li><li><a href="tema-1-3.html#s3">3. Journaling</a></li><li><a href="tema-1-3.html#s4">4. Particions: MBR i GPT</a></li><li><a href="tema-1-3.html#s5">5. Memòria volàtil i no volàtil</a></li><li><a href="tema-1-3.html#s6">6. Memòria virtual (swap)</a></li><li><a href="tema-1-3.html#s6b">6b. Paginació i segmentació</a></li><li><a href="tema-1-3.html#s7">7. Gestió d'entrada/sortida</a></li><li><a href="tema-1-3.html#s8">8. Programa i procés</a></li><li><a href="tema-1-3.html#s9">9. Estats d'un procés</a></li><li><a href="tema-1-3.html#s10">10. Canvi de context</a></li><li><a href="tema-1-3.html#s11">11. Planificació: FCFS, SJF i RR</a></li><li><a href="tema-1-3.html#s12">12. Gestor de tasques</a></li><li><a href="tema-1-3.html#s12b">Resum visual</a></li><li><a href="tema-1-3.html#s13">Glossari i repàs</a></li></ul></li></ul><div class="nav-tema-future">Tema 2 · Màquines virtuals <em>(aviat)</em></div><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li><a href="tema-1-2.html">1.2 Sistemes de numeració</a></li><li class="active"><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a><ul class="nav-sub"><li><a href="tema-1-3.html#s1">1. Sistemes de fitxers</a></li><li><a href="tema-1-3.html#s1b">1b. Fitxers, directoris i rutes</a></li><li><a href="tema-1-3.html#s2">2. FAT32, NTFS i altres</a></li><li><a href="tema-1-3.html#s3">3. Journaling</a></li><li><a href="tema-1-3.html#s3b">3b. Permisos d'arxius</a></li><li><a href="tema-1-3.html#s4">4. Particions: MBR i GPT</a></li><li><a href="tema-1-3.html#s5">5. Memòria volàtil i no volàtil</a></li><li><a href="tema-1-3.html#s6">6. Memòria virtual (swap)</a></li><li><a href="tema-1-3.html#s6b">6b. Paginació i segmentació</a></li><li><a href="tema-1-3.html#s7">7. Gestió d'entrada/sortida</a></li><li><a href="tema-1-3.html#s8">8. Programa i procés</a></li><li><a href="tema-1-3.html#s9">9. Estats d'un procés</a></li><li><a href="tema-1-3.html#s10">10. Canvi de context</a></li><li><a href="tema-1-3.html#s11">11. Planificació: FCFS, SJF i RR</a></li><li><a href="tema-1-3.html#s12">12. Gestor de tasques</a></li><li><a href="tema-1-3.html#s12b">Resum visual</a></li><li><a href="tema-1-3.html#s13">Glossari i repàs</a></li></ul></li></ul><div class="nav-tema-title">Tema 2 · Màquines virtuals</div><ul class="nav-tree"><li><a href="tema-2-1.html">2.1 Màquines virtuals</a></li></ul><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.3</div>
 <h1>Tema 1.3: Fitxers, memòria i gestió de processos</h1>
@@ -44,6 +44,58 @@
 <tr><td>Integritat</td><td>Protegeix les dades davant errors o talls de llum.</td></tr></table></div>
 <div class="box info"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#ef4444" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M28 14c-4-4-10-5-18-4v32c8-1 14 0 18 4V14z"/><path d="M28 14c4-4 10-5 18-4v32c-8-1-14 0-18 4V14z"/></svg>Analogia de la biblioteca</b>Un disc dur ple d'arxius sense sistema de fitxers és com una biblioteca amb milers de llibres escampats sense cap ordre: trobar-ne un seria impossible. El sistema de fitxers és el catàleg: diu on és cada arxiu, qui hi pot accedir i quant espai ocupa. El disc és la biblioteca; els arxius, els llibres.</div>
 
+<h2 id="s1b">1b. Fitxers, directoris i rutes</h2>
+<p>Abans d'entrar en els sistemes de fitxers concrets (FAT32, NTFS...), cal tenir clar què és exactament un fitxer, com s'organitzen en directoris i com s'hi arriba.</p>
+<h3>Què és un fitxer?</h3>
+<p>Un fitxer és una unitat d'informació desada amb un nom. A més del contingut, el sistema en guarda <b>metadades</b>: nom, extensió, mida, dates de creació i modificació, propietari i permisos.</p>
+<h3>Directoris: una estructura en arbre</h3>
+<p>Un directori (carpeta) pot contenir fitxers i altres directoris, formant una jerarquia. La diferència més visible entre sistemes operatius:</p>
+<div class="tw"><table><tr><th>Sistema</th><th>Arrel</th><th>Exemple de ruta</th></tr>
+<tr><td>Linux</td><td>Una sola arrel: <code>/</code>. Els altres discos s'hi munten com a branques.</td><td><code>/home/alumne/Documents/treball.docx</code></td></tr>
+<tr><td>Windows</td><td>Cada unitat té la seva pròpia arrel.</td><td><code>C:\Users\alumne\Documents\treball.docx</code></td></tr></table></div>
+<h3>Rutes absolutes i relatives</h3>
+<div class="tw"><table><tr><th>Tipus</th><th>Què indica</th><th>Exemple</th></tr>
+<tr><td>Absoluta</td><td>La ubicació completa, des de l'arrel.</td><td><code>/home/alumne/projecte/informe.txt</code></td></tr>
+<tr><td>Relativa</td><td>La ubicació respecte d'on ets ara.</td><td><code>projecte/informe.txt</code></td></tr></table></div>
+<p><code>.</code> és el directori actual, <code>..</code> el directori pare, i <code>~</code> el directori personal de l'usuari (equival a <code>/home/usuari</code>).</p>
+<div class="box info"><b>L'estructura de directoris de Linux</b>
+<div class="tw"><table><tr><th>Directori</th><th>Contingut</th></tr>
+<tr><td><code>/boot</code></td><td>Nucli i fitxers d'arrencada</td></tr>
+<tr><td><code>/dev</code></td><td>Fitxers que representen dispositius (<code>/dev/sda</code>)</td></tr>
+<tr><td><code>/etc</code></td><td>Configuració del sistema</td></tr>
+<tr><td><code>/home</code></td><td>Directoris personals dels usuaris</td></tr>
+<tr><td><code>/root</code></td><td>Directori personal de l'administrador</td></tr>
+<tr><td><code>/tmp</code></td><td>Fitxers temporals</td></tr>
+<tr><td><code>/usr</code></td><td>Programes i biblioteques</td></tr>
+<tr><td><code>/var</code></td><td>Dades variables: registres (<code>/var/log</code>), cues...</td></tr></table></div></div>
+<div class="box info"><b>L'estructura de carpetes de Windows</b>
+<div class="tw"><table><tr><th>Carpeta</th><th>Contingut</th></tr>
+<tr><td><code>C:\Windows</code></td><td>El sistema operatiu (<code>System32</code> conté els executables del sistema)</td></tr>
+<tr><td><code>C:\Program Files</code></td><td>Aplicacions de 64 bits</td></tr>
+<tr><td><code>C:\Program Files (x86)</code></td><td>Aplicacions de 32 bits</td></tr>
+<tr><td><code>C:\Users\usuari</code></td><td>Perfil de l'usuari: Documents, Escriptori, Baixades...</td></tr></table></div></div>
+<h3>Noms, extensions i el tipus real d'un fitxer</h3>
+<ul>
+<li>Linux distingeix majúscules i minúscules (<code>Informe.txt</code> i <code>informe.txt</code> són fitxers diferents); Windows no.</li>
+<li>L'<b>extensió</b> (.txt, .pdf) indica a Windows amb quina aplicació obrir el fitxer; a Linux és només una convenció.</li>
+<li>El <b>tipus real</b> el determina el contingut, no el nom: si canvies l'extensió d'una imatge a <code>.txt</code>, continua sent una imatge per dins.</li>
+</ul>
+<h3>Comodins</h3>
+<div class="tw"><table><tr><th>Comodí</th><th>Significat</th><th>Exemple</th><th>Coincideix amb</th></tr>
+<tr><td><code>*</code></td><td>Qualsevol seqüència de caràcters</td><td><code>*.pdf</code></td><td>factura.pdf, a.pdf</td></tr>
+<tr><td><code>?</code></td><td>Exactament un caràcter</td><td><code>informe?.txt</code></td><td>informe1.txt, informeA.txt</td></tr>
+<tr><td><code>[ ]</code></td><td>Un caràcter del conjunt</td><td><code>foto[0-3].jpg</code></td><td>foto0.jpg ... foto3.jpg</td></tr></table></div>
+<div class="box imp"><b>Compte amb els comodins i rm</b>Comprova sempre amb <code>ls</code> què seleccionarà un comodí abans de fer-ho servir amb <code>rm</code>: a Linux no hi ha paperera de reciclatge per al terminal.</div>
+<h3>Operacions habituals</h3>
+<div class="tw"><table><tr><th>Operació</th><th>Linux</th><th>Windows</th></tr>
+<tr><td>On sóc / canviar de directori</td><td><code>pwd</code> · <code>cd</code></td><td><code>cd</code></td></tr>
+<tr><td>Llistar</td><td><code>ls -la</code></td><td><code>dir</code></td></tr>
+<tr><td>Crear directori</td><td><code>mkdir</code></td><td><code>mkdir</code></td></tr>
+<tr><td>Copiar / moure</td><td><code>cp</code> / <code>mv</code></td><td><code>copy</code> / <code>move</code></td></tr>
+<tr><td>Esborrar</td><td><code>rm</code> · <code>rm -r</code></td><td><code>del</code></td></tr>
+<tr><td>Cercar per nom</td><td><code>find ~ -name "*.pdf"</code></td><td><code>dir /s *.pdf</code></td></tr></table></div>
+<div class="ex"><h4>Exercici 1 · Ruta absoluta o relativa?</h4><span class="tag">Bàsic · 5 min</span><p>Ets a <code>/home/alumne</code> i vols accedir a <code>/home/alumne/projecte/dades.csv</code>. Escriu-ho com a ruta absoluta i com a ruta relativa.</p><details><summary>Solució</summary>Absoluta: <code>/home/alumne/projecte/dades.csv</code>. Relativa (des d'on ets): <code>projecte/dades.csv</code>.</details></div>
+
 <h2 id="s2">2. Els sistemes de fitxers principals</h2>
 <div class="tw"><table><tr><th>Sistema</th><th>SO principal</th><th>Mida màx. de fitxer</th><th>Journaling</th><th>Permisos</th></tr>
 <tr><td><b>FAT32</b></td><td>Windows (antic), consoles, càmeres</td><td>4 GB</td><td>No</td><td>No</td></tr>
@@ -52,7 +104,7 @@
 <tr><td><b>ext4</b></td><td>Linux (Ubuntu, Mint…)</td><td>16 TB</td><td>Sí</td><td>Sí (estil Unix)</td></tr>
 <tr><td><b>APFS</b></td><td>macOS, iOS</td><td>8 EB</td><td>Sí</td><td>Sí</td></tr></table></div>
 <div class="box imp"><b>Quin faig servir?</b> FAT32 és compatible amb gairebé qualsevol dispositiu (targetes SD, consoles) però limita cada arxiu a 4 GB i no té seguretat. NTFS és el format recomanat per al disc intern de Windows. exFAT és el pont habitual per a pendrives grans que s'han de llegir des de diversos sistemes operatius.</div>
-<div class="ex"><h4>Exercici 1 · Tria el sistema de fitxers</h4><span class="tag">Bàsic · 6 min</span><p>Vols gravar una pel·lícula de 8 GB en un pendrive que faràs servir tant al PC (Windows) com a la Smart TV (que no llegeix NTFS). Quin sistema de fitxers tries i per què?</p><details><summary>Solució</summary>exFAT: admet fitxers de més de 4 GB (a diferència de FAT32) i el llegeixen tant Windows com la majoria de televisors i reproductors, cosa que NTFS no sempre garanteix.</details></div>
+<div class="ex"><h4>Exercici 2 · Tria el sistema de fitxers</h4><span class="tag">Bàsic · 6 min</span><p>Vols gravar una pel·lícula de 8 GB en un pendrive que faràs servir tant al PC (Windows) com a la Smart TV (que no llegeix NTFS). Quin sistema de fitxers tries i per què?</p><details><summary>Solució</summary>exFAT: admet fitxers de més de 4 GB (a diferència de FAT32) i el llegeixen tant Windows com la majoria de televisors i reproductors, cosa que NTFS no sempre garanteix.</details></div>
 
 <h2 id="s3">3. Journaling</h2>
 <p>El <b>journaling</b> és una tècnica de seguretat: el sistema de fitxers apunta en un «diari» (journal) tots els canvis que farà <b>abans</b> de fer-los. Si hi ha un tall de llum o un error a mitja escriptura, el SO llegeix el journal i pot:</p>
@@ -66,6 +118,76 @@
 <tr><td>Xifrat (EFS)</td><td>No</td><td>Sí</td></tr>
 <tr><td>Compressió transparent</td><td>No</td><td>Sí</td></tr>
 <tr><td>Recuperació d'errors</td><td>Manual (chkdsk, lenta)</td><td>Automàtica (journal)</td></tr></table></div>
+
+<h2 id="s3b">3b. Permisos d'arxius i directoris</h2>
+<p>Un sistema multiusuari ha de saber <b>qui</b> fa cada acció (autenticació) i <b>què</b> té permès fer (autorització). No tots els usuaris han de poder llegir o modificar tots els fitxers.</p>
+<div class="box imp"><b>Principi de mínim privilegi</b>Cada usuari ha de tenir només els permisos imprescindibles per fer la seva feina — per això a l'institut els alumnes no sou administradors dels equips.</div>
+<h3>Els tres permisos bàsics</h3>
+<div class="tw"><table><tr><th>Permís</th><th>En un fitxer</th><th>En un directori</th></tr>
+<tr><td>Lectura (r)</td><td>Veure'n el contingut</td><td>Llistar-ne el contingut (<code>ls</code>)</td></tr>
+<tr><td>Escriptura (w)</td><td>Modificar-lo</td><td>Crear, esborrar o canviar el nom dels fitxers de dins</td></tr>
+<tr><td>Execució (x)</td><td>Executar-lo (si és un programa)</td><td>Entrar-hi (<code>cd</code>) i accedir als fitxers de dins</td></tr></table></div>
+<div class="box info"><b>Per a una carpeta, normalment calen r i x alhora</b>: x et deixa entrar-hi (com obrir la porta) i r et deixa veure què hi ha (com encendre el llum). Sense x, ni tan sols pots entrar-hi encara que tinguis r.</div>
+<h3>Notació Linux: -rwxr-x---</h3>
+<pre><code>-rwxr-x---
+ │   │  │
+ │   │  └── altres:    ---  (cap permís)
+ │   └───── grup:       r-x  (lectura i execució)
+ └───────── propietari: rwx  (tots)</code></pre>
+<h3>De lletres a número octal</h3>
+<p>Cada permís té un pes (són tres bits, igual que al Tema 1.2): <b>r=4, w=2, x=1</b>. Se sumen per a cada grup de tres.</p>
+<div class="tw"><table><tr><th></th><th>Propietari</th><th>Grup</th><th>Altres</th></tr>
+<tr><td>Lletres</td><td>rwx</td><td>r-x</td><td>---</td></tr>
+<tr><td>Valors</td><td>4+2+1</td><td>4+0+1</td><td>0+0+0</td></tr>
+<tr><td>Octal</td><td><b>7</b></td><td><b>5</b></td><td><b>0</b></td></tr></table></div>
+<p>Resultat: <code>chmod 750</code>. Per fer el camí invers (número → lletres), pregunta't quins pesos sumen cada xifra: 5 = 4+1 → r-x.</p>
+<div class="tw"><table><tr><th>Simbòlic</th><th>Octal</th><th>Ús típic</th></tr>
+<tr><td>rwxr-xr-x</td><td>755</td><td>Programes i directoris públics</td></tr>
+<tr><td>rw-r--r--</td><td>644</td><td>Fitxers normals</td></tr>
+<tr><td>rwxr-x---</td><td>750</td><td>Directori d'equip: el grup hi entra, la resta no</td></tr>
+<tr><td>rw-------</td><td>600</td><td>Fitxers privats</td></tr></table></div>
+<h3>Comandes</h3>
+<div class="tw"><table><tr><th>Comanda</th><th>Fa</th></tr>
+<tr><td><code>ls -l</code></td><td>Veure els permisos</td></tr>
+<tr><td><code>chmod 750 carpeta</code></td><td>Canviar els permisos (qualsevol usuari ho pot fer amb els seus propis fitxers)</td></tr>
+<tr><td><code>chown usuari fitxer</code></td><td>Canviar el propietari (només l'administrador)</td></tr></table></div>
+<div class="ex"><h4>Exercici 3 · De lletres a octal</h4><span class="tag">Bàsic · 6 min</span><p>Calcula l'octal de <code>rwxrw-r--</code> i digues què pot fer cada categoria (propietari, grup, altres).</p><details><summary>Solució</summary>Propietari rwx=7, grup rw-=6, altres r--=4 → <b>764</b>. El propietari ho pot tot; el grup pot llegir i escriure però no executar; la resta només pot llegir.</details></div>
+
+<h3>Windows: llistes de control d'accés (ACL)</h3>
+<p>Windows (NTFS) no fa servir tres caselles fixes com Linux, sinó una <b>ACL</b> (Access Control List): una llista on pots apuntar tants usuaris o grups com vulguis, cadascun amb el seu propi permís.</p>
+<div class="tw"><table><tr><th>Usuari</th><th>Permís</th></tr>
+<tr><td>Administrador</td><td>Control total</td></tr>
+<tr><td>Professor</td><td>Lectura i modificació</td></tr>
+<tr><td>Alumne</td><td>Només lectura</td></tr></table></div>
+<ul>
+<li><b>Herència</b>: els permisos d'una carpeta passen per defecte als fitxers i subcarpetes que conté (com la clau d'un pis que també obre totes les habitacions).</li>
+<li><b>Denegar té prioritat sobre permetre</b>: si una regla diu «pot entrar» i una altra diu «no pot entrar», guanya el «no». És la manera més segura d'evitar errors.</li>
+</ul>
+<p>Des de la línia d'ordres: <code>icacls C:\Carpeta</code> mostra l'ACL, i <code>icacls C:\Carpeta /grant usuari:RX</code> en concedeix un de nou.</p>
+<h3>Linux o Windows: mateixa idea, mecanismes diferents</h3>
+<div class="tw"><table><tr><th>Necessitat</th><th>Solució a Linux</th><th>Solució a Windows (NTFS)</th></tr>
+<tr><td>Direcció: llegir i modificar</td><td>Propietari amb rwx</td><td>Usuari direcció: Modificar</td></tr>
+<tr><td>Personal: només llegir</td><td>Grup amb r-x</td><td>Usuari personal: Lectura i execució</td></tr>
+<tr><td>Visitant: cap accés</td><td>Altres amb ---</td><td>Sense entrada a l'ACL</td></tr></table></div>
+<div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 14h70l14 14v78a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="var(--code)" stroke="var(--ac)" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="34" y="14" width="44" height="26" rx="2" fill="var(--ac)" stroke="var(--ac)" stroke-width="3"/>
+<rect x="56" y="19" width="12" height="16" rx="1.5" fill="var(--code)"/>
+<rect x="38" y="19" width="7" height="7" rx="1" fill="var(--code)"/>
+<rect x="22" y="48" width="76" height="52" rx="4" fill="var(--card)" stroke="var(--ac)" stroke-width="2.5"/>
+<circle cx="45" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<circle cx="75" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<line x1="54" y1="70" x2="66" y2="70" stroke="var(--ac)" stroke-width="3"/>
+<line x1="36" y1="68" x2="30" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="84" y1="68" x2="90" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="45" cy="70" r="2.2" fill="var(--ac)"/>
+<circle cx="75" cy="70" r="2.2" fill="var(--ac)"/>
+<path d="M38 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M68 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 84q10 7 20 0" fill="none" stroke="var(--ac)" stroke-width="4" stroke-linecap="round"/>
+<path d="M54 90q6 5 12 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+</svg><p><b>En Disquet diu:</b> En els meus temps (FAT) no hi havia permisos de cap mena: qui tenia el disquet a la mà, tenia accés a tot. Per això ara em fa respecte tanta seguretat junta!</p></div>
+<div class="ex"><h4>Exercici 4 · Un cas real</h4><span class="tag">Mitjà · 8 min</span><p>Un usuari té permisos <code>r--</code> sobre un fitxer, però el directori que el conté té <code>rwx</code> per a ell. Pot esborrar el fitxer? Raona-ho.</p><details><summary>Solució</summary>Sí: per esborrar un fitxer a Linux, el que compta és el permís d'escriptura (w) sobre el <b>directori</b> que el conté, no els permisos del fitxer mateix.</details></div>
 
 <h2 id="s4">4. Particions i taules de partició</h2>
 <div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +219,7 @@
 <tr><td>Estesa</td><td>Una partició primària especial que fa de «contenidor» per a més particions lògiques.</td></tr>
 <tr><td>Lògica</td><td>Viu dins la partició estesa; no pot arrencar un SO, només emmagatzemar dades.</td></tr></table></div>
 <div class="box info"><b>Eines per gestionar-les</b> Windows inclou l'<b>Administrador de discos</b> i la comanda <code>diskpart</code>; a Linux, <b>GParted</b> ofereix el mateix de forma gràfica, també multiplataforma.</div>
-<div class="ex"><h4>Exercici 2 · MBR o GPT?</h4><span class="tag">Bàsic · 5 min</span><p>Vols instal·lar un SSD de 4 TB en un ordinador modern amb UEFI. Quina taula de particions fas servir?</p><details><summary>Solució</summary>GPT: MBR no pot adreçar més de 2 TB, i GPT és l'opció estàndard en equips amb UEFI.</details></div>
+<div class="ex"><h4>Exercici 5 · MBR o GPT?</h4><span class="tag">Bàsic · 5 min</span><p>Vols instal·lar un SSD de 4 TB en un ordinador modern amb UEFI. Quina taula de particions fas servir?</p><details><summary>Solució</summary>GPT: MBR no pot adreçar més de 2 TB, i GPT és l'opció estàndard en equips amb UEFI.</details></div>
 
 <h2 id="s5">5. Memòria volàtil i no volàtil</h2>
 <p>Com ja vau veure al Tema 1.1, la memòria s'organitza en una jerarquia: com més amunt, més ràpida i cara, i menys capacitat té.</p>
@@ -125,7 +247,7 @@
 <tr><td>Disponible (Available)</td><td>RAM lliure, es pot assignar de seguida a nous processos.</td></tr>
 <tr><td>En espera (Standby)</td><td>RAM amb dades de processos inactius; es pot alliberar si cal.</td></tr>
 <tr><td>Fitxer de paginació (ús)</td><td>Quanta memòria virtual s'està fent servir al disc en aquest moment.</td></tr></table></div>
-<div class="ex"><h4>Exercici 3 · Diagnòstic</h4><span class="tag">Mitjà · 8 min</span><p>Un ordinador amb 8 GB de RAM va molt lent quan tens el navegador, l'editor de vídeo i un joc oberts alhora, i el disc (un HDD, no SSD) no para de fer soroll. Quina n'és la causa més probable?</p><details><summary>Solució</summary>La RAM s'ha omplert i el SO fa swapping constant contra el HDD, que és molt més lent que la RAM; això explica tant la lentitud com el soroll del disc treballant.</details></div>
+<div class="ex"><h4>Exercici 6 · Diagnòstic</h4><span class="tag">Mitjà · 8 min</span><p>Un ordinador amb 8 GB de RAM va molt lent quan tens el navegador, l'editor de vídeo i un joc oberts alhora, i el disc (un HDD, no SSD) no para de fer soroll. Quina n'és la causa més probable?</p><details><summary>Solució</summary>La RAM s'ha omplert i el SO fa swapping constant contra el HDD, que és molt més lent que la RAM; això explica tant la lentitud com el soroll del disc treballant.</details></div>
 
 <h2 id="s6b">6b. Paginació i segmentació</h2>
 <p>Quan varis processos comparteixen la RAM, el SO necessita un mètode per col·locar-los sense que es trepitgin. Cada procés treballa amb <b>adreces lògiques</b> (les que genera, començant sempre com si tingués tota la memòria per a ell); el SO les tradueix a <b>adreces físiques</b> (la posició real a la RAM) mitjançant un component del processador anomenat <b>MMU</b> (Memory Management Unit).</p>
@@ -134,7 +256,7 @@
 <tr><td><b>Paginació</b></td><td>Divideix la memòria en <b>pàgines</b> de mida fixa (normalment 4 KB) que no cal que siguin contigües.</td><td>Elimina la fragmentació externa; és la base del swap del Tema 1.3.</td></tr>
 <tr><td><b>Segmentació</b></td><td>Divideix el programa en <b>segments</b> de mida variable amb sentit lògic (codi, dades, pila).</td><td>Reflecteix l'estructura real del programa, encara que pot patir fragmentació externa.</td></tr></table></div>
 <div class="box ok"><b>Analogia del trasllat</b>La partició contínua és com voler aparcar un autobús escolar sencer en un sol forat: si no hi cap, no entra, encara que hi hagi prou espai repartit en diversos forats petits. La paginació és com aparcar-hi cotxes individuals (totes les places iguals): n'hi caben molts més, encara que no estiguin junts. La segmentació és com reservar zones de mida diferent per a cada ús (una per a bicicletes, una altra per a camions).</div>
-<div class="ex"><h4>Exercici 4 · Paginació o segmentació?</h4><span class="tag">Bàsic · 5 min</span><p>Un SO divideix cada procés en blocs iguals de 4 KB, independents del seu contingut. De quin mètode es tracta?</p><details><summary>Solució</summary>Paginació: mida fixa i sense relació amb l'estructura lògica del programa és la seva característica distintiva, a diferència de la segmentació (mida variable, amb sentit lògic).</details></div>
+<div class="ex"><h4>Exercici 7 · Paginació o segmentació?</h4><span class="tag">Bàsic · 5 min</span><p>Un SO divideix cada procés en blocs iguals de 4 KB, independents del seu contingut. De quin mètode es tracta?</p><details><summary>Solució</summary>Paginació: mida fixa i sense relació amb l'estructura lògica del programa és la seva característica distintiva, a diferència de la segmentació (mida variable, amb sentit lògic).</details></div>
 
 <h2 id="s7">7. Gestió d'entrada/sortida (E/S)</h2>
 <p>El SO també ha de controlar tots els <b>dispositius perifèrics</b> (teclat, disc, pantalla, xarxa…) i oferir als programes una manera uniforme d'utilitzar-los, sense que calgui conèixer els detalls tècnics de cada un.</p>
@@ -149,7 +271,7 @@
 <tr><td><b>Gestor d'interrupcions</b></td><td>Rutina que s'executa quan un dispositiu avisa que ha acabat o necessita atenció.</td></tr>
 <tr><td><b>DMA (accés directe a memòria)</b></td><td>Permet a un dispositiu llegir o escriure directament a la RAM sense fer passar cada byte per la CPU — allibera el processador per a altres tasques.</td></tr></table></div>
 <div class="box info"><b>Analogia del restaurant</b> El <b>driver</b> és com un cambrer especialitzat que sap exactament com tractar amb «la cuina japonesa» (un dispositiu concret), encara que el client (el programa) només digui «vull sushi» en llenguatge genèric. La <b>interrupció</b> és la campaneta que sona quan un plat ja és fora; sense ella, el cambrer hauria d'anar a mirar la cuina cada pocs segons (això es diu <i>polling</i>, i és molt menys eficient). El <b>DMA</b> és com deixar que el proveïdor porti els ingredients directament al rebost sense que el cambrer n'hagi de fer cap viatge.</div>
-<div class="ex"><h4>Exercici 5 · Driver o controlador?</h4><span class="tag">Bàsic · 5 min</span><p>Acabes d'instal·lar una impressora nova i Windows et demana «instal·lar programari del fabricant» abans que funcioni. De quin dels dos components parlem?</p><details><summary>Solució</summary>Del driver: el programari específic que tradueix les ordres genèriques d'impressió al llenguatge concret d'aquell model.</details></div>
+<div class="ex"><h4>Exercici 8 · Driver o controlador?</h4><span class="tag">Bàsic · 5 min</span><p>Acabes d'instal·lar una impressora nova i Windows et demana «instal·lar programari del fabricant» abans que funcioni. De quin dels dos components parlem?</p><details><summary>Solució</summary>Del driver: el programari específic que tradueix les ordres genèriques d'impressió al llenguatge concret d'aquell model.</details></div>
 
 <h2 id="s8">8. Programa i procés</h2>
 <div class="tw"><table><tr><th>Concepte</th><th>Definició</th><th>Exemple</th></tr>
@@ -164,7 +286,7 @@
 <tr><td>Ubicació en memòria</td><td>Adreces d'inici del codi, les dades i la pila del procés.</td></tr>
 <tr><td>Recursos utilitzats</td><td>Arxius oberts, dispositius assignats, temps de CPU consumit…</td></tr></table></div>
 <div class="box info"><b>El procés nul</b> Quan no hi ha cap procés preparat per executar-se, la CPU no es queda «apagada»: executa un <b>procés nul</b> (o tasca ociosa), un bucle buit que no fa res útil, només per tenir alguna cosa a fer fins que arribi feina real. És el que explica per què un ordinador en repòs encara marca algun ús de CPU.</div>
-<div class="ex"><h4>Exercici 6 · Programa o procés?</h4><span class="tag">Bàsic · 4 min</span><p>Tens el Word instal·lat però tancat, i el Spotify obert reproduint música. Digues què és cadascun: programa o procés.</p><details><summary>Solució</summary>Word tancat: programa (només instruccions al disc, no s'executa). Spotify obert: procés (instància en execució, amb PID i memòria assignada).</details></div>
+<div class="ex"><h4>Exercici 9 · Programa o procés?</h4><span class="tag">Bàsic · 4 min</span><p>Tens el Word instal·lat però tancat, i el Spotify obert reproduint música. Digues què és cadascun: programa o procés.</p><details><summary>Solució</summary>Word tancat: programa (només instruccions al disc, no s'executa). Spotify obert: procés (instància en execució, amb PID i memòria assignada).</details></div>
 
 <h2 id="s9">9. Estats d'un procés</h2>
 <p>Durant la seva vida, un procés passa per diversos estats. El nucli d'un SO en distingeix cinc:</p>
@@ -197,7 +319,7 @@
 <text x="115" y="105">admès</text><text x="270" y="100">planificador</text><text x="270" y="140">quàntum esgotat</text><text x="470" y="105">sortir</text><text x="425" y="165">espera E/S</text><text x="280" y="185">esdeveniment</text></g>
 </svg>
 <div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="6"/><circle cx="28" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><line x1="18" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="38" y2="28"/></svg>Analogia de Spotify</b><b>Executant</b>: la cançó que sona ara (només una per dispositiu). <b>Preparat</b>: la cua de reproducció — a punt per sonar, esperant el seu torn. <b>Bloquejat</b>: has posat en pausa per agafar una trucada — la cançó no avança, però tampoc ha acabat; quan penges, torna a la cua i segueix.</div>
-<div class="ex"><h4>Exercici 7 · Segueix el procés</h4><span class="tag">Mitjà · 6 min</span><p>Un procés es crea, s'admet, s'executa, demana llegir un fitxer del disc, espera la resposta, torna a executar-se i acaba. Escriu la seqüència d'estats.</p><details><summary>Solució</summary>Nou → Preparat → Executant → Bloquejat → Preparat → Executant → Acabat.</details></div>
+<div class="ex"><h4>Exercici 10 · Segueix el procés</h4><span class="tag">Mitjà · 6 min</span><p>Un procés es crea, s'admet, s'executa, demana llegir un fitxer del disc, espera la resposta, torna a executar-se i acaba. Escriu la seqüència d'estats.</p><details><summary>Solució</summary>Nou → Preparat → Executant → Bloquejat → Preparat → Executant → Acabat.</details></div>
 
 <h3>Les vuit transicions possibles</h3>
 <div class="tw"><table><tr><th>Transició</th><th>Quan passa</th></tr>
@@ -283,8 +405,8 @@ TE mitjà = (0+3+8+8) / 4 = 4,75 unitats</code></pre>
 <tr><td>Canvis de context</td><td>Pocs</td><td>Mitjans / molts</td><td>Molts</td></tr>
 <tr><td>Millor per a…</td><td>Processos batch llargs</td><td>Minimitzar l'espera mitjana</td><td>Sistemes interactius, escriptori</td></tr></table></div>
 <div class="box info"><b>Per què RR surt pitjor aquí?</b> Amb només 4 processos, repartir la CPU en trossos allarga la finalització dels processos llargs. RR sol guanyar quan hi ha molts processos barrejats (curts i llargs) i es valora la resposta ràpida per damunt del temps mitjà total — exactament el cas d'un escriptori amb desenes de programes oberts.</div>
-<div class="ex"><h4>Exercici 8 · Calcula FCFS</h4><span class="tag">Mitjà · 12 min</span><p>Processos E(arr.0, dur.3), F(arr.1, dur.5), G(arr.3, dur.2). Calcula Inici, Terminació, TR i TE de cadascun amb FCFS, i el TE mitjà.</p><details><summary>Solució</summary>E: inici0, term3, TR3, TE0. F: inici3, term8, TR7, TE2. G: inici8, term10, TR7, TE5. TE mitjà=(0+2+5)/3=2,33.</details></div>
-<div class="ex"><h4>Exercici 9 · SJF</h4><span class="tag">Mitjà · 10 min</span><p>Amb els mateixos processos E(arr.0,dur.3), F(arr.1,dur.5), G(arr.3,dur.2), aplica SJF no expulsiu. Dibuixa el Gantt i calcula el TE mitjà.</p><details><summary>Solució</summary>A t=0 només E (dur3): s'executa 0-3. A t=3 ja han arribat F(5) i G(2): entra G (més curt): 3-5. Després F: 5-10. TE(E)=0, TE(G)=3-3=0, TE(F)=5-1=4. TE mitjà=(0+0+4)/3=1,33 — millor que FCFS (2,33).</details></div>
+<div class="ex"><h4>Exercici 11 · Calcula FCFS</h4><span class="tag">Mitjà · 12 min</span><p>Processos E(arr.0, dur.3), F(arr.1, dur.5), G(arr.3, dur.2). Calcula Inici, Terminació, TR i TE de cadascun amb FCFS, i el TE mitjà.</p><details><summary>Solució</summary>E: inici0, term3, TR3, TE0. F: inici3, term8, TR7, TE2. G: inici8, term10, TR7, TE5. TE mitjà=(0+2+5)/3=2,33.</details></div>
+<div class="ex"><h4>Exercici 12 · SJF</h4><span class="tag">Mitjà · 10 min</span><p>Amb els mateixos processos E(arr.0,dur.3), F(arr.1,dur.5), G(arr.3,dur.2), aplica SJF no expulsiu. Dibuixa el Gantt i calcula el TE mitjà.</p><details><summary>Solució</summary>A t=0 només E (dur3): s'executa 0-3. A t=3 ja han arribat F(5) i G(2): entra G (més curt): 3-5. Després F: 5-10. TE(E)=0, TE(G)=3-3=0, TE(F)=5-1=4. TE mitjà=(0+0+4)/3=1,33 — millor que FCFS (2,33).</details></div>
 
 <h2 id="s12">12. Gestor de tasques de Windows</h2>
 <p>El <b>Gestor de tasques</b> (<code>Ctrl+Maj+Esc</code>) mostra els processos en execució i el seu consum de recursos:</p>
@@ -329,7 +451,7 @@ TE mitjà = (0+3+8+8) / 4 = 4,75 unitats</code></pre>
 </ul>
 <div class="ex"><h4>Autoavaluació</h4><span class="tag">Bàsic · 5 min</span><p>1) Quina diferència hi ha entre roll forward i roll back? 2) Quin estat té un procés que espera que acabi de llegir un fitxer del disc? 3) Quina diferència hi ha entre SJF i SRTF? 4) Per a què serveix la MMU?</p><details><summary>Solucions</summary>1) Roll forward completa l'operació interrompuda; roll back la cancel·la i torna a l'estat anterior. 2) Bloquejat. 3) SJF no expulsa un procés en marxa; SRTF sí, si n'arriba un de més curt. 4) Tradueix les adreces lògiques que genera cada procés a les adreces físiques reals de la RAM.</details></div>
 
-<div class="pn"><a href="tema-1-2.html">← Tema 1.2</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 2 →</span></div>
+<div class="pn"><a href="tema-1-2.html">← Tema 1.2</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><a href="tema-2-1.html">Tema 2 →</a></div>
 </main></div>
 <script src="assets/tema.js" defer></script>
 <footer class="credit"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.9L12 16.5l-1.9-5.6L4.5 9l5.6-1.5L12 2z"/></svg>Pàgina elaborada pel professorat del mòdul amb l'ajuda d'un assistent d'IA (Claude, Anthropic) a partir dels materials del curs. Revisa sempre la informació amb el professor/a.</footer>

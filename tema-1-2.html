@@ -10,7 +10,7 @@
 <body id="top">
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
-<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li class="active"><a href="tema-1-2.html">1.2 Sistemes de numeració</a><ul class="nav-sub"><li><a href="tema-1-2.html#s1">1. Codificar informació</a></li><li><a href="tema-1-2.html#s2">2. Sistemes posicionals</a></li><li><a href="tema-1-2.html#s3">3. Conversions</a></li><li><a href="tema-1-2.html#s3b">Conversors (eina)</a></li><li><a href="tema-1-2.html#s4">4. Suma, resta, ×, ÷</a></li><li><a href="tema-1-2.html#s4b">Calculadora pas a pas</a></li><li><a href="tema-1-2.html#s5">5. Negatius: Ca1 i Ca2</a></li><li><a href="tema-1-2.html#s6">6. Magnituds</a></li><li><a href="tema-1-2.html#s7">7. Text: ASCII</a></li><li><a href="tema-1-2.html#s9b">Resum visual</a></li></ul></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-future">Tema 2 · Màquines virtuals <em>(aviat)</em></div><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li class="active"><a href="tema-1-2.html">1.2 Sistemes de numeració</a><ul class="nav-sub"><li><a href="tema-1-2.html#s1">1. Codificar informació</a></li><li><a href="tema-1-2.html#s2">2. Sistemes posicionals</a></li><li><a href="tema-1-2.html#s3">3. Conversions</a></li><li><a href="tema-1-2.html#s3b">Conversors (eina)</a></li><li><a href="tema-1-2.html#s4">4. Suma, resta, ×, ÷</a></li><li><a href="tema-1-2.html#s4b">Calculadora pas a pas</a></li><li><a href="tema-1-2.html#s5">5. Negatius: Ca1 i Ca2</a></li><li><a href="tema-1-2.html#s6">6. Magnituds</a></li><li><a href="tema-1-2.html#s7">7. Text: ASCII</a></li><li><a href="tema-1-2.html#s9b">Resum visual</a></li></ul></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-title">Tema 2 · Màquines virtuals</div><ul class="nav-tree"><li><a href="tema-2-1.html">2.1 Màquines virtuals</a></li></ul><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.2</div>
 <h1>Tema 1.2: Sistemes de numeració i codificació de la informació</h1>
@@ -47,6 +47,7 @@
 <tr><td>Decimal</td><td>10</td><td>0–9</td><td>Vida quotidiana</td></tr><tr><td>Binari</td><td>2</td><td>0, 1</td><td>Maquinari</td></tr><tr><td>Octal</td><td>8</td><td>0–7</td><td>Permisos Linux (<code>chmod 755</code>)</td></tr><tr><td>Hexadecimal</td><td>16</td><td>0–9, A–F</td><td>Colors, adreces MAC, memòria</td></tr></table></div>
 <p>En decimal: <code>234 = 2·10² + 3·10¹ + 4·10⁰ = 200 + 30 + 4</code>. La mateixa idea serveix per a qualsevol base.</p>
 <div class="box info"><b>Notació</b>Per no confondre <code>101</code> decimal amb binari, escrivim la base com a subíndex: 101₂ = 5₁₀. En hexadecimal, A=10, B=11, C=12, D=13, E=14, F=15.</div>
+<div class="box ok"><b>Per què l'octal serveix per als permisos de Linux?</b>Perquè 8 = 2³: cada xifra octal equival <i>exactament</i> a 3 bits, ni més ni menys. Els permisos d'un fitxer són tres grups de 3 bits cadascun (lectura/escriptura/execució per a propietari, grup i altres), així que cada grup cap en una sola xifra octal: <code>rwx</code> = 111₂ = 7. D'aquí ve que <code>chmod 750</code> sigui una manera curta d'escriure 9 bits de permisos. Ho detallarem al Tema 1.3.</div>
 
 <h2 id="s3">3. Conversions entre sistemes</h2>
 <p>Hi ha dues famílies de mètodes: <b>aritmètics</b> (pesos i divisions) i <b>via binari</b> (agrupar bits). Tria sempre el més curt; per comprovar, torna al decimal.</p>
@@ -491,6 +492,8 @@ recompute();
 })();
 </script>
 
+<figure class="imgcard"><img src="assets/img/resum-numeracio-operacions.png" alt="Infografia resum: sistemes de numeració (decimal, binari, octal, hexadecimal), mapa de conversions, taula 0-15 i les quatre operacions en binari"><figcaption>Resum de tot el que heu vist fins aquí: les quatre bases, el mapa de conversions, la taula 0–15 i les operacions en binari.</figcaption></figure>
+
 <h2 id="s5">5. Nombres negatius: signe-magnitud, Ca1 i Ca2</h2>
 <p>Amb <i>n</i> bits cal decidir com escriure el signe. Exemple amb <b>−5 en 8 bits</b> (5 = 00000101):</p>
 <div class="tw"><table><tr><th>Representació</th><th>Com es fa</th><th>−5</th><th>Rang (8 bits)</th></tr>
@@ -517,7 +520,12 @@ recompute();
 <div class="ex"><h4>Exercici 7 · Magnituds</h4><span class="tag">Mitjà · 8 min</span><p>Quants MiB ocupa una foto de 6.291.456 bytes? Quants valors distints hi ha amb 12 bits?</p><details><summary>Solució</summary>6.291.456 / 1.048.576 = 6 MiB. 2¹² = 4.096.</details></div>
 
 <h2 id="s7">7. Text: ASCII</h2>
-<p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
+<p>ASCII assigna un número a cada caràcter: <code>A</code>=65, <code>a</code>=97, <code>0</code>=48. Un caràcter ocupa 1 byte: <code>A</code> = 01000001₂ = 41₁₆. La minúscula difereix de la majúscula només en el bit de valor 32. Unicode (UTF-8) amplia el conjunt per incloure accents i emojis: <code>ç</code> o <code>à</code> ocupen més d'un byte.</p>
+<div class="tw"><table><tr><th>Caràcter</th><th>Decimal</th><th>Binari</th><th>Hexadecimal</th></tr>
+<tr><td>A</td><td>65</td><td>01000001</td><td>41</td></tr>
+<tr><td>a</td><td>97</td><td>01100001</td><td>61</td></tr>
+<tr><td>0</td><td>48</td><td>00110000</td><td>30</td></tr></table></div>
+<div class="box info"><b>Per què de vegades veus «Ã©» on hauria de dir «é»?</b>ASCII original només té 7 bits (128 caràcters) i no inclou accents. Per això van sorgir codis de 8 bits com l'<b>ISO 8859-1</b> (Latin-1), amb 128 símbols més per a «à», «ç», «l·l»... Si un text desat en UTF-8 (on «é» ocupa 2 bytes) s'obre com si fos Latin-1, cada byte es llegeix per separat com un caràcter diferent, i apareixen aquestes lletres estranyes. No és que el text s'hagi espatllat: és un problema de codificació.</div>
 <div class="ex"><h4>Exercici 8 · ASCII</h4><span class="tag">Bàsic · 5 min</span><p>Quin caràcter és 01000010₂ (ajuda: A=65)? Codifica «Hi» en decimal si H=72 i i=105.</p><details><summary>Solució</summary>01000010₂ = 66 → B. «Hi» = 72 105.</details></div>
 
 <h2 id="s9b">Resum visual</h2>

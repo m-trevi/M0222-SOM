@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Materials del mòdul MP0222 Sistemes Operatius Monolloc (CFGM SMX)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tema 2.1: Màquines virtuals | MP0222</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="top">
+<header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA5 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
+<div class="wrap">
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li><a href="tema-1-2.html">1.2 Sistemes de numeració</a></li><li><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a></li></ul><div class="nav-tema-title">Tema 2 · Màquines virtuals</div><ul class="nav-tree"><li class="active"><a href="tema-2-1.html">2.1 Màquines virtuals</a><ul class="nav-sub"><li><a href="tema-2-1.html#s1">1. Concepte de MV</a></li><li><a href="tema-2-1.html#s2">2. Què emula una MV</a></li><li><a href="tema-2-1.html#s3">3. Amfitrió i hoste</a></li><li><a href="tema-2-1.html#s4">4. MV contra màquina física</a></li><li><a href="tema-2-1.html#s5">5. Programari de virtualització</a></li><li><a href="tema-2-1.html#s6">6. Tipus d'hipervisor</a></li><li><a href="tema-2-1.html#s7">7. Les MV del curs</a></li><li><a href="tema-2-1.html#s8">8. Modes de xarxa</a></li><li><a href="tema-2-1.html#s9">9. Formats de disc virtual</a></li><li><a href="tema-2-1.html#s10">10. Virtualització al núvol</a></li><li><a href="tema-2-1.html#s10b">10b. Guest Additions</a></li><li><a href="tema-2-1.html#s11">11. Snapshots</a></li><li><a href="tema-2-1.html#s12">12. Exportar i importar (OVF/OVA)</a></li><li><a href="tema-2-1.html#s12b">Resum visual</a></li><li><a href="tema-2-1.html#s13">Glossari i repàs</a></li></ul></li></ul><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
+<main id="main">
+<div class="crumb"><a href="index.html">Inici</a> › RA5 › Tema 2.1</div>
+<h1>Tema 2.1: Màquines virtuals</h1>
+<p class="lead">Criteris d'avaluació 5.1–5.7 · Activitat A4 i Pt 4 · 3 h. En acabar sabreu què és una màquina virtual i què emula, la diferència entre amfitrió i hoste, com triar programari de virtualització, els modes de xarxa d'una MV i per a què serveixen els snapshots.</p>
+<div class="mascota-tip"><svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 14h70l14 14v78a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="var(--code)" stroke="var(--ac)" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="34" y="14" width="44" height="26" rx="2" fill="var(--ac)" stroke="var(--ac)" stroke-width="3"/>
+<rect x="56" y="19" width="12" height="16" rx="1.5" fill="var(--code)"/>
+<rect x="38" y="19" width="7" height="7" rx="1" fill="var(--code)"/>
+<rect x="22" y="48" width="76" height="52" rx="4" fill="var(--card)" stroke="var(--ac)" stroke-width="2.5"/>
+<circle cx="45" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<circle cx="75" cy="70" r="9" fill="none" stroke="var(--ac)" stroke-width="3"/>
+<line x1="54" y1="70" x2="66" y2="70" stroke="var(--ac)" stroke-width="3"/>
+<line x1="36" y1="68" x2="30" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="84" y1="68" x2="90" y2="65" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="45" cy="70" r="2.2" fill="var(--ac)"/>
+<circle cx="75" cy="70" r="2.2" fill="var(--ac)"/>
+<path d="M38 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M68 59q7-5 14 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M50 84q10 7 20 0" fill="none" stroke="var(--ac)" stroke-width="4" stroke-linecap="round"/>
+<path d="M54 90q6 5 12 0" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linecap="round"/>
+</svg><p><b>En Disquet diu:</b> Jo només sé ser una cosa física: un disquet de debò, amb els seus 1,44 MB reals. Una màquina virtual és tot el contrari: un ordinador sencer que no existeix enlloc físicament, només com a fitxer al disc d'un altre ordinador!</p></div>
+
+<h2 id="s1">1. Concepte de màquina virtual</h2>
+<p>Una <b>màquina virtual</b> (MV) és un entorn de programari que emula un ordinador físic complet: processador, memòria RAM, disc dur, targeta de xarxa i altres perifèrics. Aquest entorn s'executa dins d'un sistema operatiu real, sense necessitat de maquinari addicional.</p>
+<p>Cada MV actua com un ordinador independent: té el seu propi SO, les seves aplicacions i els seus fitxers. Tot i que comparteix el maquinari físic, els recursos li arriben a través d'una <b>capa d'abstracció</b> gestionada pel programari de virtualització.</p>
+<div class="box ok"><b>Analogia: el joc de «La Sims»</b>Imagina que el teu ordinador és la casa de «La Sims». Dins d'aquesta casa pots crear personatges (les MV) que viuen com a persones reals: mengen, dormen, fan activitats... però tot passa en un entorn simulat. Cada Sim és independent: el que li passa a un no afecta els altres, i si n'elimines un, la casa (el teu ordinador real) no canvia gens. El «Sim» és la màquina virtual; la «casa» és el maquinari real; i el programa de «La Sims» és el programari de virtualització (VirtualBox).</div>
+<div class="box info"><b>Un concepte no tan nou com sembla</b>La virtualització no és cosa d'ara: va néixer als anys 1960, quan IBM va crear el VM/370 per fer que els seus grans ordinadors centrals (mainframes) simulessin diverses màquines independents alhora. Amb el pas del temps i la popularització del PC, la idea va quedar en segon pla... fins que la potència dels ordinadors moderns la va fer tornar amb força.</div>
+<h3>Avantatges i inconvenients</h3>
+<div class="tw"><table><tr><th>Avantatges</th><th>Inconvenients</th></tr>
+<tr><td>Consolidar diversos servidors físics en un de sol</td><td>Afegeix sobrecàrrega: una MV mai va tan ràpida com el maquinari real</td></tr>
+<tr><td>Provar aplicacions o SO sense arriscar l'equip real</td><td>Reserva RAM i espai de disc mentre existeix la MV</td></tr>
+<tr><td>Recuperar un sistema sencer a partir d'un sol fitxer</td><td>L'espai de disc reservat no es recupera només aturant la MV</td></tr>
+<tr><td>Portar un entorn complet d'un ordinador a un altre</td><td>Cal maquinari amb prou RAM per a l'amfitrió i totes les MV alhora</td></tr></table></div>
+
+<h2 id="s2">2. Què emula una màquina virtual</h2>
+<p>El programari de virtualització crea versions virtuals dels components principals del maquinari:</p>
+<div class="tw"><table><tr><th>Component virtual</th><th>Equivalent físic</th><th>Funció dins la MV</th></tr>
+<tr><td>CPU virtual</td><td>Processador físic (cores reals)</td><td>Executa les instruccions del SO hoste</td></tr>
+<tr><td>RAM virtual</td><td>Memòria RAM física</td><td>Espai de treball del SO hoste</td></tr>
+<tr><td>Disc dur virtual (VDI)</td><td>Disc dur físic</td><td>S'emmagatzema com un fitxer al disc real</td></tr>
+<tr><td>Targeta de xarxa virtual</td><td>NIC física</td><td>Connectivitat de xarxa (NAT, xarxa interna...)</td></tr>
+<tr><td>BIOS/UEFI virtual</td><td>Firmware de la placa base</td><td>Arrenca el SO hoste</td></tr></table></div>
+<div class="box info"><b>Clau</b>Un disc dur virtual no és res més que un <b>fitxer gros</b> (amb extensió .vdi, .vmdk o .vhd) al disc real. Per això es pot copiar, moure o esborrar una MV sencera igual que qualsevol altre fitxer.</div>
+<div class="box imp"><b>Dos nivells de «màquina virtual»</b>Les MV d'aquest tema (VirtualBox) són <b>MV de sistema</b>: emulen un ordinador sencer i hi pots instal·lar qualsevol SO. Però el terme «màquina virtual» també s'usa per a les <b>MV de procés</b>, que només executen un sol programa de manera independent de la plataforma — per exemple, la <b>màquina virtual de Java (JVM)</b>, que permet que el mateix programa Java funcioni igual a Windows, Linux o macOS sense tornar-lo a compilar.</div>
+
+<h2 id="s3">3. Sistema operatiu amfitrió (host) i hoste (guest)</h2>
+<div class="tw"><table><tr><th>Rol</th><th>Què és</th><th>A l'aula</th></tr>
+<tr><td><b>Amfitrió (host)</b></td><td>El SO que s'executa directament sobre el maquinari real; és el que arranques quan enceneu l'ordinador.</td><td>El Windows 10 o Linux Mint instal·lat al disc físic de l'ordinador de l'aula.</td></tr>
+<tr><td><b>Hoste (guest)</b></td><td>El SO que s'executa dins la màquina virtual. «Creu» que té un ordinador per a ell sol, encara que en realitat comparteix els recursos físics.</td><td>El Windows 10 o Linux Mint que instal·lareu <i>dins</i> de VirtualBox.</td></tr></table></div>
+<div class="ex"><h4>Exercici 1 · Amfitrió o hoste?</h4><span class="tag">Bàsic · 4 min</span><p>Al teu portàtil personal tens Windows instal·lat de fàbrica. Hi obres VirtualBox i hi instal·les un Ubuntu per fer proves. Quin dels dos SO és l'amfitrió i quin l'hoste?</p><details><summary>Solució</summary>Windows (instal·lat directament al maquinari) és l'amfitrió; l'Ubuntu (dins de VirtualBox) és l'hoste.</details></div>
+
+<h2 id="s4">4. Màquina virtual contra màquina física</h2>
+<div class="tw"><table><tr><th>Aspecte</th><th>Màquina física</th><th>Màquina virtual</th></tr>
+<tr><td>Accés al maquinari</td><td>Directe (màxim rendiment)</td><td>Emulat per programari (menor rendiment)</td></tr>
+<tr><td>Rendiment</td><td>Màxim (sense sobrecàrrega)</td><td>85–95% del físic (virtualització assistida per maquinari)</td></tr>
+<tr><td>Aïllament</td><td>Limitat (un error afecta tot l'equip)</td><td>Excel·lent (una fallada a la MV no afecta l'amfitrió)</td></tr>
+<tr><td>Portabilitat</td><td>Cap (lligada al maquinari)</td><td>Alta (un fitxer .vdi es pot portar a qualsevol PC)</td></tr>
+<tr><td>Cost</td><td>Elevat (maquinari dedicat)</td><td>Baix (diverses MV al mateix PC)</td></tr>
+<tr><td>Temps de posada en marxa</td><td>Minuts (arrencada física)</td><td>Segons (instanciar la MV)</td></tr></table></div>
+
+<h2 id="s5">5. Programari de virtualització</h2>
+<div class="tw"><table><tr><th>Programari</th><th>Versió aprox.</th><th>Gratuït?</th><th>SO amfitrió</th><th>Ús principal</th></tr>
+<tr><td>VirtualBox (Oracle)</td><td>7.x</td><td>Sí (GPL + PUEL)</td><td>Windows / Linux / macOS</td><td>Educació, desenvolupament</td></tr>
+<tr><td>VMware Workstation Pro</td><td>17.x</td><td>Sí (des de 2024, ús personal)</td><td>Windows / Linux</td><td>Empresa, DevOps, QA</td></tr>
+<tr><td>Hyper-V (Microsoft)</td><td>Inclòs a W10/11 Pro</td><td>Sí (inclòs al SO)</td><td>Windows Pro/Server</td><td>Servidors Windows, laboratoris</td></tr></table></div>
+<div class="box ok"><b>Per què fem servir VirtualBox a l'aula?</b>
+<ul style="margin:.4em 0 0">
+<li>Llicència 100% gratuïta per a ús educatiu.</li>
+<li>Multiplataforma: funciona igual a Windows, Linux i macOS — es pot practicar des de casa amb qualsevol SO.</li>
+<li>Interfície gràfica senzilla: no cal la línia d'ordres per crear i configurar una MV.</li>
+<li>Format estàndard obert (VDI, OVF), compatible amb VMware i QEMU.</li>
+<li>Comunitat i documentació abundants.</li>
+</ul></div>
+<div class="box info"><b>Analogia: l'eina «de taller»</b>Pensa en VirtualBox com en una navalla suïssa: no és la millor eina per a cada tasca en concret, però és la més versàtil, la que sempre pots portar i la que no cal pagar. VMware Workstation Pro seria com una caixa d'eines professional de mecànic: molt millor per a alguns usos, però més pesada i pensada per a l'empresa.</div>
+
+<h2 id="s6">6. Tipus d'hipervisor</h2>
+<p>El programari que gestiona les MV s'anomena <b>hipervisor</b>, i es classifica en dos tipus:</p>
+<div class="tw"><table><tr><th>Tipus</th><th>On s'executa</th><th>Exemples</th><th>Velocitat</th></tr>
+<tr><td>Tipus 1 (Bare-metal)</td><td>Directament sobre el maquinari</td><td>Hyper-V, VMware ESXi, KVM</td><td>Màxima (sense SO amfitrió pel mig)</td></tr>
+<tr><td>Tipus 2 (Hosted)</td><td>Sobre un SO amfitrió ja instal·lat</td><td>VirtualBox, VMware Workstation</td><td>Menor (hi ha la sobrecàrrega del SO amfitrió)</td></tr></table></div>
+<div class="box imp"><b>A l'aula</b>Fem servir VirtualBox (tipus 2) perquè l'ordinador ja té un SO amfitrió instal·lat i no el volem substituir. Un hipervisor de tipus 1 s'instal·laria <i>en lloc</i> del SO habitual de l'equip.</div>
+<h3>Virtualització per maquinari: VT-x i AMD-V</h3>
+<p>Els processadors moderns inclouen instruccions pensades expressament per ajudar a la virtualització. A Intel es diuen <b>VT-x</b>, i a AMD, <b>AMD-V</b>. Sense aquesta ajuda, VirtualBox encara pot funcionar (virtualització per programari), però és més lenta i no permet executar SO convidats de 64 bits.</p>
+<div class="box imp"><b>«La meva MV no arrenca i parla de VT-x»</b>Si VirtualBox es queixa que no troba virtualització per maquinari, sovint cal <b>activar-la manualment a la BIOS/UEFI</b> de l'ordinador (a vegades ve desactivada de fàbrica). No es pot activar des de dins de Windows ni de VirtualBox: cal entrar a la BIOS en arrencar l'equip.</div>
+
+<h2 id="s7">7. Les màquines virtuals del curs</h2>
+<p>Durant les pràctiques crearem dues MV amb paràmetres concrets. Qualsevol variació pot causar problemes a les pràctiques posteriors del curs, així que cal respectar-los.</p>
+<h3>SMX-W10 (Windows 10)</h3>
+<div class="tw"><table><tr><th>Paràmetre</th><th>Valor requerit</th><th>Justificació</th></tr>
+<tr><td>Nom de la MV</td><td>SMX-W10-[cognom]</td><td>Identificació inequívoca a la llista de VirtualBox</td></tr>
+<tr><td>Tipus / Versió</td><td>Windows / Windows 10 (64-bit)</td><td>Cal 64-bit per suportar 4 GB de RAM</td></tr>
+<tr><td>Memòria RAM</td><td>4096 MB (4 GB)</td><td>Mínim recomanat per a Windows 10; 2 GB és insuficient</td></tr>
+<tr><td>Disc dur virtual</td><td>80 GB, VDI, assignació dinàmica</td><td>VDI és el format natiu; dinàmic ocupa menys espai real</td></tr>
+<tr><td>Mode de xarxa</td><td>NAT</td><td>Permet navegar sense conflictes d'IP a l'aula</td></tr>
+<tr><td>Àudio</td><td>Desactivat</td><td>No és necessari i consumeix recursos</td></tr></table></div>
+<h3>SMX-MINT (Linux Mint)</h3>
+<div class="tw"><table><tr><th>Paràmetre</th><th>Valor requerit</th><th>Justificació</th></tr>
+<tr><td>Nom de la MV</td><td>SMX-MINT-[cognom]</td><td>Identificació inequívoca</td></tr>
+<tr><td>Tipus / Versió</td><td>Linux / Ubuntu 64-bit</td><td>Linux Mint es basa en Ubuntu; a VirtualBox se selecciona Ubuntu 64-bit</td></tr>
+<tr><td>Memòria RAM</td><td>2048 MB (2 GB)</td><td>Linux Mint Cinnamon és més lleuger que Windows 10</td></tr>
+<tr><td>Disc dur virtual</td><td>40 GB, VDI, assignació dinàmica</td><td>Suficient per al SO i les aplicacions del curs</td></tr>
+<tr><td>Mode de xarxa</td><td>NAT</td><td>Mateixa configuració que la MV de Windows</td></tr></table></div>
+<div class="box imp"><b>Assignació dinàmica, no vol dir «ocupa poc sempre»</b>El disc virtual <b>creix</b> a mesura que hi deseu dades, fins al límit marcat (80 GB o 40 GB). No reserva tot l'espai de cop, però tampoc no es pot passar d'aquest límit.</div>
+
+<h2 id="s8">8. Modes de xarxa a VirtualBox</h2>
+<p>Conèixer els modes de xarxa és important per a les pràctiques de xarxa del curs:</p>
+<div class="tw"><table><tr><th>Mode</th><th>Accés a internet</th><th>Comunicació MV↔MV</th><th>Ús típic</th></tr>
+<tr><td>NAT</td><td>Sí (a través de l'amfitrió)</td><td>No (per defecte)</td><td>Ús bàsic, navegar per la web</td></tr>
+<tr><td>Xarxa interna</td><td>No</td><td>Sí (aïllada de tot)</td><td>Pràctiques de xarxa local</td></tr>
+<tr><td>Adaptador pont (Bridge)</td><td>Sí (com un PC independent)</td><td>Sí</td><td>Oferir serveis accessibles des de la xarxa</td></tr>
+<tr><td>Host-only</td><td>No</td><td>Sí (amb l'amfitrió)</td><td>Comunicació MV↔amfitrió</td></tr></table></div>
+<div class="ex"><h4>Exercici 2 · Tria el mode de xarxa</h4><span class="tag">Mitjà · 6 min</span><p>Vols muntar una pràctica de xarxa local entre tres MV, sense que surtin a internet ni interfereixin amb la xarxa de l'aula. Quin mode tries?</p><details><summary>Solució</summary>Xarxa interna: les MV es comuniquen entre elles però queden totalment aïllades d'internet i de la xarxa física.</details></div>
+
+<h2 id="s9">9. Formats de disc virtual</h2>
+<div class="tw"><table><tr><th>Format</th><th>Plataforma nativa</th><th>Interoperable?</th><th>Quan usar-lo</th></tr>
+<tr><td>VDI (Virtual Disk Image)</td><td>VirtualBox</td><td>Amb eines de conversió</td><td>Pràctiques amb VirtualBox</td></tr>
+<tr><td>VMDK (Virtual Machine Disk)</td><td>VMware</td><td>Sí, acceptat per VirtualBox</td><td>Entorns VMware o mixtos</td></tr>
+<tr><td>VHD/VHDX</td><td>Hyper-V / Microsoft</td><td>Parcialment</td><td>Entorns Windows Server</td></tr></table></div>
+
+<h2 id="s10">10. Virtualització al núvol</h2>
+<p>En un centre de dades professional, en lloc d'un ordinador físic per a cada servei, s'utilitzen desenes de màquines virtuals executant-se sobre uns pocs servidors físics molt potents.</p>
+<div class="tw"><table><tr><th>Avantatge</th><th>Per què</th></tr>
+<tr><td>Reducció de costos</td><td>Un sol servidor físic pot substituir 20–30 servidors individuals.</td></tr>
+<tr><td>Consolidació de recursos</td><td>La CPU i la RAM dels servidors físics s'aprofiten al màxim.</td></tr>
+<tr><td>Alta disponibilitat</td><td>Si una MV falla, l'amfitrió segueix funcionant i les altres MV no es veuen afectades.</td></tr>
+<tr><td>Snapshots i còpies de seguretat</td><td>Es pot fotografiar l'estat d'una MV en qualsevol moment.</td></tr>
+<tr><td>Escalabilitat ràpida</td><td>Crear una MV nova triga minuts; instal·lar un servidor físic pot trigar dies.</td></tr></table></div>
+<div class="box ok"><b>Analogia: el núvol és un edifici d'apartaments</b>Imagina un edifici de pisos de lloguer. L'edifici és el servidor físic, i cada apartament és una màquina virtual. Cada llogater (empresa o servei) té el seu espai privat i independent, però tots comparteixen l'estructura de l'edifici (fonaments, ascensors, llum i aigua comuns). Gemini, YouTube, Instagram o Netflix no s'executen en un sol ordinador, sinó en milers de MV distribuïdes en centres de dades de tot el món.</div>
+
+<h2 id="s10b">10b. Guest Additions</h2>
+<p>Les <b>Guest Additions</b> són un paquet de programari que s'instal·la <i>dins</i> del SO hoste per millorar com es comunica amb l'amfitrió. Sense elles, la MV funciona, però de manera molt més bàsica.</p>
+<div class="tw"><table><tr><th>Sense Guest Additions</th><th>Amb Guest Additions</th></tr>
+<tr><td>Cal clicar dins la finestra perquè el ratolí hi «entri», i prémer una tecla per alliberar-lo</td><td>El punter passa de l'amfitrió a la MV sense cap clic</td></tr>
+<tr><td>Sense manera senzilla de passar fitxers</td><td>Carpetes compartides entre amfitrió i hoste</td></tr>
+<tr><td>La finestra de la MV té una mida fixa</td><td>La resolució s'ajusta sola en redimensionar la finestra</td></tr>
+<tr><td>Copiar i enganxar text no funciona entre tots dos</td><td>Porta-retalls compartit</td></tr></table></div>
+<div class="box imp"><b>Primer pas després d'instal·lar qualsevol MV del curs</b>Instal·lar les Guest Additions hauria de ser de les primeres coses a fer amb una MV nova: us estalviarà molts contratemps a les pràctiques següents (sobretot per passar fitxers entre l'amfitrió i l'hoste).</div>
+
+<div class="ex"><h4>Exercici 3 · Guest Additions o configuració de xarxa?</h4><span class="tag">Bàsic · 4 min</span><p>Acabes d'instal·lar la MV SMX-MINT i vols poder arrossegar un fitxer des de l'escriptori de l'amfitrió fins a dins de la MV. Què t'hi falta instal·lar?</p><details><summary>Solució</summary>Les Guest Additions: sense elles no hi ha carpetes compartides ni manera senzilla de passar fitxers entre l'amfitrió i l'hoste.</details></div>
+
+<h2 id="s11">11. Snapshots (instantànies)</h2>
+<p>Una de les funcions més valuoses de la virtualització és poder crear <b>snapshots</b>: captures de l'estat complet de la MV (RAM, disc i configuració) en un moment determinat.</p>
+<ul>
+<li>Permeten tornar enrere si una instal·lació o configuració fa malbé el sistema.</li>
+<li>A VirtualBox: <i>Màquina → Crear instantània</i>.</li>
+</ul>
+<div class="box ok"><b>Analogia: guardar partida</b>Un snapshot és exactament com «guardar partida» en un videojoc: si el boss final t'elimina (o una instal·lació et deixa el sistema inservible), tornes al punt exacte on vas desar, sense haver de començar de zero.</div>
+
+<h2 id="s12">12. Exportació i importació (OVF/OVA)</h2>
+<p>VirtualBox permet exportar i importar màquines virtuals senceres en format <b>OVA</b> (Open Virtualization Archive), un sol fitxer que conté tota la MV. Això fa possible:</p>
+<ul>
+<li>Compartir una MV preconfigurada entre alumnes o professors.</li>
+<li>Portar una MV d'un ordinador a un altre sense haver de reinstal·lar-la de zero.</li>
+<li>Fer còpies de seguretat d'entorns sencers.</li>
+</ul>
+<div class="ex"><h4>Exercici 4 · Centre de dades</h4><span class="tag">Mitjà · 8 min</span><p>Un servei com Netflix necessita créixer molt ràpid durant les hores de màxima audiència. Explica, amb els teus propis mots, per què la virtualització els ho facilita respecte a tenir servidors físics dedicats.</p><details><summary>Solució</summary>Perquè crear una MV nova triga minuts (escalabilitat ràpida), i uns pocs servidors físics potents poden allotjar moltes MV alhora (consolidació de recursos), cosa que seria impossible d'igualar instal·lant un servidor físic per cada pic de demanda.</details></div>
+
+<h2 id="s12b">Resum visual</h2>
+<div class="infografia">
+<div class="infocard" style="color:#3b82f6"><svg viewBox="0 0 56 56" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="16" y="16" width="24" height="24" rx="3"/><rect x="23" y="23" width="10" height="10" rx="1"/><line x1="22" y1="6" x2="22" y2="16"/><line x1="28" y1="6" x2="28" y2="16"/><line x1="34" y1="6" x2="34" y2="16"/><line x1="22" y1="40" x2="22" y2="50"/><line x1="28" y1="40" x2="28" y2="50"/><line x1="34" y1="40" x2="34" y2="50"/><line x1="6" y1="22" x2="16" y2="22"/><line x1="6" y1="28" x2="16" y2="28"/><line x1="6" y1="34" x2="16" y2="34"/><line x1="40" y1="22" x2="50" y2="22"/><line x1="40" y1="28" x2="50" y2="28"/><line x1="40" y1="34" x2="50" y2="34"/></svg><b style="color:var(--fg)">Màquina virtual</b><span>Emula un ordinador complet dins d'un fitxer</span></div>
+<div class="infocard" style="color:#10b981"><svg viewBox="0 0 56 56" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="18" r="8"/><path d="M12 48c0-10 7-16 16-16s16 6 16 16"/></svg><b style="color:var(--fg)">Amfitrió i hoste</b><span>El SO real (host) i el SO dins la MV (guest)</span></div>
+<div class="infocard" style="color:#f59e0b"><svg viewBox="0 0 56 56" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="20"/><circle cx="28" cy="28" r="5"/><line x1="28" y1="8" x2="28" y2="18"/></svg><b style="color:var(--fg)">Hipervisor</b><span>Tipus 1 (bare-metal) o tipus 2 (sobre un SO)</span></div>
+<div class="infocard" style="color:#ef4444"><svg viewBox="0 0 56 56" fill="none" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="13" y="22" width="30" height="20" rx="4"/><line x1="22" y1="22" x2="22" y2="13"/><line x1="34" y1="22" x2="34" y2="13"/><line x1="28" y1="42" x2="28" y2="50"/></svg><b style="color:var(--fg)">Modes de xarxa</b><span>NAT, interna, pont i host-only</span></div>
+<div class="infocard" style="color:#8b5cf6"><svg viewBox="0 0 56 56" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 38a10 10 0 0 1-2-19.8A12 12 0 0 1 37 14a9 9 0 0 1 3 17.4"/><path d="M14 38h26a7 7 0 0 0 0-14"/></svg><b style="color:var(--fg)">Núvol</b><span>Milers de MV en pocs servidors físics</span></div>
+<div class="infocard" style="color:#ec4899"><svg viewBox="0 0 56 56" fill="none" stroke="#ec4899" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M28 8a15 15 0 0 0-8 27.7V41a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-5.3A15 15 0 0 0 28 8z"/><line x1="23" y1="49" x2="33" y2="49"/><line x1="28" y1="44" x2="28" y2="33"/></svg><b style="color:var(--fg)">Snapshots</b><span>«Guardar partida» de l'estat de la MV</span></div>
+</div>
+
+<h2 id="s13">Glossari i repàs</h2>
+<div class="tw"><table><tr><th>Terme</th><th>Definició breu</th></tr>
+<tr><td>Amfitrió (host)</td><td>El SO real, instal·lat directament al maquinari.</td></tr>
+<tr><td>Hoste (guest)</td><td>El SO que s'executa dins la màquina virtual.</td></tr>
+<tr><td>Hipervisor</td><td>Programari que crea i gestiona les MV.</td></tr>
+<tr><td>VT-x / AMD-V</td><td>Instruccions del processador (Intel / AMD) que acceleren la virtualització; a vegades cal activar-les a la BIOS.</td></tr>
+<tr><td>Guest Additions</td><td>Paquet que s'instal·la dins del SO hoste per compartir ratolí, carpetes i porta-retalls amb l'amfitrió.</td></tr>
+<tr><td>VDI/VMDK/VHD</td><td>Formats de fitxer per al disc dur virtual d'una MV.</td></tr>
+<tr><td>NAT</td><td>Mode de xarxa que dona accés a internet a la MV a través de l'amfitrió.</td></tr>
+<tr><td>Snapshot</td><td>Captura de l'estat complet d'una MV per poder-hi tornar.</td></tr>
+<tr><td>OVA/OVF</td><td>Format per exportar i importar una MV sencera entre ordinadors.</td></tr></table></div>
+<ul>
+<li>Una MV emula un ordinador complet (CPU, RAM, disc, xarxa) com un fitxer dins l'amfitrió.</li>
+<li>VirtualBox és un hipervisor de tipus 2: gratuït, multiplataforma i senzill, ideal per a l'aula.</li>
+<li>Els modes de xarxa determinen si la MV surt a internet i si es pot comunicar amb altres MV.</li>
+<li>Els snapshots permeten desfer canvis sense perdre feina; l'OVA permet portar una MV sencera a un altre ordinador.</li>
+<li>Al núvol, la virtualització és el que fa possible que serveis com Netflix o YouTube escalin en minuts.</li>
+</ul>
+<div class="ex"><h4>Autoavaluació</h4><span class="tag">Bàsic · 5 min</span><p>1) Quina diferència hi ha entre un hipervisor de tipus 1 i un de tipus 2? 2) Si vols que la teva MV tingui la seva pròpia IP a la xarxa de l'aula, com si fos un PC més, quin mode de xarxa tries? 3) Per què un snapshot no és el mateix que una còpia de seguretat tradicional d'un sol fitxer?</p><details><summary>Solucions</summary>1) El tipus 1 s'executa directament sobre el maquinari (sense SO amfitrió pel mig); el tipus 2 s'executa sobre un SO amfitrió ja instal·lat. 2) Adaptador pont (Bridge). 3) Perquè guarda l'estat <i>complet</i> de la MV (RAM, disc i configuració) en un instant concret, no només un fitxer solt.</details></div>
+
+<div class="pn"><a href="tema-1-3.html">← Tema 1.3</a><a href="#top" style="color:var(--ac)">↑ Amunt</a><span>Tema 3 →</span></div>
+</main></div>
+<script src="assets/tema.js" defer></script>
+<footer class="credit"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9l-5.6 1.9L12 16.5l-1.9-5.6L4.5 9l5.6-1.5L12 2z"/></svg>Pàgina elaborada pel professorat del mòdul amb l'ajuda d'un assistent d'IA (Claude, Anthropic) a partir dels materials del curs. Revisa sempre la informació amb el professor/a.</footer>
+</body>
+</html>
