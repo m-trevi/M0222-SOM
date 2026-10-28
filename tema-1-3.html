@@ -10,7 +10,7 @@
 <body id="top">
 <header><div><a href="index.html"><b>MP0222 · Sistemes Operatius Monolloc</b><br><small>CFGM SMX · RA1 · Institut Francesc Vidal i Barraquer</small></a></div><button id="th" type="button">Mode fosc</button></header>
 <div class="wrap">
-<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li><a href="tema-1-2.html">1.2 Sistemes de numeració</a></li><li class="active"><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a><ul class="nav-sub"><li><a href="tema-1-3.html#s1">1. Sistemes de fitxers</a></li><li><a href="tema-1-3.html#s1b">1b. Fitxers, directoris i rutes</a></li><li><a href="tema-1-3.html#s2">2. FAT32, NTFS i altres</a></li><li><a href="tema-1-3.html#s3">3. Journaling</a></li><li><a href="tema-1-3.html#s3b">3b. Permisos d'arxius</a></li><li><a href="tema-1-3.html#s4">4. Particions: MBR i GPT</a></li><li><a href="tema-1-3.html#s5">5. Memòria volàtil i no volàtil</a></li><li><a href="tema-1-3.html#s6">6. Memòria virtual (swap)</a></li><li><a href="tema-1-3.html#s6b">6b. Paginació i segmentació</a></li><li><a href="tema-1-3.html#s7">7. Gestió d'entrada/sortida</a></li><li><a href="tema-1-3.html#s8">8. Programa i procés</a></li><li><a href="tema-1-3.html#s9">9. Estats d'un procés</a></li><li><a href="tema-1-3.html#s10">10. Canvi de context</a></li><li><a href="tema-1-3.html#s11">11. Planificació: FCFS, SJF i RR</a></li><li><a href="tema-1-3.html#s12">12. Gestor de tasques</a></li><li><a href="tema-1-3.html#s12b">Resum visual</a></li><li><a href="tema-1-3.html#s13">Glossari i repàs</a></li></ul></li></ul><div class="nav-tema-title">Tema 2 · Màquines virtuals</div><ul class="nav-tree"><li><a href="tema-2-1.html">2.1 Màquines virtuals</a></li></ul><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
+<nav class="sidenav" aria-label="Navegació del curs"><a class="nav-home" href="index.html">↩ Índex del curs</a><div class="nav-tema-title">Tema 1 · Introducció als SO</div><ul class="nav-tree"><li><a href="tema-1-1.html">1.1 Conceptes bàsics</a></li><li><a href="tema-1-2.html">1.2 Sistemes de numeració</a></li><li class="active"><a href="tema-1-3.html">1.3 Fitxers, memòria i processos</a><ul class="nav-sub"><li><a href="tema-1-3.html#s1">1. Sistemes de fitxers</a></li><li><a href="tema-1-3.html#s1b">1b. Fitxers, directoris i rutes</a></li><li><a href="tema-1-3.html#s2">2. FAT32, NTFS i altres</a></li><li><a href="tema-1-3.html#s3">3. Journaling</a></li><li><a href="tema-1-3.html#s3b">3b. Permisos d'arxius</a></li><li><a href="tema-1-3.html#s4">4. Particions: MBR i GPT</a></li><li><a href="tema-1-3.html#s5">5. Memòria volàtil i no volàtil</a></li><li><a href="tema-1-3.html#s6">6. Memòria virtual (swap)</a></li><li><a href="tema-1-3.html#s6b">6b. Assignació de memòria</a></li><li><a href="tema-1-3.html#s7">7. Gestió d'entrada/sortida</a></li><li><a href="tema-1-3.html#s8">8. Programa i procés</a></li><li><a href="tema-1-3.html#s9">9. Estats d'un procés</a></li><li><a href="tema-1-3.html#s10">10. Canvi de context</a></li><li><a href="tema-1-3.html#s11">11. Planificació: FCFS, SJF i RR</a></li><li><a href="tema-1-3.html#s12">12. Gestor de tasques</a></li><li><a href="tema-1-3.html#s12b">Resum visual</a></li><li><a href="tema-1-3.html#s13">Glossari i repàs</a></li></ul></li></ul><div class="nav-tema-title">Tema 2 · Màquines virtuals</div><ul class="nav-tree"><li><a href="tema-2-1.html">2.1 Màquines virtuals</a></li></ul><div class="nav-tema-future">Tema 3 · SO propietaris <em>(aviat)</em></div><div class="nav-tema-future">Tema 4 · SO lliures <em>(aviat)</em></div></nav>
 <main id="main">
 <div class="crumb"><a href="index.html">Inici</a> › RA1 › Tema 1.3</div>
 <h1>Tema 1.3: Fitxers, memòria i gestió de processos</h1>
@@ -249,14 +249,82 @@
 <tr><td>Fitxer de paginació (ús)</td><td>Quanta memòria virtual s'està fent servir al disc en aquest moment.</td></tr></table></div>
 <div class="ex"><h4>Exercici 6 · Diagnòstic</h4><span class="tag">Mitjà · 8 min</span><p>Un ordinador amb 8 GB de RAM va molt lent quan tens el navegador, l'editor de vídeo i un joc oberts alhora, i el disc (un HDD, no SSD) no para de fer soroll. Quina n'és la causa més probable?</p><details><summary>Solució</summary>La RAM s'ha omplert i el SO fa swapping constant contra el HDD, que és molt més lent que la RAM; això explica tant la lentitud com el soroll del disc treballant.</details></div>
 
-<h2 id="s6b">6b. Paginació i segmentació</h2>
-<p>Quan varis processos comparteixen la RAM, el SO necessita un mètode per col·locar-los sense que es trepitgin. Cada procés treballa amb <b>adreces lògiques</b> (les que genera, començant sempre com si tingués tota la memòria per a ell); el SO les tradueix a <b>adreces físiques</b> (la posició real a la RAM) mitjançant un component del processador anomenat <b>MMU</b> (Memory Management Unit).</p>
+<h2 id="s6b">6b. Com s'assigna la memòria als processos</h2>
+<p>Quan diversos processos comparteixen la RAM, el SO necessita un mètode per col·locar-los sense que es trepitgin. Cada procés treballa amb <b>adreces lògiques</b> (les que genera, començant sempre com si tingués tota la memòria per a ell); el SO les tradueix a <b>adreces físiques</b> (la posició real a la RAM) mitjançant un component del processador anomenat <b>MMU</b> (Memory Management Unit).</p>
 <div class="tw"><table><tr><th>Mètode</th><th>Com divideix la memòria</th><th>Problema que evita</th></tr>
-<tr><td><b>Partició contínua</b></td><td>Cada procés ocupa un bloc seguit de RAM.</td><td>Senzill, però genera <b>fragmentació externa</b>: queden forats lliures massa petits per a cap procés nou.</td></tr>
-<tr><td><b>Paginació</b></td><td>Divideix la memòria en <b>pàgines</b> de mida fixa (normalment 4 KB) que no cal que siguin contigües.</td><td>Elimina la fragmentació externa; és la base del swap del Tema 1.3.</td></tr>
+<tr><td><b>Partició fixa</b></td><td>Blocs d'una mida fixa, decidits d'entrada.</td><td>Molt senzill, però pateix <b>fragmentació interna</b>.</td></tr>
+<tr><td><b>Partició variable</b></td><td>Cada procés rep un bloc fet exactament a mida.</td><td>Aprofita millor l'espai, però pateix <b>fragmentació externa</b>.</td></tr>
+<tr><td><b>Paginació</b></td><td>Divideix la memòria en <b>pàgines</b> de mida fixa (normalment 4 KB) que no cal que siguin contigües.</td><td>Elimina la fragmentació externa; és la base del swap d'aquest tema.</td></tr>
 <tr><td><b>Segmentació</b></td><td>Divideix el programa en <b>segments</b> de mida variable amb sentit lògic (codi, dades, pila).</td><td>Reflecteix l'estructura real del programa, encara que pot patir fragmentació externa.</td></tr></table></div>
-<div class="box ok"><b>Analogia del trasllat</b>La partició contínua és com voler aparcar un autobús escolar sencer en un sol forat: si no hi cap, no entra, encara que hi hagi prou espai repartit en diversos forats petits. La paginació és com aparcar-hi cotxes individuals (totes les places iguals): n'hi caben molts més, encara que no estiguin junts. La segmentació és com reservar zones de mida diferent per a cada ús (una per a bicicletes, una altra per a camions).</div>
-<div class="ex"><h4>Exercici 7 · Paginació o segmentació?</h4><span class="tag">Bàsic · 5 min</span><p>Un SO divideix cada procés en blocs iguals de 4 KB, independents del seu contingut. De quin mètode es tracta?</p><details><summary>Solució</summary>Paginació: mida fixa i sense relació amb l'estructura lògica del programa és la seva característica distintiva, a diferència de la segmentació (mida variable, amb sentit lògic).</details></div>
+
+<h3>Partició fixa (memòria fixa)</h3>
+<p>El SO divideix la RAM lliure en un nombre fix de particions, totes de la <b>mateixa mida</b>, abans de saber quins processos hi entraran. Cada procés ocupa una partició sencera, encara que no l'ompli del tot.</p>
+<p><b>Exemple:</b> una RAM de 1200 K, amb 200 K reservats pel SO, queden 1000 K lliures. Es divideixen en <b>4 particions fixes</b> de 250 K cadascuna.</p>
+<pre><code>RAM lliure: 1000 K  →  4 particions × 250 K
+
+Procés P1 (200 K) → entra a una partició de 250 K
+                     li sobren 50 K que ningú més pot fer servir
+                     → FRAGMENTACIÓ INTERNA de 50 K
+
+Procés P2 (300 K) → no hi ha cap partició de 250 K on càpiga
+                     → encara que hi hagi 1000 K lliures en total,
+                       P2 NO pot executar-se</code></pre>
+<div class="box imp"><b>La limitació de la partició fixa</b>Que hi hagi prou memòria <i>en total</i> no vol dir que un procés hi càpiga: si és més gran que la partició més gran, es queda fora, per molta RAM lliure que hi hagi repartida en altres particions.</div>
+<div class="ex"><h4>Exercici 7 · Partició fixa</h4><span class="tag">Mitjà · 6 min</span><p>Una RAM lliure de 1600 K es divideix en 4 particions fixes iguals. Arriba un procés de 350 K. (a) Quina mida té cada partició? (b) Hi entra el procés? (c) Si hi entra, quina fragmentació interna genera?</p><details><summary>Solució</summary>(a) 1600/4 = 400 K per partició. (b) Sí, 350 ≤ 400. (c) 400−350 = 50 K de fragmentació interna.</details></div>
+
+<h3>Partició variable (memòria variable)</h3>
+<p>El SO reserva per a cada procés un bloc fet <b>exactament a la seva mida</b>, un darrere l'altre. S'aprofita molt més l'espai (no hi ha fragmentació interna), però quan un procés acaba i allibera el seu bloc, hi queda un «forat» que potser no té la mida justa per a ningú més.</p>
+<p><b>Exemple:</b> RAM lliure de 1000 K. S'hi carreguen, en ordre, P1 (200 K), P2 (300 K), P3 (200 K) i P4 (250 K).</p>
+<pre><code>0      200    500    700    950  1000
+|  P1  |  P2  |  P3  |  P4  | lliure |
+  200K   300K   200K   250K    50K
+
+Ara P2 acaba i allibera el seu bloc de 300 K:
+
+0      200    500    700    950  1000
+|  P1  | buit |  P3  |  P4  | lliure |
+  200K   300K   200K   250K    50K
+
+Arriba P5, que necessita 320 K:
+· El forat de P2 (300 K) és massa petit → no hi cap
+· El forat del final (50 K) és massa petit → no hi cap
+· En total hi ha 350 K lliures (300+50), però no són seguits
+→ FRAGMENTACIÓ EXTERNA: P5 no pot entrar, tot i haver-hi prou espai en total</code></pre>
+<div class="box ok"><b>La solució: compactació</b>El SO pot <b>desplaçar</b> els processos (P3 i P4) perquè quedin tots junts, ajuntant tots els forats en un de sol de 350 K. Llavors P5 (320 K) ja hi cap. El cost: compactar triga temps i cal aturar momentàniament els processos mentre es mouen.</div>
+<div class="ex"><h4>Exercici 8 · Partició variable</h4><span class="tag">Mitjà · 8 min</span><p>RAM lliure de 800 K. S'hi carreguen P1 (150 K), P2 (250 K) i P3 (300 K), en aquest ordre. Després P1 acaba. Arriba P4, que necessita 180 K. (a) Hi ha prou espai en total? (b) Hi cap al forat que ha deixat P1? (c) Com se'n diu, del problema que ha patit?</p><details><summary>Solució</summary>(a) Lliure total = 100 (sobrant inicial) + 150 (forat de P1) = 250 K, sí n'hi ha prou en total. (b) No: el forat de P1 és de 150 K i P4 en necessita 180. (c) Fragmentació externa — caldria compactar per ajuntar els 250 K en un sol bloc.</details></div>
+
+<h3>Paginació</h3>
+<p>La paginació trenca la memòria en trossos petits i <b>d'una mida fixa</b> (pàgines), que ja no cal que quedin seguits. El SO en porta un registre amb una <b>taula de pàgines</b> per cada procés: per cada pàgina lògica del procés, diu a quin <b>marc</b> (frame) físic de la RAM correspon.</p>
+<p><b>Exemple:</b> RAM de 32 K, pàgines de 4 K → 8 marcs (numerats 0–7). El procés P1 necessita 12 K → 3 pàgines.</p>
+<pre><code>Taula de pàgines de P1
+Pàgina lògica | Marc físic
+     0        |     3
+     1        |     5
+     2        |     1
+
+Les 3 pàgines de P1 NO estan seguides a la RAM (marcs 1, 3 i 5):
+els altres marcs (0, 2, 4, 6, 7) poden tenir pàgines d'altres processos.</code></pre>
+<p>Quan la CPU demana l'adreça lògica <b>(pàgina 1, desplaçament 300)</b>, la MMU consulta la taula: pàgina 1 → marc 5, i la tradueix a l'adreça física <b>marc 5, desplaçament 300</b>.</p>
+<div class="box info"><b>Per què no hi ha fragmentació externa</b>Com que totes les pàgines fan la mateixa mida que els marcs, <b>qualsevol marc lliure serveix per a qualsevol pàgina</b>. Ja no hi ha forats de mida «equivocada» com a la partició variable; només pot sobrar una mica a l'última pàgina d'un procés (fragmentació interna petita, com a màxim una pàgina).</div>
+<div class="ex"><h4>Exercici 9 · Paginació</h4><span class="tag">Mitjà · 8 min</span><p>Pàgines de 2 K. Un procés P2 necessita 7 K. (a) Quantes pàgines li calen? (b) Si la taula de pàgines diu Pàg0→Marc2, Pàg1→Marc6, Pàg2→Marc0, Pàg3→Marc4, a quin marc va l'adreça lògica (pàgina 2, desplaçament 50)? (c) Quanta fragmentació interna hi ha, com a màxim, a l'última pàgina?</p><details><summary>Solució</summary>(a) 7 K / 2 K = 3,5 → calen 4 pàgines (la quarta només mig plena). (b) Pàgina 2 → Marc 0, desplaçament 50. (c) Com a màxim, gairebé una pàgina sencera (just per sota de 2 K), en aquest cas 1 K (4 pàgines × 2 K = 8 K reservats per a 7 K reals).</details></div>
+
+<h3>Segmentació</h3>
+<p>La segmentació també evita la fragmentació externa, però amb un criteri diferent: divideix el procés en <b>segments lògics</b> (per exemple codi, dades i pila), cadascun de la mida que necessiti realment. El SO manté una <b>taula de segments</b> amb la posició i la mida de cada un.</p>
+<p><b>Exemple:</b> el procés P1 té tres segments:</p>
+<div class="tw"><table><tr><th>Segment</th><th>Posició a la RAM</th><th>Mida</th></tr>
+<tr><td>Codi</td><td>10</td><td>2</td></tr>
+<tr><td>Dades</td><td>25</td><td>3</td></tr>
+<tr><td>Pila</td><td>40</td><td>1</td></tr></table></div>
+<p>(unitats de memòria, per simplificar — a la pràctica podrien ser KB). Si la CPU demana l'adreça lògica <b>(Dades, desplaçament 2)</b>:</p>
+<pre><code>1) Comprovar límits: desplaçament (2) < mida del segment Dades (3)? Sí, és vàlid.
+2) Adreça física = posició del segment + desplaçament
+                 = 25 + 2
+                 = 27</code></pre>
+<div class="box imp"><b>Què passa si el desplaçament és massa gran?</b>Si es demanés, per exemple, (Dades, desplaçament 5), com que 5 no és més petit que la mida del segment (3), el SO el rebutjaria com a <b>accés fora de límits</b> — exactament el tipus d'error que origina un «segmentation fault».</div>
+<div class="ex"><h4>Exercici 10 · Segmentació</h4><span class="tag">Mitjà · 8 min</span><p>Un procés té el segment Pila a la posició 50, amb mida 4. (a) És vàlida l'adreça lògica (Pila, desplaçament 3)? Quina adreça física dona? (b) I (Pila, desplaçament 4)?</p><details><summary>Solució</summary>(a) Sí, 3&lt;4 → adreça física = 50+3 = 53. (b) No és vàlida: 4 no és més petit que la mida (4) → accés fora de límits.</details></div>
+
+<div class="box ok"><b>Analogia del trasllat</b>La partició fixa és com uns caixers de guarda-roba tots de la mateixa mida: si l'abric és gran, no hi cap, encara que hi hagi caixers buits. La partició variable és com un armari a mida per a cada client: s'aprofita l'espai, però quan algú se'n va, el buit que deixa potser no serveix per al següent. La paginació és com aparcar-hi cotxes idèntics en places idèntiques: qualsevol plaça buida serveix. La segmentació és com reservar zones de mida diferent per a cada ús (una per a bicicletes, una altra per a camions).</div>
+<div class="ex"><h4>Exercici 11 · Quin mètode?</h4><span class="tag">Bàsic · 5 min</span><p>Un SO divideix cada procés en blocs iguals de 4 K, independents del seu contingut. De quin mètode es tracta?</p><details><summary>Solució</summary>Paginació: mida fixa i sense relació amb l'estructura lògica del programa és la seva característica distintiva, a diferència de la segmentació (mida variable, amb sentit lògic).</details></div>
 
 <h2 id="s7">7. Gestió d'entrada/sortida (E/S)</h2>
 <p>El SO també ha de controlar tots els <b>dispositius perifèrics</b> (teclat, disc, pantalla, xarxa…) i oferir als programes una manera uniforme d'utilitzar-los, sense que calgui conèixer els detalls tècnics de cada un.</p>
@@ -271,7 +339,7 @@
 <tr><td><b>Gestor d'interrupcions</b></td><td>Rutina que s'executa quan un dispositiu avisa que ha acabat o necessita atenció.</td></tr>
 <tr><td><b>DMA (accés directe a memòria)</b></td><td>Permet a un dispositiu llegir o escriure directament a la RAM sense fer passar cada byte per la CPU — allibera el processador per a altres tasques.</td></tr></table></div>
 <div class="box info"><b>Analogia del restaurant</b> El <b>driver</b> és com un cambrer especialitzat que sap exactament com tractar amb «la cuina japonesa» (un dispositiu concret), encara que el client (el programa) només digui «vull sushi» en llenguatge genèric. La <b>interrupció</b> és la campaneta que sona quan un plat ja és fora; sense ella, el cambrer hauria d'anar a mirar la cuina cada pocs segons (això es diu <i>polling</i>, i és molt menys eficient). El <b>DMA</b> és com deixar que el proveïdor porti els ingredients directament al rebost sense que el cambrer n'hagi de fer cap viatge.</div>
-<div class="ex"><h4>Exercici 8 · Driver o controlador?</h4><span class="tag">Bàsic · 5 min</span><p>Acabes d'instal·lar una impressora nova i Windows et demana «instal·lar programari del fabricant» abans que funcioni. De quin dels dos components parlem?</p><details><summary>Solució</summary>Del driver: el programari específic que tradueix les ordres genèriques d'impressió al llenguatge concret d'aquell model.</details></div>
+<div class="ex"><h4>Exercici 12 · Driver o controlador?</h4><span class="tag">Bàsic · 5 min</span><p>Acabes d'instal·lar una impressora nova i Windows et demana «instal·lar programari del fabricant» abans que funcioni. De quin dels dos components parlem?</p><details><summary>Solució</summary>Del driver: el programari específic que tradueix les ordres genèriques d'impressió al llenguatge concret d'aquell model.</details></div>
 
 <h2 id="s8">8. Programa i procés</h2>
 <div class="tw"><table><tr><th>Concepte</th><th>Definició</th><th>Exemple</th></tr>
@@ -286,7 +354,7 @@
 <tr><td>Ubicació en memòria</td><td>Adreces d'inici del codi, les dades i la pila del procés.</td></tr>
 <tr><td>Recursos utilitzats</td><td>Arxius oberts, dispositius assignats, temps de CPU consumit…</td></tr></table></div>
 <div class="box info"><b>El procés nul</b> Quan no hi ha cap procés preparat per executar-se, la CPU no es queda «apagada»: executa un <b>procés nul</b> (o tasca ociosa), un bucle buit que no fa res útil, només per tenir alguna cosa a fer fins que arribi feina real. És el que explica per què un ordinador en repòs encara marca algun ús de CPU.</div>
-<div class="ex"><h4>Exercici 9 · Programa o procés?</h4><span class="tag">Bàsic · 4 min</span><p>Tens el Word instal·lat però tancat, i el Spotify obert reproduint música. Digues què és cadascun: programa o procés.</p><details><summary>Solució</summary>Word tancat: programa (només instruccions al disc, no s'executa). Spotify obert: procés (instància en execució, amb PID i memòria assignada).</details></div>
+<div class="ex"><h4>Exercici 13 · Programa o procés?</h4><span class="tag">Bàsic · 4 min</span><p>Tens el Word instal·lat però tancat, i el Spotify obert reproduint música. Digues què és cadascun: programa o procés.</p><details><summary>Solució</summary>Word tancat: programa (només instruccions al disc, no s'executa). Spotify obert: procés (instància en execució, amb PID i memòria assignada).</details></div>
 
 <h2 id="s9">9. Estats d'un procés</h2>
 <p>Durant la seva vida, un procés passa per diversos estats. El nucli d'un SO en distingeix cinc:</p>
@@ -319,7 +387,7 @@
 <text x="115" y="105">admès</text><text x="270" y="100">planificador</text><text x="270" y="140">quàntum esgotat</text><text x="470" y="105">sortir</text><text x="425" y="165">espera E/S</text><text x="280" y="185">esdeveniment</text></g>
 </svg>
 <div class="box ok"><b><svg class="icon-inline" viewBox="0 0 56 56" fill="none" stroke="#06b6d4" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="28" r="6"/><circle cx="28" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><line x1="18" y1="28" x2="22" y2="28"/><line x1="34" y1="28" x2="38" y2="28"/></svg>Analogia de Spotify</b><b>Executant</b>: la cançó que sona ara (només una per dispositiu). <b>Preparat</b>: la cua de reproducció — a punt per sonar, esperant el seu torn. <b>Bloquejat</b>: has posat en pausa per agafar una trucada — la cançó no avança, però tampoc ha acabat; quan penges, torna a la cua i segueix.</div>
-<div class="ex"><h4>Exercici 10 · Segueix el procés</h4><span class="tag">Mitjà · 6 min</span><p>Un procés es crea, s'admet, s'executa, demana llegir un fitxer del disc, espera la resposta, torna a executar-se i acaba. Escriu la seqüència d'estats.</p><details><summary>Solució</summary>Nou → Preparat → Executant → Bloquejat → Preparat → Executant → Acabat.</details></div>
+<div class="ex"><h4>Exercici 14 · Segueix el procés</h4><span class="tag">Mitjà · 6 min</span><p>Un procés es crea, s'admet, s'executa, demana llegir un fitxer del disc, espera la resposta, torna a executar-se i acaba. Escriu la seqüència d'estats.</p><details><summary>Solució</summary>Nou → Preparat → Executant → Bloquejat → Preparat → Executant → Acabat.</details></div>
 
 <h3>Les vuit transicions possibles</h3>
 <div class="tw"><table><tr><th>Transició</th><th>Quan passa</th></tr>
@@ -405,8 +473,8 @@ TE mitjà = (0+3+8+8) / 4 = 4,75 unitats</code></pre>
 <tr><td>Canvis de context</td><td>Pocs</td><td>Mitjans / molts</td><td>Molts</td></tr>
 <tr><td>Millor per a…</td><td>Processos batch llargs</td><td>Minimitzar l'espera mitjana</td><td>Sistemes interactius, escriptori</td></tr></table></div>
 <div class="box info"><b>Per què RR surt pitjor aquí?</b> Amb només 4 processos, repartir la CPU en trossos allarga la finalització dels processos llargs. RR sol guanyar quan hi ha molts processos barrejats (curts i llargs) i es valora la resposta ràpida per damunt del temps mitjà total — exactament el cas d'un escriptori amb desenes de programes oberts.</div>
-<div class="ex"><h4>Exercici 11 · Calcula FCFS</h4><span class="tag">Mitjà · 12 min</span><p>Processos E(arr.0, dur.3), F(arr.1, dur.5), G(arr.3, dur.2). Calcula Inici, Terminació, TR i TE de cadascun amb FCFS, i el TE mitjà.</p><details><summary>Solució</summary>E: inici0, term3, TR3, TE0. F: inici3, term8, TR7, TE2. G: inici8, term10, TR7, TE5. TE mitjà=(0+2+5)/3=2,33.</details></div>
-<div class="ex"><h4>Exercici 12 · SJF</h4><span class="tag">Mitjà · 10 min</span><p>Amb els mateixos processos E(arr.0,dur.3), F(arr.1,dur.5), G(arr.3,dur.2), aplica SJF no expulsiu. Dibuixa el Gantt i calcula el TE mitjà.</p><details><summary>Solució</summary>A t=0 només E (dur3): s'executa 0-3. A t=3 ja han arribat F(5) i G(2): entra G (més curt): 3-5. Després F: 5-10. TE(E)=0, TE(G)=3-3=0, TE(F)=5-1=4. TE mitjà=(0+0+4)/3=1,33 — millor que FCFS (2,33).</details></div>
+<div class="ex"><h4>Exercici 15 · Calcula FCFS</h4><span class="tag">Mitjà · 12 min</span><p>Processos E(arr.0, dur.3), F(arr.1, dur.5), G(arr.3, dur.2). Calcula Inici, Terminació, TR i TE de cadascun amb FCFS, i el TE mitjà.</p><details><summary>Solució</summary>E: inici0, term3, TR3, TE0. F: inici3, term8, TR7, TE2. G: inici8, term10, TR7, TE5. TE mitjà=(0+2+5)/3=2,33.</details></div>
+<div class="ex"><h4>Exercici 16 · SJF</h4><span class="tag">Mitjà · 10 min</span><p>Amb els mateixos processos E(arr.0,dur.3), F(arr.1,dur.5), G(arr.3,dur.2), aplica SJF no expulsiu. Dibuixa el Gantt i calcula el TE mitjà.</p><details><summary>Solució</summary>A t=0 només E (dur3): s'executa 0-3. A t=3 ja han arribat F(5) i G(2): entra G (més curt): 3-5. Després F: 5-10. TE(E)=0, TE(G)=3-3=0, TE(F)=5-1=4. TE mitjà=(0+0+4)/3=1,33 — millor que FCFS (2,33).</details></div>
 
 <h2 id="s12">12. Gestor de tasques de Windows</h2>
 <p>El <b>Gestor de tasques</b> (<code>Ctrl+Maj+Esc</code>) mostra els processos en execució i el seu consum de recursos:</p>
